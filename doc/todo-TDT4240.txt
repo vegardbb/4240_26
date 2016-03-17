@@ -1,6 +1,3 @@
-1209163328 bytes	6ffe608b1dd39041a578019eb3fedb5ee62ba545
-351419656 bytes	8d016b90bf04ebac6ce548b1976b0c8a4f46b5f9
-375635150 bytes
+Helpdesk - branch
 
-Prosjektmappe
-Progark_oving1
+I denne branch legges dokumentasjon på hjelpemidler brukt under programmeringsfasen av spillet.
