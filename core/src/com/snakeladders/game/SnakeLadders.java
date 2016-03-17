@@ -13,7 +13,7 @@ public class SnakeLadders extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		img = new Texture("badlogic.jpg"); // Konstruer teksture basert fra fil
 	}
 
 	@Override
@@ -24,4 +24,8 @@ public class SnakeLadders extends ApplicationAdapter {
 		batch.draw(img, 0, 0);
 		batch.end();
 	}
+	
+	// TODO: Se igjennom applicationApdapter. Hvorfor import og samtidig arv?
+	// Tegn pakkediagram, analyser krav.
+	// Importer dokumentasjon inn i master - branch
 }
