@@ -7,6 +7,8 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.snakeladders.game.SnakeLadders;
 
 public class AndroidLauncher extends AndroidApplication {
+	// Utilized patterns: State, (etc)
+	
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
