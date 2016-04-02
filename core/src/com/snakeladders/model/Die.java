@@ -3,7 +3,7 @@ package com.snakeladders.model;
 public class Die {
     // Model class for the die that decides how many fields to move during a turn.
     // Fields
-    private int highest = null; // The highest number shown on die, 0 being the lowest. null by default. May be configured by the players.
+    private int highest = -1; // The highest number shown on die, 0 being the lowest. null by default. May be configured by the players.
     private int throwed = 0; // Current number on the die.
     
     // Singleton Magic. May be revised if harming testability
@@ -13,7 +13,7 @@ public class Die {
     // TODO: Add model properties in accordance to libgdx view elements, such as a private Sprite, its dimenions etc.
 
     // This method is questionable.
-    public void setHighestThrow(int nr) { if (this.highest == null ) {this.highest = nr; }} 
+    public void setHighestThrow(int nr) { if (this.highest == -1 ) {this.highest = nr; }}
 
     public int getHighest() { return this.highest; }
 
