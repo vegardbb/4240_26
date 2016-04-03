@@ -7,6 +7,7 @@
 + Mer modellering / remodellering, lag modell
 + Åpne prosjekt i Android Studio.
 + Tegn splash screen.
++ Definer SplashScreen - klasse og Hovedmeny - klasse 
 
 # Innhold
 + model - Klasser som holder på spillets data
