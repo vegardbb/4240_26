@@ -1,20 +1,22 @@
 package com.snakeladders.model;
 
-public class Field {
+public abstract class Field {
     /**
-    Model class for the template field that contains all the things that make up our Stigespill
+    Model class for the template field that contains all the things that make up our imoplementatino of Stigespillet
+
     Contents:
-    The Sprite. Located in assets directory. Animated sprites defined in image file. 
-    All fields are made by a Field Factory.
-    This is a general template class 
 
+    All fields are made by a Field Factory. FieldFactory is amongst the controllers.
+    This is a general template class extended by NormalField, ChanceField and LadderField. 
     **/
-    private int id;
-    //private Field previousField; // Relevant only if we were using a linked list of Fields for moving.
-    //private Field nextField;  Relevant  only if we were using a linked list of Fields for moving players.
-    //private Field teleportField; //Used by ladderFields only.
-    private Board board; // Referene to the board the field belongs to.
 
-    private int xCoord; // Needed?
-    private int yCoord;
+    private int id;
+    private Field teleportToField; //Used by ladderFields and chancefields, normally null for Normalfield.
+    private Board board; // Reference to the board the field belongs to.
+    
+    public Field(Board board, int i, Field teleportToField = null) {
+        this.board = board;
+        this.id = i;
+        this.teleportToField = teleportToField;
+    }
 }
