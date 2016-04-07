@@ -13,12 +13,12 @@ public final class Die {
     private static final Die INSTANCE = new Die();
 
     public static Die getDie() {
-        return INSTANCE;
+        return INSTANCE; }
 
     // Suggestions:
     // Make class static in order to initialize only ONE die upon starting a new game. What if the attributes need changing??
 
-    // This method is questionable.
+    // This method is questionable.s
     public void setHighestThrow(int nr) { if ( this.highest == -1 ) {this.highest = nr; }}
 
     public int getHighest() { return this.highest; }
@@ -26,5 +26,17 @@ public final class Die {
     public int getThrowed() { return this.throwed; }
 
     public void setThrowed(int nr) { this.throwed = nr; }
+
+    /*
+
+    Scenarios
+
+    Testers
+
+    Use Case Diagram
+
+    Validate current architecture, and drive architectural increment.
+
+     */
 
 }

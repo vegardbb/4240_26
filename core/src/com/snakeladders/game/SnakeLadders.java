@@ -28,4 +28,22 @@ public class SnakeLadders extends ApplicationAdapter {
 	// TODO: Se igjennom applicationApdapter. Hvorfor import og samtidig arv?
 	// Tegn pakkediagram, analyser krav.
 	// Importer dokumentasjon inn i master - branch
+	/**
+package com.minimaldevelop.libgdxgame;
+
+import com.badlogic.gdx.Game;
+import com.minimaldevelop.libgdxgame.screens.SplashScreen;
+
+public class LibGdxGame extends Game {
+	
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
+		Assets.load();
+		setScreen(new SplashScreen(this));
+	}
+	
+}
+
+	**/
 }
