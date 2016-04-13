@@ -1,10 +1,25 @@
-package com.snakeladders.game;
+package com.minimaldevelop.libgdxgame;
+
+import com.badlogic.gdx.Game;
+import com.minimaldevelop.libgdxgame.screens.SplashScreen;
+
+public class LibGdxGame extends Game {
+	
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
+		Assets.load();
+		setScreen(new SplashScreen(this));
+	}
+	/* Uten bruk av Scene2D
+	package com.snakeladders.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class SnakeLadders extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -29,21 +44,11 @@ public class SnakeLadders extends ApplicationAdapter {
 	// Tegn pakkediagram, analyser krav.
 	// Importer dokumentasjon inn i master - branch
 	/**
-package com.minimaldevelop.libgdxgame;
 
-import com.badlogic.gdx.Game;
-import com.minimaldevelop.libgdxgame.screens.SplashScreen;
-
-public class LibGdxGame extends Game {
-	
-	@Override
-	public void create() {
-		// TODO Auto-generated method stub
-		Assets.load();
-		setScreen(new SplashScreen(this));
-	}
-	
-}
 
 	**/
+}
+
+	
+	*/
 }
