@@ -2,14 +2,9 @@
 [Liste av relevante lenker](https://github.com/vegardbb/4240_26/blob/helpdesk/progark-doc)
 
 # TODO
-+ Se Drive for arkitekturdokumentasjon.
-+ Gå igjennom tilbakemelding på dokumenter og planlegg dokumentasjonsendringer.
-+ Mer modellering / remodellering, lag modell
-+ Åpne prosjekt i Android Studio.
-+ Tegn splash screen.
-+ Definer SplashScreen - klasse og Hovedmeny - klasse i view - pakke
-+ Tegne brett - legges inn under /android/assets
-+ Tegne felt for brett - legges inn under /android/assets
++ Tegne spillebrett - legges inn under /android/assets.Størrelse 1500x1500. Hvite kvadrater av størrelse 20x20 der feltene til brettet skal være.
++ Tegne felt for brett - legges inn under /android/assets. Størrelse 20x20. Fire forskjellige filer.
++ Tegne spillebrikker, rundinger, en farge.
 
 # Innhold
 + model - Klasser som holder på spillets data

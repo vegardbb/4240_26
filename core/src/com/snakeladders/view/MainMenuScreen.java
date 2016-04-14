@@ -15,9 +15,8 @@ import com.snakeladders.game.SnakeLadders; // The Game class
 public class MainMenuScreen implements Screen {
     
     SnakeLadders game;
-    Stage stage;
+    Stage stage; 
     TextButton startGameButton;
-    TextButton optionsButton;
     TextButton exitButton;
     
     public MainMenuScreen(SnakeLadders game) {
@@ -49,8 +48,7 @@ public class MainMenuScreen implements Screen {
         
         Table table = new Table(Assets.skin);
         
-        startGameButton = new TextButton("New Game", Assets.skin);
-        optionsButton = new TextButton("Options", Assets.skin);
+        startGameButton = new TextButton("New Game", Assets.skin); // TODO: Replace skin with TextButtonStyle, which uses a font
         exitButton = new TextButton("Exit", Assets.skin);
         Image backImage = new Image(Assets.backgroundTexture);
         
@@ -71,11 +69,9 @@ public class MainMenuScreen implements Screen {
 //        table.debug(); 
         table.add(startGameButton).width(150).height(50);
         table.row();
-        table.add(optionsButton).width(150).height(50).padTop(10);
-        table.row();
         table.add(exitButton).width(150).height(50).padTop(10);
         
-        stage.addActor(backImage);
+        stage.addActor(backImage); // Turns out the background is a dumb actor.
         stage.addActor(table);
     }
 
@@ -94,13 +90,38 @@ public class MainMenuScreen implements Screen {
     @Override
     public void resume() {
         // TODO Auto-generated method stub
+        /*
+        Concerning the die
+        */
         
     }
 
     @Override
     public void dispose() {
         // TODO Auto-generated method stub
+        /*
+        On functunalities in the view:
+        Each piece/token is represented by a png file asset (in the asset folder), is of size 20x20 pixels with transparent background.
+        Each field is also 20x20 pixels, represented on the board file as an empty, white 20x20 quadrat surrounded by black
+        Each board is a big png file, also in assets folder
+        Each of the three types of fields are also represented as an image file of size 20x20 in the assets folder under android.
+        We have a total of eight different pieces, limiting number of players to 8
+        Textures in Assets, note that the names are intuitively suggestive:
+        - backgroundTexture
+        - boardTexture, identified by a name/string. We start out with two different boards in the assets folder.
+        - pieceTexture, identified by name of colour on button, string.
+        - dieTexture 
+        - chanceFieldTexture ( predetermined )
+        - NormalFieldTexture ( predetermined )
+        - LadderFieldTexture ( predetermined )
         
+        Actors on GameScreen, which need be implemented:
+        - Die
+        - One Piece for each player in the game.
+        
+        About the screens:
+        Only one screen contains animated objects (things on the screen) that are interacted with that needs be implemented - the GameScreen.
+        */
     }
 
 }

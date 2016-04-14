@@ -11,7 +11,7 @@ public abstract class Field {
     **/
 
     private int id;
-    private Field teleportToField; //Used by ladderFields and chancefields, normally null for Normalfield.
+    private Field teleportToField = null; //Used by ladderFields and occasionally chancefields, normally null for Normalfield.
     private Board board; // Reference to the board the field belongs to.
     
     public Field(Board board, int i, Field teleportToField) {
@@ -19,4 +19,7 @@ public abstract class Field {
         this.id = i;
         this.teleportToField = teleportToField;
     }
+    public Board getBoard() {return this.board; }
+    public Field getTeleportToField() {return this.teleportToField; }
+    public Board getId() {return this.id; }
 }
