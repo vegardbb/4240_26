@@ -59,25 +59,24 @@ public class MainMenuScreen implements Screen {
                     int pointer, int button) {
                 //startGameButton.setStyle(Assets.textButtonStyle);
                 //game.setScreen(new GameScreen(game)); // TODO: Set Screen To Config
-                
+                System.out.println("New Game");
                 return true;
             }
-            /*
-            exitButton.addListener(new InputListener() {
+        });
+
+        exitButton.addListener(new InputListener() {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y,
-                    int pointer, int button) {
-                // TODO Auto-generated method stub
-                startGameButton.setStyle(Assets.textButtonStyle.down);                
-                game.dispose();
-                exit(); // TODO: Assert need for controller class.
-                
-                return true; // Why?
-            } */
-            
+                                     int pointer, int button) {
+                //startGameButton.setStyle(Assets.textButtonStyle);
+                //game.setScreen(new GameScreen(game)); // TODO: Set Screen To Config
+
+                System.out.println("Exit Game");
+                return true;
+            }
         });
-        
+
         table.setFillParent(true); // TODO: Change positions on Table...
 //        table.debug(); 
         table.add(startGameButton).width(150).height(50);

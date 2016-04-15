@@ -1,6 +1,6 @@
 package com.snakeladders.controller;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.snakeladders.game.Assets;
+import com.snakeladders.model.Assets;
 import com.snakeladders.model.Board;
 import com.snakeladders.model.LadderField;
 import com.snakeladders.model.NormalField;
