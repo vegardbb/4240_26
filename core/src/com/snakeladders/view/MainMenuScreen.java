@@ -28,7 +28,7 @@ public class MainMenuScreen implements Screen {
     @Override
     public void render(float delta) {
         // TODO Auto-generated method stub
-        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
+        Gdx.gl.glClearColor(1f, 0f, 1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act(delta); // Does not do anything to the models
@@ -49,7 +49,7 @@ public class MainMenuScreen implements Screen {
 
         Table table = new Table(MainMenuScreenController.getSkin());
         
-        startGameButton = new TextButton("New Game", MainMenuScreenController.getTextButtonStyle());
+        startGameButton = new TextButton("Configure Game", MainMenuScreenController.getTextButtonStyle());
         exitButton = new TextButton("Exit", MainMenuScreenController.getTextButtonStyle());
         Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
         
@@ -58,8 +58,8 @@ public class MainMenuScreen implements Screen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y,
                     int pointer, int button) {
-                controller.newGame();
-                System.out.println("New Game");
+                controller.configureGame();
+                System.out.println("Configure Game");
                 return true;
             }
         });

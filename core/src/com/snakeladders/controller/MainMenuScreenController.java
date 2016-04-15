@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.snakeladders.view.ConfigScreen;
 import com.snakeladders.model.Assets; // The Assets class
+import com.snakeladders.view.GameScreen;
 
 public class MainMenuScreenController {
     SnakeLadders game;
@@ -19,10 +20,21 @@ public class MainMenuScreenController {
     /**
 	This class controls the input from the MainMenuScreen
     **/
+
 	public void newGame() {
         game.setScreen(new ConfigScreen(game));
-        //TODO: more functionality may be required?
+
+//	public void newGame() {
+//        game.setScreen(new GameScreen(game));
 	}
+
+    /**
+     This class controls the input from the MainMenuScreen
+     **/
+    public void configureGame(){
+        game.setScreen(new ConfigScreen(game));
+        //TODO: more functionality may be required?
+    }
 
 	public void exit(){
         game.dispose();
