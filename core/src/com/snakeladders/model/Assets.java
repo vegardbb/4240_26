@@ -13,15 +13,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 //See also: http://www.netthreads.co.uk/2012/01/31/libgdx-example-of-using-scene2d-actions-and-event-handling/
 
 public class Assets { // Each asset is publically available, visible to EveryOne.
-    public static Skin skin; // JSON - file . Used for buttons and widgets, perchance.
-    public static Texture backgroundTexture; // Used in the main menu
+    private static Skin skin; // JSON - file . Used for buttons and widgets, perchance.
+    private static Texture backgroundTexture; // Used in the main menu
     //public static Animation pieceAni; // Not used per now, intended as animation w/ movement only. No texturechange.
-    public static Texture boardTexture; // The board, covering the screen
+    private static Texture boardTexture; // The board, covering the screen
 
     // For generating buttons in the menu UI
-    public static TextButton.TextButtonStyle textButtonStyle;
-    public static BitmapFont font;
-    public static TextureAtlas buttonAtlas;
+    private static TextButton.TextButtonStyle textButtonStyle;
+    private static BitmapFont font;
+    private static TextureAtlas buttonAtlas;
 
     private static void generateFont() {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-Regular.ttf"));
@@ -43,6 +43,27 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         textButtonStyle.up = skin.getDrawable("button_04");
         textButtonStyle.down = skin.getDrawable("button_02");
         textButtonStyle.checked = skin.getDrawable("checkbox_on");
-        }
+    }
+
+    // Getters
+    public static Texture getBackgroundTexture() {
+        return backgroundTexture;
+    }
+
+    public static Texture getBoardTexture() {
+        return boardTexture;
+    }
+
+    public static TextButton.TextButtonStyle getTextButtonStyle() {
+        return textButtonStyle;
+    }
+
+    public static BitmapFont getFont() {
+        return font;
+    }
+
+    public static TextureAtlas getButtonAtlas() {
+        return buttonAtlas;
+    }
 
 }
