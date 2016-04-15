@@ -2,7 +2,7 @@ package com.snakeladders.model;
 
 import java.util.Random;
 
-public class ChanceField {
+public class ChanceField extends Field{
     /**
     Model class for the field that contains all the things that make up our implementation of Stigespillet
 
@@ -20,7 +20,7 @@ public class ChanceField {
     
     public ChanceField(Board board, int i, Field teleportToField, Type type) {
         super(board,i,teleportToField);
-        this.fieldtype = Random.choice(Type); // Choose a type randomly.
+//        this.fieldtype = Random.choice(Type); // Choose a type randomly.
     }
-    public Type getFieldType{ return this.fieldtype; }
+    public Type getFieldType(){ return this.fieldtype; }
 }

@@ -2,7 +2,6 @@ package com.snakeladders.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -27,7 +26,7 @@ public class MainMenuScreen implements Screen {
     public void render(float delta) {
         // TODO Auto-generated method stub
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
-        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+//        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
         stage.act(delta); // Does not do anything to the models
         stage.draw();

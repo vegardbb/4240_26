@@ -1,13 +1,14 @@
 package com.snakeladders.game;
 
 import com.badlogic.gdx.Game;
-import com.minimaldevelop.libgdxgame.screens.MainMenuScreen;
+import com.snakeladders.view.MainMenuScreen;
 
-public class Snakeladders extends Game {
+public class SnakeLadders extends Game {
 	
 	@Override
 	public void create() {
 		Assets.load();
+		System.out.println("Hello");
 		setScreen(new MainMenuScreen(this));
 	}
 }

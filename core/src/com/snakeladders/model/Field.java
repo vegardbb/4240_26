@@ -21,5 +21,5 @@ public abstract class Field {
     }
     public Board getBoard() {return this.board; }
     public Field getTeleportToField() {return this.teleportToField; }
-    public Board getId() {return this.id; }
+    public int getId() {return this.id; }
 }

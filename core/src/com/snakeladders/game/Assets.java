@@ -3,9 +3,12 @@ package com.snakeladders.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas; // Not used per now, may be required for the animation
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 //See also: http://www.netthreads.co.uk/2012/01/31/libgdx-example-of-using-scene2d-actions-and-event-handling/
 
@@ -17,23 +20,22 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     // TODO: Piece - actors extends Actor and has their own asset texture laoded from the Assets - folder, depending on their int-id, so no piece texture here.
 
     // For generating buttons in the menu UI
-    public static TextButtonStyle textButtonStyle;
+    public static TextButton.TextButtonStyle textButtonStyle;
     public static BitmapFont font12;
-    public static Skin skin;
-    public static TextureAtlas buttonAtlas;    
+    public static TextureAtlas buttonAtlas;
 
-    private void generateFont() {
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("free-open.ttf"));
-        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+    private static void generateFont() {
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-Regular.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 12;
-        this.font12 = generator.generateFont(parameter); // font size 12 pixels
+        font12 = generator.generateFont(parameter); // font size 12 pixels
         generator.dispose(); // don't forget to dispose to avoid memory leaks!
     }
 
     public static void load () {
         // Implements asset loading.
         generateFont();
-        backgroundTexture = new Texture(Gdx.files.internal("data/splash.png")); // For the splash screen
+        backgroundTexture = new Texture(Gdx.files.internal("splash.png")); // For the splash screen
         }
          // Animation, Texture, Textureregion, TextureAtlas. 
 }
