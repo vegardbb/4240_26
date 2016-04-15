@@ -12,8 +12,6 @@ public class MainMenuScreenController {
 
     /**
 	This class controls the input from the MainMenuScreen
-	TODO: Implement exitbutton method
-	TODO: Implement newGameButton
     **/
     public void MainMenuScreenController(SnakeLadders game){
 
@@ -21,6 +19,7 @@ public class MainMenuScreenController {
 
 	public void newGame(){
         game.setScreen(new PlayerInfoScreen(game));
+        //TODO: more functionality may be required?
 	}
 
 	public void exit(){
