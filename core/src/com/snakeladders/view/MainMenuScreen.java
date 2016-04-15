@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.snakeladders.model.Assets; // The Assets class
 import com.snakeladders.controller.SnakeLadders; // The Game class
+import com.snakeladders.controller.MainMenuScreenController;
 
 public class MainMenuScreen implements Screen {
     
@@ -18,9 +19,11 @@ public class MainMenuScreen implements Screen {
     Stage stage; 
     TextButton startGameButton;
     TextButton exitButton;
+    MainMenuScreenController controller;
     
     public MainMenuScreen(SnakeLadders game) {
         this.game = game;
+        this.controller = new MainMenuScreenController(game);
     }
 
     @Override
@@ -46,11 +49,11 @@ public class MainMenuScreen implements Screen {
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         
-        Table table = new Table(Assets.skin);
+        Table table = new Table(Assets.getSkin());
         
-        startGameButton = new TextButton("New Game", Assets.textButtonStyle);
-        exitButton = new TextButton("Exit", Assets.textButtonStyle);
-        Image backImage = new Image(Assets.backgroundTexture);
+        startGameButton = new TextButton("New Game", Assets.getTextButtonStyle());
+        exitButton = new TextButton("Exit", Assets.getTextButtonStyle());
+        Image backImage = new Image(Assets.getBackgroundTexture());
         
         startGameButton.addListener(new InputListener() {
 
