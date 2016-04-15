@@ -75,9 +75,11 @@ public class MainMenuScreen implements Screen {
             }
         });
 
+
+
         table.setFillParent(true); // TODO: Change positions on Table...
 //        table.debug(); 
-        table.add(startGameButton).width(150).height(50);
+        table.add(startGameButton).width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight()/4);
         table.row();
         table.add(exitButton).width(150).height(50).padTop(10);
         

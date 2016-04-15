@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 public class Assets { // Each asset is publically available, visible to EveryOne.
     private static Skin skin; // JSON - file . Used for buttons and widgets, perchance.
     private static Texture backgroundTexture; // Used in the main menu
+
     //public static Animation pieceAni; // Not used per now, intended as animation w/ movement only. No texturechange.
     private static Texture boardTexture; // The board, covering the screen
 
@@ -42,7 +43,7 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         textButtonStyle.font = font;
         textButtonStyle.up = skin.getDrawable("button_04");
         textButtonStyle.down = skin.getDrawable("button_02");
-        textButtonStyle.checked = skin.getDrawable("checkbox_on");
+        textButtonStyle.checked = skin.getDrawable("checkbox_on"); // Currently not used
     }
 
     // Getters
