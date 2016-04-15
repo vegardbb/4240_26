@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.snakeladders.game.SnakeLadders;
+import com.snakeladders.controller.SnakeLadders;
 
 public class AndroidLauncher extends AndroidApplication {
 	// Main Acticity Class
