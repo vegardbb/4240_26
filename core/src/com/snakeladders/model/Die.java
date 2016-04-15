@@ -1,6 +1,8 @@
 package com.snakeladders.model;
 
-public final class Die {
+import com.badlogic.gdx.scenes.scene2d.Actor;
+
+public final class Die extends Actor {
     // Model class for the die that decides how many fields to move during a turn.
     // Administered by the GameBoardController.
 
@@ -18,7 +20,7 @@ public final class Die {
     // Suggestions:
     // Make class static in order to initialize only ONE die upon starting a new game. What if the attributes need changing??
 
-    // This method is questionable.s
+    // This method is questionable.
     public void setHighestThrow(int nr) { if ( this.highest == -1 ) {this.highest = nr; }}
 
     public int getHighest() { return this.highest; }

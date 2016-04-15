@@ -1,8 +1,10 @@
 package com.snakeladders.model;
 
+import com.badlogic.gdx.scenes.scene2d.Stage;
+
 import java.util.ArrayList;
 
-public final class Board {
+public final class Board extends Stage {
     /**
  Model class for the game board that contains all the things that make up our Stigespill
     Contents:

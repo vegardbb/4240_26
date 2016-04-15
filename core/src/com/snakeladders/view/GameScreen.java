@@ -1,8 +1,10 @@
 package com.snakeladders.view;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Screen;
 import com.snakeladders.controller.SnakeLadders;
 import com.snakeladders.model.Assets;
+
 /**
  * Created by Kristoffer on 15/04/2016.
  */
