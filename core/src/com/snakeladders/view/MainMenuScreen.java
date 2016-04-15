@@ -2,15 +2,15 @@ package com.snakeladders.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.snakeladders.game.Assets; // The Assets class
-import com.snakeladders.game.SnakeLadders; // The Game class
+import com.snakeladders.model.Assets; // The Assets class
+import com.snakeladders.controller.SnakeLadders; // The Game class
 
 public class MainMenuScreen implements Screen {
     
@@ -27,7 +27,7 @@ public class MainMenuScreen implements Screen {
     public void render(float delta) {
         // TODO Auto-generated method stub
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
-        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act(delta); // Does not do anything to the models
         stage.draw();
@@ -57,12 +57,12 @@ public class MainMenuScreen implements Screen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y,
                     int pointer, int button) {
-                // TODO Auto-generated method stub
-                startGameButton.setStyle(Assets.textButtonStyle.down);
-                game.setScreen(new GameScreen(game)); // TODO: Set Screen To Config
+                //startGameButton.setStyle(Assets.textButtonStyle);
+                //game.setScreen(new GameScreen(game)); // TODO: Set Screen To Config
                 
                 return true;
             }
+            /*
             exitButton.addListener(new InputListener() {
 
             @Override
@@ -73,8 +73,8 @@ public class MainMenuScreen implements Screen {
                 game.dispose();
                 exit(); // TODO: Assert need for controller class.
                 
-                return true;
-            }
+                return true; // Why?
+            } */
             
         });
         

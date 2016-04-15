@@ -2,7 +2,7 @@ package com.snakeladders.view;
 
 import com.badlogic.gdx.Screen;
 import com.snakeladders.game.SnakeLadders;
-
+import com.snakeladders.game.Assets;
 /**
  * Created by Kristoffer on 15/04/2016.
  */
