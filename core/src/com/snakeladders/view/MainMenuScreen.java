@@ -9,9 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.snakeladders.model.Assets; // The Assets class
 import com.snakeladders.controller.SnakeLadders; // The Game class
-import com.snakeladders.controller.MainMenuScreenController;
+import com.snakeladders.controller.MainMenuScreenController; // The controller
 
 public class MainMenuScreen implements Screen {
     
@@ -45,23 +44,21 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void show() {
-        // TODO Auto-generated method stub
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
+
+        Table table = new Table(MainMenuScreenController.getSkin());
         
-        Table table = new Table(Assets.getSkin()); //
-        
-        startGameButton = new TextButton("New Game", Assets.getTextButtonStyle());
-        exitButton = new TextButton("Exit", Assets.getTextButtonStyle());
-        Image backImage = new Image(Assets.getBackgroundTexture());
+        startGameButton = new TextButton("New Game", MainMenuScreenController.getTextButtonStyle());
+        exitButton = new TextButton("Exit", MainMenuScreenController.getTextButtonStyle());
+        Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
         
         startGameButton.addListener(new InputListener() {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y,
                     int pointer, int button) {
-                //startGameButton.setStyle(Assets.textButtonStyle);
-                //game.setScreen(new GameScreen(game)); // TODO: Set Screen To Config
+                controller.newGame();
                 System.out.println("New Game");
                 return true;
             }
@@ -72,9 +69,7 @@ public class MainMenuScreen implements Screen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y,
                                      int pointer, int button) {
-                //startGameButton.setStyle(Assets.textButtonStyle);
-                //game.setScreen(new GameScreen(game)); // TODO: Set Screen To Config
-
+                controller.exit();
                 System.out.println("Exit Game");
                 return true;
             }
