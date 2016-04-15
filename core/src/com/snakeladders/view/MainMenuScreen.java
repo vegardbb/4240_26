@@ -49,7 +49,7 @@ public class MainMenuScreen implements Screen {
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         
-        Table table = new Table(Assets.getSkin());
+        Table table = new Table(Assets.getSkin()); //
         
         startGameButton = new TextButton("New Game", Assets.getTextButtonStyle());
         exitButton = new TextButton("Exit", Assets.getTextButtonStyle());

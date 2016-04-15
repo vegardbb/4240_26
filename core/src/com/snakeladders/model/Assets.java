@@ -49,6 +49,7 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     public static Texture getBackgroundTexture() {
         return backgroundTexture;
     }
+    public static Skin getSkin() {return skin;}
 
     public static Texture getBoardTexture() {
         return boardTexture;
