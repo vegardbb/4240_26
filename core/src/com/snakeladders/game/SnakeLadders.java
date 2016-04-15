@@ -8,7 +8,7 @@ public class SnakeLadders extends Game {
 	@Override
 	public void create() {
 		Assets.load();
-		System.out.println("Hello");
+		System.out.println("Hello"); // Compiles?
 		setScreen(new MainMenuScreen(this));
 	}
 }

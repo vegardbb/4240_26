@@ -41,7 +41,7 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         skin.addRegions(buttonAtlas);
         textButtonStyle = new TextButtonStyle();
         textButtonStyle.font = font;
-        textButtonStyle.up = skin.getDrawable("button_01");
+        textButtonStyle.up = skin.getDrawable("button_04");
         textButtonStyle.down = skin.getDrawable("button_02");
         textButtonStyle.checked = skin.getDrawable("checkbox_on");
         }

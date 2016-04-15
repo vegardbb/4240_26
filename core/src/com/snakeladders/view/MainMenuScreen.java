@@ -2,6 +2,7 @@ package com.snakeladders.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -26,7 +27,7 @@ public class MainMenuScreen implements Screen {
     public void render(float delta) {
         // TODO Auto-generated method stub
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
-//        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
         stage.act(delta); // Does not do anything to the models
         stage.draw();
@@ -48,7 +49,7 @@ public class MainMenuScreen implements Screen {
         Table table = new Table(Assets.skin);
         
         startGameButton = new TextButton("New Game", Assets.textButtonStyle);
-        exitButton = new TextButton("Exit", Assets.skin);
+        exitButton = new TextButton("Exit", Assets.textButtonStyle);
         Image backImage = new Image(Assets.backgroundTexture);
         
         startGameButton.addListener(new InputListener() {
@@ -57,14 +58,27 @@ public class MainMenuScreen implements Screen {
             public boolean touchDown(InputEvent event, float x, float y,
                     int pointer, int button) {
                 // TODO Auto-generated method stub
-                game.setScreen(new GameScreen(game));
+                startGameButton.setStyle(Assets.textButtonStyle.down);
+                game.setScreen(new GameScreen(game)); // TODO: Set Screen To Config
+                
+                return true;
+            }
+            exitButton.addListener(new InputListener() {
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y,
+                    int pointer, int button) {
+                // TODO Auto-generated method stub
+                startGameButton.setStyle(Assets.textButtonStyle.down);                
+                game.dispose();
+                exit(); // TODO: Assert need for controller class.
                 
                 return true;
             }
             
         });
         
-        table.setFillParent(true);
+        table.setFillParent(true); // TODO: Change positions on Table...
 //        table.debug(); 
         table.add(startGameButton).width(150).height(50);
         table.row();
