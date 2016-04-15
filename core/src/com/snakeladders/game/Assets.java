@@ -19,10 +19,9 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     public static Texture boardTexture; // The board, covering the screen
 
     // For generating buttons in the menu UI
-    public static TextButtonStyle textButtonStyle;
+    public static TextButton.TextButtonStyle textButtonStyle;
     public static BitmapFont font;
-    public static Skin skin;
-    public static TextureAtlas buttonAtlas;    
+    public static TextureAtlas buttonAtlas;
 
     private static void generateFont() {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-Regular.ttf"));
@@ -39,7 +38,7 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         skin = new Skin();
         buttonAtlas = new TextureAtlas(Gdx.files.internal("ui-orange.atlas"));
         skin.addRegions(buttonAtlas);
-        textButtonStyle = new TextButtonStyle();
+        textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.font = font;
         textButtonStyle.up = skin.getDrawable("button_01");
         textButtonStyle.down = skin.getDrawable("button_02");
