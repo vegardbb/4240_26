@@ -1,5 +1,6 @@
 package com.snakeladders.controller;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -18,13 +19,14 @@ public class MainMenuScreenController {
     /**
 	This class controls the input from the MainMenuScreen
     **/
-	public void newGame(){
+	public void newGame() {
         game.setScreen(new ConfigScreen(game));
         //TODO: more functionality may be required?
 	}
 
 	public void exit(){
-        //game.exit();
+        game.dispose();
+        Gdx.app.exit();
 	}
 
     public static Skin getSkin() {

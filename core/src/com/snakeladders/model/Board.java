@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import java.util.ArrayList;
 
-public final class Board extends Stage {
+public final class Board {
     /**
  Model class for the game board that contains all the things that make up our Stigespill
     Contents:
@@ -14,11 +14,17 @@ public final class Board extends Stage {
 
     TODO: Describe functionality on the Board Model.
     
-    Note: Board, Player and Die are in fact, not actors, though they could have been so. The actors are in fact, in the controllers, and they implement the rules and works and irons in Stigespillet. For example, the GameScreenController  
+    Note: Board, Player and Die are in fact, not actors, though they could have been so.
+      The actors are in fact, among the controllers, and they implement the rules and works and irons
+      in Stigespillet. For example, the GameScreenController
+     Board is not a stage, and the Players are not Actors, otherwise the model has a direct connection to the view, which violates the holiest tenet of MVC.
     **/
     private int token = 0; // decides whose turn it is. Points to a Player in array of players.
     private ArrayList<Player> playersOnBoard = new ArrayList<Player>();
     private ArrayList<Field> boardfields = new ArrayList<Field>();
+
+    // States of the Board.
+    private enum Gs {MENU, PAUSE, RUNNING, GAMEOVER}
 
     public void setToken(int t) { this.token = t; }
 

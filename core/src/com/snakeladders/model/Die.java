@@ -1,8 +1,7 @@
 package com.snakeladders.model;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public final class Die extends Actor {
+public final class Die {
     // Model class for the die that decides how many fields to move during a turn.
     // Administered by the GameBoardController.
 

@@ -2,7 +2,7 @@ package com.snakeladders.model;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public abstract class Field extends Actor {
+public abstract class Field {
     /**
      Model class for the template field that contains all the things that make up the SnakeLadders Game
 
