@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.snakeladders.view.ConfigScreen;
+//import com.snakeladders.view.ConfigScreen;
 import com.snakeladders.model.Assets; // The Assets class
 
 public class MainMenuScreenController {

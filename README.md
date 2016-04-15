@@ -5,6 +5,8 @@
 + Tegne spillebrett - legges inn under /android/assets.Størrelse 1500x1500. Hvite kvadrater av størrelse 20x20 der feltene til brettet skal være.
 + Tegne felt for brett - legges inn under /android/assets. Størrelse 20x20. Fire forskjellige filer.
 + Tegne spillebrikker, rundinger, en farge.
++ Definer ConfigScreen
++ Definer bruk av GameState
 
 # Innhold
 + model - Klasser som holder på spillets data
