@@ -15,10 +15,13 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     public static Animation pieceAni; // Not used per now, intended as animation w/ movement only. No texturechange.
     public static Texture boardTexture; // The board, covering the screen
     // TODO: Piece - actors extends Actor and has their own asset texture laoded from the Assets - folder, depending on their int-id, so no piece texture here.
-    public static TextButton.TextButtonStyle style; // TextButtinStyle used instead of uiskin
-    public static ButtonStyle styley;
-    public BitmapFont font12;
-    
+
+    // For generating buttons in the menu UI
+    public static TextButtonStyle textButtonStyle;
+    public static BitmapFont font12;
+    public static Skin skin;
+    public static TextureAtlas buttonAtlas;    
+
     private void generateFont() {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("free-open.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
@@ -31,8 +34,6 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         // Implements asset loading.
         generateFont();
         backgroundTexture = new Texture(Gdx.files.internal("data/splash.png")); // For the splash screen
-        //skin = new Skin(Gdx.files.internal("data/uiskin.json")); // VBB - I do not know what this is doing, but the file is not in the asset folder
-        skin = new Skin(); // Not allowed
         }
          // Animation, Texture, Textureregion, TextureAtlas. 
 }

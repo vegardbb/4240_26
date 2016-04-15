@@ -48,7 +48,7 @@ public class MainMenuScreen implements Screen {
         
         Table table = new Table(Assets.skin);
         
-        startGameButton = new TextButton("New Game", Assets.skin); // TODO: Replace skin with TextButtonStyle, which uses a font
+        startGameButton = new TextButton("New Game", Assets.textButtonStyle);
         exitButton = new TextButton("Exit", Assets.skin);
         Image backImage = new Image(Assets.backgroundTexture);
         
