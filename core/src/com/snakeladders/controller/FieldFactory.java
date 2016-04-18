@@ -7,8 +7,10 @@ class FieldFactory {
 	} // TODO: Do Factory - option in refactoring menu in Android Studio
 
 	//Method generateFields, class FieldFactory
-	//@param : w = boardTexture.getWidth, h = boardTexture.getHeight(), int spacew
+	//@param Texture boardTexture	The chosen texture to geenrate the fields on top of.
 	void generateFields(Texture boardTexture) { //
+		int h = boardTexture.getHeight();
+		int w = boardTexture.getWidth();
 		Texture ladderUpFieldTexture = Assets.getLadderUpFieldTexture();
 		Texture ladderDownFieldTexture = Assets.getLadderDownFieldTexture();
 		Texture chanceFieldTexture = Assets.getChanceFieldTexture();
@@ -16,6 +18,7 @@ class FieldFactory {
 		int nrFields = ((int) w/20) * ((int) h/20);
 		Board board = Board.getInstance();
 		Random r = new Random();
+		//int spacew = 5; // Randomised or a parameter
 		int maxLaddersDown = (int) (nrFields/5);
 		int maxLaddersUp = (int) (nrFields/10);
 		int i = 0; //Field ID.
@@ -31,21 +34,21 @@ class FieldFactory {
 					maxLaddersUp--;
 					i++;
 				}
-				else if ((d==1) && (i>2) && (maxLaddersDown>0)) { // Ladderfield going down
+				else if ((d==1) && (i>2) && (maxLaddersDown>0) && (i<nrFields-1)) { // Ladderfield going down
 					int m = nextInt(i-2);
 					board.addField(new LadderField(board,i,board.getField(m+2),x,y));
 					stage.addActor( new fieldActor((float)(x), (float)(y), ladderDownFieldTexture));
 					maxLaddersDown--;
 					i++;
 				}
-				else  if ((d==2) && (i>0)) {	// generate chancefield.
+				else  if ((d==2) && (i>0) && (i<nrFields-1)) {	// generate chancefield.
 											// On a chancefield, one out of a set of possible events may happen,
 											// this event is not static, ie it may wary each time a player lands on it.
 					board.addField(new ChanceField(board,i,x,y));
 					stage.addActor( new fieldActor((float)(x), (float)(y), chanceFieldTexture));
 					i++;
 				}
-				else { // Next field on the board shall be a normal field. The start field for all players - i=0, is always a normalField
+				else { // Next field on the board shall be a normal field. The start field for all players - i=0, is always a normalField, and the last field is also a normalField
 					board.addField(new NormalField(board,i,x,y));
 					stage.addActor( new fieldActor((float)(x), (float)(y), normalFieldTexture));
 					i++;
@@ -60,5 +63,5 @@ class FieldFactory {
 				f.setTeleportToField(boardfields.get(m+n));
 			}
 		}
-	}
+	} // Field initialisation done
 }

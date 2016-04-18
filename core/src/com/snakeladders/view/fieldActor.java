@@ -18,6 +18,12 @@ class fieldActor extends Actor { // Image extends Widget, which in turn extends 
 		fieldSprite.sety(Y); // require float
 		//setBounds(fieldSprite.getX(),fieldSprite.getY(),fieldSprite.getWidth(),fieldSprite.getHeight());
 		setBounds(x,y,fieldSprite.getWidth(),fieldSprite.getHeight());
+		setTouchable(false); //Touchable.enabled
 	}
 	// TODO: Add more methods if need be
+	@Override
+	public void draw(Batch batch, float parentAlpha) {
+		sprite.draw(batch);
+	}
+
 }

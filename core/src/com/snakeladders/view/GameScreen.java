@@ -31,7 +31,7 @@ public class GameScreen implements Screen {
         this.controller = new GameScreenController(game);
         stage = new Stage(); // Commit: Move stage constructor to screen constructor because we want to keep it throughout the gameplay
         //Initialize the players, the fields and the die. To do this, we need the stage we just brought to life.
-        this.controller.initGame(stage);
+        this.controller.initGame(stage); // This method generates all the fields to the stage, and generates and adds the playerActors to the stage.
     }
 
     @Override

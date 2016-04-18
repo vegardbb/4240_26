@@ -56,8 +56,7 @@ public class MainMenuScreen implements Screen {
         startGameButton.addListener(new InputListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y,
-                    int pointer, int button) {
+            public boolean touchDown(InputEvent event, float x, float y,int pointer, int button) {
                 controller.configureGame();
                 System.out.println("Configure Game");
                 return true;
@@ -67,8 +66,7 @@ public class MainMenuScreen implements Screen {
         exitButton.addListener(new InputListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y,
-                                     int pointer, int button) {
+            public boolean touchDown(InputEvent event, float x, float y,int pointer, int button) {
                 controller.exit();
                 System.out.println("Exit Game");
                 return true;
