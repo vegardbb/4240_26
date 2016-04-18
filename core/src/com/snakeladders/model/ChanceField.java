@@ -18,7 +18,6 @@ public class ChanceField extends Field{
     This class does nothing, aside from contributing to represent the state of the game.
      **/
 
-    private enum Type {KEEPCARD, NEWTURN, DOUBLE, START, BACKWARDS} // Class within me
     /**
     Legend:
     KEEPCARD - sets the keepCard token on the relevant Player. With this flag on, the Player has the opportunity to skip a board event upon landing on a ladderField or another Chancefield.
@@ -27,14 +26,15 @@ public class ChanceField extends Field{
     START - the Player is promptly teleported back to Start
     BACKWARDS - on the next turn the Player moves in the opposite direction
     **/
+    private enum Type {KEEPCARD, NEWTURN, DOUBLE, START, BACKWARDS} // Class within me
     
-    private Type fieldtype; // We will not need this field. Also, we may as well consider leaving the teleporterField out of the constructor too, because normalField does not need it.
+    //private Type fieldtype; // We will not need this field. Also, we may as well consider leaving the teleporterField out of the constructor too, because normalField does not need it.
     //private Field teleportToField; //Used by ladderFields and occasionally chancefields, normally null for Normalfield.
     private Board board; // Reference to the board the field belongs to.
 
     public ChanceField(Board board, int i, int x, int y) {
         super(board, i, x, y);
-        this.fieldtype = randomChoice(); // Choose a type randomly.
+        //this.fieldtype = randomChoice(); // Choose a type randomly.
     }
     public Type getFieldType(){ return this.fieldtype; }
 

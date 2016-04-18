@@ -23,15 +23,15 @@ public class GameScreen implements Screen {
     Stage stage;
     SnakeLadders game;
     TextButton diceButton;
-    OrthographicCamera camera; // TODO: Find 
+    OrthographicCamera camera = new OrthographicCamera((float)Gdx.graphics.getWidth(),(float)Gdx.graphics.getHeight());
     GameScreenController controller;
-
 
     public GameScreen(SnakeLadders game) { // The controller should then
         this.game = game;
         this.controller = new GameScreenController(game);
         stage = new Stage(); // Commit: Move stage constructor to screen constructor because we want to keep it throughout the gameplay
         //Initialize the players, the fields and the die. To do this, we need the stage we just brought to life.
+        this.controller.initGame(stage);
     }
 
     @Override
