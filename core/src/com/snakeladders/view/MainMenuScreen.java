@@ -84,9 +84,9 @@ public class MainMenuScreen implements Screen {
 //        table.debug();
         table.add(playerCountSlider);
         table.row();
-        table.add(startGameButton).width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight()/4);
+        table.add(startGameButton).width(Gdx.graphics.getWidth()/2).height(Gdx.graphics.getHeight()/6);
         table.row();
-        table.add(exitButton).width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 4);
+        table.add(exitButton).width(Gdx.graphics.getWidth()/2).height(Gdx.graphics.getHeight() / 6);
         
         stage.addActor(backImage); // Turns out the background is a dumb actor.
         stage.addActor(table);

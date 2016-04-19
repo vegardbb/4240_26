@@ -39,6 +39,7 @@ public class GameScreen implements Screen {
         
         Gdx.input.setInputProcessor(stage);
         Table table = new Table(GameScreenController.getSkin());
+        Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
 
         diceButton = new TextButton("Throw Dice", MainMenuScreenController.getTextButtonStyle()); // TODO: Change  to dieTexture, and use GameScreenController to get that texture. Add dieActor and send dieTexture into it.
 
@@ -55,6 +56,7 @@ public class GameScreen implements Screen {
 //        table.debug();
         table.add(diceButton).width(150).height(50);
 
+        stage.addActor(backImage); // Turns out the background is a dumb actor.
         stage.addActor(table);
     }
 

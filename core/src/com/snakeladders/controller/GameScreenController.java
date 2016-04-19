@@ -1,4 +1,5 @@
 package com.snakeladders.controller;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.snakeladders.model.Assets;
@@ -30,6 +31,10 @@ public class GameScreenController {
 
 	public void initGame(Stage stage) {
 
+	}
+
+	public static Texture getBackgroundTexture() {
+		return Assets.getBackgroundTexture();
 	}
 }
 
