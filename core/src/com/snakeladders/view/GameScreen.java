@@ -3,7 +3,7 @@ package com.snakeladders.view;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.OrthographicCamera; // not used yet. Important
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -23,27 +23,29 @@ public class GameScreen implements Screen {
     Stage stage;
     SnakeLadders game;
     TextButton diceButton;
+    OrthographicCamera camera = new OrthographicCamera((float)Gdx.graphics.getWidth(),(float)Gdx.graphics.getHeight());
     GameScreenController controller;
 
-
-    public GameScreen(SnakeLadders game) {
+    public GameScreen(SnakeLadders game) { // The controller should then
         this.game = game;
         this.controller = new GameScreenController(game);
+        stage = new Stage(); // Commit: Move stage constructor to screen constructor because we want to keep it throughout the gameplay
+        //Initialize the players, the fields and the die. To do this, we need the stage we just brought to life.
+        this.controller.initGame(stage); // This method generates all the fields to the stage, and generates and adds the playerActors to the stage.
     }
 
     @Override
     public void show() {
-        stage = new Stage();
+        
         Gdx.input.setInputProcessor(stage);
         Table table = new Table(GameScreenController.getSkin());
 
-        diceButton = new TextButton("Throw Dice", MainMenuScreenController.getTextButtonStyle());
+        diceButton = new TextButton("Throw Dice", MainMenuScreenController.getTextButtonStyle()); // TODO: Change  to dieTexture, and use GameScreenController to get that texture. Add dieActor and send dieTexture into it.
 
         diceButton.addListener(new InputListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y,
-                                     int pointer, int button) {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Throwing Dice");
                 return true;
             }

@@ -22,7 +22,7 @@ public class MainMenuScreen implements Screen {
     TextButton exitButton;
     MainMenuScreenController controller;
     Slider playerCountSlider;
-    
+
     public MainMenuScreen(SnakeLadders game) {
         this.game = game;
         this.controller = new MainMenuScreenController(game);
@@ -71,8 +71,7 @@ public class MainMenuScreen implements Screen {
         exitButton.addListener(new InputListener() {
 
             @Override
-            public boolean touchDown(InputEvent event, float x, float y,
-                                     int pointer, int button) {
+            public boolean touchDown(InputEvent event, float x, float y,int pointer, int button) {
                 controller.exit();
                 System.out.println("Exit Game");
                 return true;
@@ -87,7 +86,7 @@ public class MainMenuScreen implements Screen {
         table.row();
         table.add(startGameButton).width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight()/4);
         table.row();
-        table.add(exitButton).width(150).height(50).padTop(10);
+        table.add(exitButton).width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 4);
         
         stage.addActor(backImage); // Turns out the background is a dumb actor.
         stage.addActor(table);

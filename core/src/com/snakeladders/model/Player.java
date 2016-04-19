@@ -1,8 +1,6 @@
 package com.snakeladders.model;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
-
-public class Player extends Actor {
+public class Player {
     private String name;
     private int start; // When it is my turn. Also, acts as tie breaker.
     private Field currentField; // Where am I on the board.
@@ -11,21 +9,16 @@ public class Player extends Actor {
     public Player(String name, int start) {
         this.setIsActive(true);
         this.setCurrentField(null);
-        this.setStart(start);
-        this.setName(name);
+        this.start = start;
+        this.name = name;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
     public int getStart() {
         return start;
-    }
-
-    private void setStart(int start) {
-        this.start = start;
     }
 
     public Field getCurrentField() {

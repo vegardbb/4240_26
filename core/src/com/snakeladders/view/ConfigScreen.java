@@ -21,6 +21,8 @@ public class ConfigScreen implements Screen {
     TextButton startGameButton;
     TextButton exitButton;
     MainMenuScreenController controller;
+    
+    // On this screen, the players each choose a colour for their piece in the game: TODO: Change RS regarding beginning of game
 
     public ConfigScreen(SnakeLadders game) {
         this.game = game;

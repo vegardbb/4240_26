@@ -1,8 +1,7 @@
 package com.snakeladders.model;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public final class Die extends Actor {
+public final class Die {
     // Model class for the die that decides how many fields to move during a turn.
     // Administered by the GameBoardController.
 
@@ -29,16 +28,9 @@ public final class Die extends Actor {
 
     public void setThrowed(int nr) { this.throwed = nr; }
 
+    
     /*
-
-    Scenarios
-
-    Testers
-
-    Use Case Diagram
-
-    Validate current architecture, and drive architectural increment.
-
-     */
-
+    NOTE: This class is deprecated and will be removed from the project, because controllers can do its job of broadcasting the die number and capping it at 6. Thus we are rid of a singleton
+    
+    */
 }
