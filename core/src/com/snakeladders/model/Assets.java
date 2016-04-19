@@ -72,12 +72,12 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         sliderStyle = new Slider.SliderStyle();
         sliderStyle.background = skin.getDrawable("slider_back_hor");
         sliderStyle.knob = skin.getDrawable("knob_01");
-        selectBoxStyle = new SelectBox.SelectBoxStyle();
+        /*selectBoxStyle = new SelectBox.SelectBoxStyle();
         selectBoxStyle.background = skin.getDrawable("selectbox_01");
         selectBoxStyle.font = font;
         selectBox = new SelectBox(skin);
         selectBox.setStyle(selectBoxStyle);
-        selectBox.setItems(yellowPieceTexture, redPieceTexture, bluePieceTexture, greenPieceTexture);
+        selectBox.setItems(yellowPieceTexture, redPieceTexture, bluePieceTexture, greenPieceTexture);*/
     }
     // TODO: Comment out the Selectbox fields, send in an array of strings into generatePlayers - method
 

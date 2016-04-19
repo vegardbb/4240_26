@@ -28,7 +28,7 @@ public class ChanceField extends Field{
     **/
     private enum Type {KEEPCARD, NEWTURN, DOUBLE, START, BACKWARDS} // Class within me
     
-    //private Type fieldtype; // We will not need this field. Also, we may as well consider leaving the teleporterField out of the constructor too, because normalField does not need it.
+//    private Type fieldtype; // We will not need this field. Also, we may as well consider leaving the teleporterField out of the constructor too, because normalField does not need it.
     //private Field teleportToField; //Used by ladderFields and occasionally chancefields, normally null for Normalfield.
     private Board board; // Reference to the board the field belongs to.
 
@@ -36,7 +36,7 @@ public class ChanceField extends Field{
         super(board, i, x, y);
         //this.fieldtype = randomChoice(); // Choose a type randomly.
     }
-    public Type getFieldType(){ return this.fieldtype; }
+//    public Type getFieldType(){ return this.fieldtype; }
 
     // Fields for choosing a random ChanceField Type
     private static final List<Type> VALUES =

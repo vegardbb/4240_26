@@ -28,6 +28,8 @@ public class GameScreenController {
 	}
 
 
+	public void initGame(Stage stage) {
 
+	}
 }
 
