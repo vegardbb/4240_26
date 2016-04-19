@@ -21,8 +21,8 @@ public abstract class Field {
     public Field(Board board, int i, int x, int y) {
         this.board = board;
         this.id = i;
-        this.xStart = x
-        this.yStart = y
+        this.xStart = x;
+        this.yStart = y;
     }
     public Board getBoard() {return this.board; }
     public int getId() {return this.id; }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas; // Not used per now, may be required for the animation
 //import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
@@ -15,10 +16,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 public class Assets { // Each asset is publically available, visible to EveryOne.
     private static Skin skin; // JSON - file . Used for buttons and widgets, perchance.
     private static Texture backgroundTexture; // Used in the main menu
+    private static Texture dieTexture; // Used in the main menu
 
-    private static Texture yellowPieceTexture; // Used in the main menu
-    private static Texture redPieceTexture; // Used in the main menu
-    private static Texture bluePieceTexture; // Used in the main menu
+    private static Texture yellowPieceTexture;
+    private static Texture redPieceTexture;
+    private static Texture bluePieceTexture;
     private static Texture greenPieceTexture; // Used in the main menu, copypasta ahoy
 
     private static Texture chanceFieldTexture; // Used in the main menu, copypasta ahoy
@@ -31,6 +33,8 @@ public class Assets { // Each asset is publically available, visible to EveryOne
 
     // For generating buttons in the menu UI
     private static TextButton.TextButtonStyle textButtonStyle;
+    private static SelectBox.SelectBoxStyle selectBoxStyle;
+    private static SelectBox<Texture> selectBox;
     private static BitmapFont font;
     private static TextureAtlas buttonAtlas;
 
@@ -46,6 +50,7 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         // Implements asset loading.
         generateFont();
         backgroundTexture = new Texture(Gdx.files.internal("splash.png")); // For the splash screen
+        dieTexture = new Texture(Gdx.files.internal("die.png"));
         yellowPieceTexture = new Texture(Gdx.files.internal("yellowpiece.png"));
         redPieceTexture = new Texture(Gdx.files.internal("redpiece.png"));
         bluePieceTexture = new Texture(Gdx.files.internal("bluepiece.png"));
@@ -62,6 +67,12 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         textButtonStyle.up = skin.getDrawable("button_04");
         textButtonStyle.down = skin.getDrawable("button_02");
         textButtonStyle.checked = skin.getDrawable("checkbox_on"); // Currently not used
+        selectBoxStyle = new SelectBox.SelectBoxStyle();
+        selectBoxStyle.background = skin.getDrawable("selectbox_01");
+        selectBoxStyle.font = font;
+        selectBox = new SelectBox(skin);
+        selectBox.setStyle(selectBoxStyle);
+        selectBox.setItems(yellowPieceTexture, redPieceTexture, bluePieceTexture, greenPieceTexture);
     }
 
     // Getters
@@ -86,4 +97,19 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         return buttonAtlas;
     }
 
+    public static Texture getLadderUpFieldTexture() {
+        return ladderUpFieldTexture;
+    }
+
+    public static Texture getLadderDownFieldTexture() {
+        return ladderDownFieldTexture;
+    }
+
+    public static Texture getChanceFieldTexture() {
+        return chanceFieldTexture;
+    }
+
+    public static Texture getNormalFieldTexture() {
+        return normalFieldTexture;
+    }
 }

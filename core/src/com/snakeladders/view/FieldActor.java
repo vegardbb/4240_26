@@ -5,25 +5,26 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.snakeladders.controller.SnakeLadders;
 
 // No touching or moving this thing
 
-class fieldActor extends Actor { // Image extends Widget, which in turn extends Actor
-	private Snakeladders game; // The controller which provides the Field its datamodel.
+public class FieldActor extends Actor { // Image extends Widget, which in turn extends Actor
+	private SnakeLadders game; // The controller which provides the Field its datamodel.
 	Sprite fieldSprite;
 	
-	public fieldActor(float x, float y, Texture t){
+	public FieldActor(float x, float y, Texture t){
 		this.fieldSprite = new Sprite(t);
 		fieldSprite.setX(x); // require float, nodvendig?
-		fieldSprite.sety(Y); // require float
+		fieldSprite.setY(y); // require float
 		//setBounds(fieldSprite.getX(),fieldSprite.getY(),fieldSprite.getWidth(),fieldSprite.getHeight());
-		setBounds(x,y,fieldSprite.getWidth(),fieldSprite.getHeight());
-		setTouchable(false); //Touchable.enabled
+		setBounds(x, y, fieldSprite.getWidth(), fieldSprite.getHeight());
+		//setTouchable(false); //Touchable.enabled
 	}
 	// TODO: Add more methods if need be
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		sprite.draw(batch);
+		fieldSprite.draw(batch);
 	}
 
 }

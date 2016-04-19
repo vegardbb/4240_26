@@ -36,7 +36,7 @@ public class MainMenuScreenController {
         //TODO: more functionality may be required?
     }
 
-	public void exit(){
+    public void exit(){
         game.dispose();
         Gdx.app.exit();
 	}

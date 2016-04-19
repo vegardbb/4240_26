@@ -10,7 +10,7 @@ public class NormalField extends Field{
     
     **/
 
-    public NormalField(Board board, int i, Field teleportToField, int x, int y) {
+    public NormalField(Board board, int i, int x, int y) {
         super(board, i, x, y);
     }
 }
