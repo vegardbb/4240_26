@@ -16,7 +16,7 @@ public class LadderField extends Field{
     private int ref; // The reference to the fieldID to teleport to, used by ladderUp case
     private Field teleportToField; //Used by ladderFields and occasionally chancefields, normally null for Normalfield.
 
-    public LadderField(Board board, int i, Field teleportToField, int x, int y) { //Note that x and y are floats to the corresponding fieldActor
+    public LadderField(Board board, int i, Field teleportToField, float x, float y) { //Note that x and y are floats to the corresponding fieldActor
         super(board, i, x, y);
         if (teleportToField != null) {
             this.teleportToField = teleportToField;

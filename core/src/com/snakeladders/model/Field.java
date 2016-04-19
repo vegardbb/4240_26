@@ -10,15 +10,15 @@ public abstract class Field {
      **/
 
     private int id;
-    private int xStart; // The startposition in the upper left corner of the field, x-component
-    private int yStart; // The startposition in the upper left corner of the field, y-component
+    private float xStart; // The startposition in the upper left corner of the field, x-component
+    private float yStart; // The startposition in the upper left corner of the field, y-component
 
     // TODO: Move teleporttoField to the telport class. Not nescessary in the other two fields
     //private Field teleportToField = null; //Used by ladderFields and occasionally chancefields, normally null for Normalfield.
 
     private Board board; // Reference to the board the field belongs to.    
 
-    public Field(Board board, int i, int x, int y) {
+    public Field(Board board, int i, float x, float y) {
         this.board = board;
         this.id = i;
         this.xStart = x;
@@ -26,7 +26,7 @@ public abstract class Field {
     }
     public Board getBoard() {return this.board; }
     public int getId() {return this.id; }
-    public int getXpos() {return this.xStart; }
-    public int getYpos() {return this.yStart; }
+    public float getXpos() {return this.xStart; }
+    public float getYpos() {return this.yStart; }
 
 }
