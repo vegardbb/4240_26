@@ -74,6 +74,7 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         selectBox.setStyle(selectBoxStyle);
         selectBox.setItems(yellowPieceTexture, redPieceTexture, bluePieceTexture, greenPieceTexture);
     }
+    // TODO: Comment out the Selectbox fields, send in an array of strings into generatePlayers - method
 
     // Getters
     public static Texture getBackgroundTexture() {
