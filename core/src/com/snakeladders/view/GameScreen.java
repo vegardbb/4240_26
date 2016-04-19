@@ -26,12 +26,12 @@ public class GameScreen implements Screen {
     OrthographicCamera camera = new OrthographicCamera((float)Gdx.graphics.getWidth(),(float)Gdx.graphics.getHeight());
     GameScreenController controller;
 
-    public GameScreen(SnakeLadders game) { // The controller should then
+    public GameScreen(SnakeLadders game, int playerCount) { // The controller should then
         this.game = game;
         this.controller = new GameScreenController(game);
         stage = new Stage(); // Commit: Move stage constructor to screen constructor because we want to keep it throughout the gameplay
         //Initialize the players, the fields and the die. To do this, we need the stage we just brought to life.
-        this.controller.initGame(stage); // This method generates all the fields to the stage, and generates and adds the playerActors to the stage.
+        this.controller.initGame(stage, playerCount); // This method generates all the fields to the stage, and generates and adds the playerActors to the stage.
     }
 
     @Override
@@ -56,7 +56,7 @@ public class GameScreen implements Screen {
 //        table.debug();
         table.add(diceButton).width(150).height(50);
 
-        stage.addActor(backImage); // Turns out the background is a dumb actor.
+        //stage.addActor(backImage); // Turns out the background is a dumb actor.
         stage.addActor(table);
     }
 

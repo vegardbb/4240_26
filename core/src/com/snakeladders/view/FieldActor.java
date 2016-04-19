@@ -13,10 +13,11 @@ public class FieldActor extends Actor { // Image extends Widget, which in turn e
 	private SnakeLadders game; // The controller which provides the Field its datamodel.
 	Sprite fieldSprite;
 	
-	public FieldActor(float x, float y, Texture t){
-		this.fieldSprite = new Sprite(t);
+	public FieldActor(float x, float y, int width, int height, Texture t){
+		this.fieldSprite = new Sprite(t, width,height);
 		fieldSprite.setX(x);
 		fieldSprite.setY(y);
+		fieldSprite.setScale(8);
 		//setBounds(fieldSprite.getX(),fieldSprite.getY(),fieldSprite.getWidth(),fieldSprite.getHeight());
 		setBounds(x, y, fieldSprite.getWidth(), fieldSprite.getHeight());
 		//setTouchable(false); //Touchable.enabled
@@ -24,7 +25,9 @@ public class FieldActor extends Actor { // Image extends Widget, which in turn e
 	// TODO: Add more methods if need be
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		fieldSprite.draw(batch);
+		//batch.begin();
+		batch.draw(fieldSprite.getTexture(), fieldSprite.getX(), fieldSprite.getY(), fieldSprite.getWidth(), fieldSprite.getHeight());
+		//batch.end();
 	}
 
 }

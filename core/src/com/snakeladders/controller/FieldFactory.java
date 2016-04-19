@@ -22,66 +22,81 @@ class FieldFactory {
 
 	//Method generateFields, class FieldFactory
 	//@param Texture boardTexture	The chosen texture to geenrate the fields on top of.
-	void generateFields(Texture boardTexture) { //
-		int h = boardTexture.getHeight();
-		int w = boardTexture.getWidth();
+	void generateFields(Texture boardTexture) {
+		final int BOARD_SIZE = 7;
+		final int FIELD_COUNT = BOARD_SIZE*BOARD_SIZE;
+		final int MAX_LADDERS_DOWN = Math.round((float)FIELD_COUNT/10);
+		final int MAX_LADDERS_UP = MAX_LADDERS_DOWN;
+
+		final float BOARD_WIDTH = stage.getHeight();
+		final float BOARD_HEIGHT = BOARD_WIDTH;
+		final int FIELD_HEIGHT = (int)BOARD_HEIGHT/BOARD_SIZE;
+		final int FIELD_WIDTH = (int)BOARD_WIDTH/BOARD_SIZE;
+
+		int remainingLaddersUp = MAX_LADDERS_UP;
+		int remainingLaddersDown = MAX_LADDERS_DOWN;
+
 		Texture ladderUpFieldTexture = Assets.getLadderUpFieldTexture();
 		Texture ladderDownFieldTexture = Assets.getLadderDownFieldTexture();
 		Texture chanceFieldTexture = Assets.getChanceFieldTexture();
 		Texture normalFieldTexture = Assets.getNormalFieldTexture();
-		int nrFields = ((int) w/20) * ((int) h/20);
+		Texture startFieldTexture = Assets.getStartFieldTexture();
+		Texture goalFieldTexture = Assets.getGoalFieldTexture();
 		Board board = Board.getInstance();
 		Random r = new Random();
 		//int spacew = 5; // Randomised or a parameter
-		int maxLaddersDown = (int) (nrFields/5);
-		int maxLaddersUp = (int) (nrFields/10);
-		int i = 0; //Field ID.
-		int x = 0;
-		int y = h-30;
-		while (  y>0 ) {	// configure this while clause to determine space between fields in
-												// the horizontal direction. May be parametrized
-			while ( x<(w-30) ) { // configure this while clause to determine space between fields in
-												// the vertical direction. May be parametrized
-				int d = r.nextInt(2); // java random	Board board, int i, Field teleportToField, int x, int y
-				if ((d==0) && (i>3) && (maxLaddersUp>0)) { // Ladderfield going up, sends in null in the teleport-parameter, because linear.
-					board.addField(new LadderField(board,i,null,x,y)); // Important to distinguish ladder-Up from ladder down in the list of Fields
-					stage.addActor( new FieldActor((float)(x), (float)(y), ladderUpFieldTexture));
+
+		for (int y = 0; y < BOARD_SIZE; y++) {
+			float yPos = y*FIELD_HEIGHT;
+			for (int x = 0; x < BOARD_SIZE; x++){
+				int fieldNr = BOARD_SIZE*y + x;
+				float xPos = x*FIELD_WIDTH + (stage.getWidth() - BOARD_HEIGHT)/2;
+
+				int d = r.nextInt(3);
+
+				if ((d==0) && !(y==0 && x<3) && (remainingLaddersUp>0)) { // Ladderfield going up, sends in null in the teleport-parameter, because linear.
+
+					board.addField(new LadderField(board,fieldNr,null,x,y)); // Important to distinguish ladder-Up from ladder down in the list of Fields
+					stage.addActor( new FieldActor(xPos, yPos, FIELD_WIDTH, FIELD_HEIGHT, ladderUpFieldTexture));
 					// Problem: Linking the actor and the model loosely together? Solution: x and y
-					maxLaddersUp--;
-					i++;
+					remainingLaddersUp--;
 				}
-				else if ((d==1) && (i>2) && (maxLaddersDown>0) && (i<nrFields-1)) { // Ladderfield going down
-					int m = r.nextInt(i - 2);
-					board.addField(new LadderField(board,i,board.getBoardfields().get(m+2),x,y));
-					stage.addActor( new FieldActor((float)(x), (float)(y), ladderDownFieldTexture));
-					maxLaddersDown--;
-					i++;
+				else if ((d==1) && (y>0) && (remainingLaddersDown>0) && (fieldNr<FIELD_COUNT-1)) { // Ladderfield going down
+					int endOfLastRow = fieldNr - x - 1;
+					int m = r.nextInt(endOfLastRow);
+					board.addField(new LadderField(board,fieldNr,board.getBoardfields().get(m),x,y));
+					stage.addActor( new FieldActor(xPos, yPos, FIELD_WIDTH, FIELD_HEIGHT, ladderDownFieldTexture));
+					remainingLaddersDown--;
 				}
-				else  if ((d==2) && (i>0) && (i<nrFields-1)) {	// generate chancefield.
+				else  if ((d==2) && (fieldNr > 0) && (fieldNr < FIELD_COUNT-1)) {	// generate chancefield.
 											// On a chancefield, one out of a set of possible events may happen,
 											// this event is not static, ie it may wary each time a player lands on it.
-					board.addField(new ChanceField(board,i,x,y));
-					stage.addActor( new FieldActor((float)(x), (float)(y), chanceFieldTexture));
-					i++;
+					board.addField(new ChanceField(board,fieldNr,x,y));
+					stage.addActor( new FieldActor(xPos, yPos, FIELD_WIDTH, FIELD_HEIGHT, chanceFieldTexture));
 				}
 				else { // Next field on the board shall be a normal field. The start field for all players - i=0, is always a normalField, and the last field is also a normalField
-					board.addField(new NormalField(board,i,x,y));
-					stage.addActor( new FieldActor((float)(x), (float)(y), normalFieldTexture));
-					i++;
+					board.addField(new NormalField(board,fieldNr,x,y));
+					if (x == 0 && y == 0){
+						stage.addActor( new FieldActor(xPos, yPos, FIELD_WIDTH, FIELD_HEIGHT, startFieldTexture));
+					}
+					else if (x == BOARD_SIZE-1 && y == BOARD_SIZE-1){
+						stage.addActor( new FieldActor(xPos, yPos, FIELD_WIDTH, FIELD_HEIGHT, goalFieldTexture));
+					}
+					else{
+						stage.addActor( new FieldActor(xPos, yPos, FIELD_WIDTH, FIELD_HEIGHT, normalFieldTexture));
+					}
+
 				}
-				x += 30;
 			}
-			x=0;
-			y = h-20;
 		} // Reiterate over the boards ladderfields to set the teleportfield
-		ArrayList<Field> boardfields = board.getBoardfields(); // May be revised
-		for (Field f: boardfields){
+		ArrayList<Field> boardFields = board.getBoardfields(); // May be revised
+		for (Field f: boardFields){
 			if (f instanceof LadderField) {
 				LadderField lf = (LadderField) f;
 				if (lf.getTeleportToField() == null) {
 					int n = lf.getId();
-					int m = r.nextInt(nrFields-n);
-					lf.setTeleportToField(boardfields.get(m+n));
+					int m = r.nextInt(boardFields.size()-n);
+					lf.setTeleportToField(boardFields.get(m+n));
 				}
 			}
 		}
