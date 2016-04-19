@@ -24,5 +24,11 @@ public class PlayerActor extends Actor { // Image extends Widget, which in turn 
 	public void draw(Batch batch, float parentAlpha) {
 		fieldSprite.draw(batch);
 	}
+	public void moveTo(Field f) {
+		MoveToAction moveToAction = new MoveToAction();
+		moveToAction.setPosition(f.getX(),f.getY());
+		moveToAction.setDuration(5f);
+		MyActor.this.addAction(moveToAction);
+	}
 
 }
