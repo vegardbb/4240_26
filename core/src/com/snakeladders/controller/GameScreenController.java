@@ -38,5 +38,9 @@ public class GameScreenController {
 //		PlayerFactory playerFactory = new PlayerFactory(stage);
 //		playerFactory.generatePlayers(playerCount);
 	}
+
+	public static Texture getBackgroundTexture() {
+		return Assets.getBackgroundTexture();
+	}
 }
 

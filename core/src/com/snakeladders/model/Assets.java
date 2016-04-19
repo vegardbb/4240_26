@@ -43,7 +43,7 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     private static void generateFont() {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 12;
+        parameter.size = 18;
         font = generator.generateFont(parameter); // font size 12 pixels
         generator.dispose(); // don't forget to dispose to avoid memory leaks!
     }
@@ -51,7 +51,7 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     public static void load () {
         // Implements asset loading.
         generateFont();
-        backgroundTexture = new Texture(Gdx.files.internal("splash.png")); // For the splash screen
+        backgroundTexture = new Texture(Gdx.files.internal("Game-Board.gif")); // For the splash screen
         dieTexture = new Texture(Gdx.files.internal("die.png"));
         yellowPieceTexture = new Texture(Gdx.files.internal("yellowpiece.png"));
         redPieceTexture = new Texture(Gdx.files.internal("redpiece.png"));
