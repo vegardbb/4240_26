@@ -32,7 +32,7 @@ public class ChanceField extends Field{
     //private Field teleportToField; //Used by ladderFields and occasionally chancefields, normally null for Normalfield.
     private Board board; // Reference to the board the field belongs to.
 
-    public ChanceField(Board board, int i, int x, int y) {
+    public ChanceField(Board board, int i, float x, float y) {
         super(board, i, x, y);
         //this.fieldtype = randomChoice(); // Choose a type randomly.
     }
