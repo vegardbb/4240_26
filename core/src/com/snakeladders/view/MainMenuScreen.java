@@ -7,10 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.snakeladders.controller.SnakeLadders; // The Game class
 import com.snakeladders.controller.MainMenuScreenController; // The controller
+import com.snakeladders.model.Assets;
 
 public class MainMenuScreen implements Screen {
     
@@ -19,6 +21,7 @@ public class MainMenuScreen implements Screen {
     TextButton startGameButton;
     TextButton exitButton;
     MainMenuScreenController controller;
+    Slider playerCountSlider;
     
     public MainMenuScreen(SnakeLadders game) {
         this.game = game;
@@ -49,8 +52,9 @@ public class MainMenuScreen implements Screen {
 
         Table table = new Table(MainMenuScreenController.getSkin());
         
-        startGameButton = new TextButton("Configure Game", MainMenuScreenController.getTextButtonStyle());
+        startGameButton = new TextButton("Start Game", MainMenuScreenController.getTextButtonStyle());
         exitButton = new TextButton("Exit", MainMenuScreenController.getTextButtonStyle());
+        playerCountSlider = new Slider(2,8,1,false, MainMenuScreenController.getSliderStyle());
         Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
         
         startGameButton.addListener(new InputListener() {
@@ -58,8 +62,8 @@ public class MainMenuScreen implements Screen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y,
                     int pointer, int button) {
-                controller.configureGame();
-                System.out.println("Configure Game");
+                controller.newGame();
+                System.out.println("Starting Game");
                 return true;
             }
         });
@@ -78,7 +82,9 @@ public class MainMenuScreen implements Screen {
 
 
         table.setFillParent(true); // TODO: Change positions on Table...
-//        table.debug(); 
+//        table.debug();
+        table.add(playerCountSlider);
+        table.row();
         table.add(startGameButton).width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight()/4);
         table.row();
         table.add(exitButton).width(150).height(50).padTop(10);

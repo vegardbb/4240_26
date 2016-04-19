@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.snakeladders.model.Board;
 import com.snakeladders.view.ConfigScreen;
 import com.snakeladders.model.Assets; // The Assets class
 import com.snakeladders.view.GameScreen;
@@ -20,6 +22,7 @@ public class MainMenuScreenController {
 	This class controls the input from the MainMenuScreen
     **/
 	public void newGame(){
+        Board board = Board.getInstance();
         game.setScreen(new GameScreen(game));
         //TODO: more functionality may be required?
 	}
@@ -58,6 +61,10 @@ public class MainMenuScreenController {
 
     public static TextureAtlas getButtonAtlas() {
         return Assets.getButtonAtlas();
+    }
+
+    public static Slider.SliderStyle getSliderStyle(){
+        return Assets.getSliderStyle();
     }
 }
 

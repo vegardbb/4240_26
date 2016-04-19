@@ -15,10 +15,12 @@ public class GameScreenController {
 	------
     **/
 	SnakeLadders game;
-	Stage gameboard;
+	Board board;
+	Stage gameBoard;
 
 	public GameScreenController(SnakeLadders game) {
 		this.game = game;
+//		this.gameBoard = gameBoard;
 	}
 
 	public static Skin getSkin() {

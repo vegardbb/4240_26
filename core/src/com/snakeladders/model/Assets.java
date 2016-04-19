@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas; // Not used per now, may be r
 //import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 //See also: http://www.netthreads.co.uk/2012/01/31/libgdx-example-of-using-scene2d-actions-and-event-handling/
@@ -23,6 +24,7 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     private static TextButton.TextButtonStyle textButtonStyle;
     private static BitmapFont font;
     private static TextureAtlas buttonAtlas;
+    private static Slider.SliderStyle sliderStyle;
 
     private static void generateFont() {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-Regular.ttf"));
@@ -44,6 +46,9 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         textButtonStyle.up = skin.getDrawable("button_04");
         textButtonStyle.down = skin.getDrawable("button_02");
         textButtonStyle.checked = skin.getDrawable("checkbox_on"); // Currently not used
+        sliderStyle = new Slider.SliderStyle();
+        sliderStyle.background = skin.getDrawable("slider_back_hor");
+        sliderStyle.knob = skin.getDrawable("knob_01");
     }
 
     // Getters
@@ -67,5 +72,7 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     public static TextureAtlas getButtonAtlas() {
         return buttonAtlas;
     }
+
+    public static Slider.SliderStyle getSliderStyle(){ return sliderStyle; }
 
 }
