@@ -18,8 +18,11 @@ public class LadderField extends Field{
 
     public LadderField(Board board, int i, Field teleportToField, int x, int y) { //Note that x and y are floats to the corresponding fieldActor
         super(board, i, x, y);
-        this.teleportToField = teleportToField;
-        this.ref = teleportToField.getId(); // May not be needed
+        if (teleportToField != null) {
+            this.teleportToField = teleportToField;
+            this.ref = teleportToField.getId(); // May not be needed
+        }
+
     }
 
     /*

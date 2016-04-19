@@ -27,7 +27,7 @@ public class MainMenuScreenController {
 //        game.setScreen(new GameScreen(game));
 	public void newGame(){
         Board board = Board.getInstance();
-        game.setScreen(new GameScreen(game));
+        game.setScreen(new GameScreen(game, 4));
         //TODO: more functionality may be required?
 	}
 

@@ -56,7 +56,7 @@ public class GameScreen implements Screen {
 //        table.debug();
         table.add(diceButton).width(150).height(50);
 
-        stage.addActor(backImage); // Turns out the background is a dumb actor.
+        //stage.addActor(backImage); // Turns out the background is a dumb actor.
         stage.addActor(table);
     }
 

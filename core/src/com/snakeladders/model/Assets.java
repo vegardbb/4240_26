@@ -28,6 +28,8 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     private static Texture ladderDownFieldTexture; // Used in the main menu, copypasta ahoy
     private static Texture ladderUpFieldTexture; // Used in the main menu, copypasta ahoy
     private static Texture normalFieldTexture; // Used in the main menu, copypasta ahoy
+    private static Texture startFieldTexture;
+    private static Texture goalFieldTexture;
 
     //public static Animation pieceAni; // Not used per now, intended as animation w/ movement only. No texturechange.
     private static Texture boardTexture; // The board, covering the screen
@@ -57,10 +59,13 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         redPieceTexture = new Texture(Gdx.files.internal("redpiece.png"));
         bluePieceTexture = new Texture(Gdx.files.internal("bluepiece.png"));
         greenPieceTexture = new Texture(Gdx.files.internal("greenpiece.png"));
+        boardTexture = new Texture(Gdx.files.internal("boardtexture.png"));
         chanceFieldTexture = new Texture(Gdx.files.internal("chancefield.png"));
         ladderDownFieldTexture = new Texture(Gdx.files.internal("downfield.png"));
         ladderUpFieldTexture = new Texture(Gdx.files.internal("upfield.png"));
         normalFieldTexture = new Texture(Gdx.files.internal("regfield.png"));
+        startFieldTexture = new Texture(Gdx.files.internal("startfield.png"));
+        goalFieldTexture = new Texture(Gdx.files.internal("goalfield.png"));
         skin = new Skin();
         buttonAtlas = new TextureAtlas(Gdx.files.internal("ui-orange.atlas"));
         skin.addRegions(buttonAtlas);
@@ -119,5 +124,13 @@ public class Assets { // Each asset is publically available, visible to EveryOne
 
     public static Texture getNormalFieldTexture() {
         return normalFieldTexture;
+    }
+
+    public static Texture getGoalFieldTexture() {
+        return goalFieldTexture;
+    }
+
+    public static Texture getStartFieldTexture() {
+        return startFieldTexture;
     }
 }
