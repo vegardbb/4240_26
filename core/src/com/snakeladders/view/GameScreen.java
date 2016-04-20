@@ -74,6 +74,7 @@ public class GameScreen implements Screen {
         //boardStage.draw()
         stage.act(delta);
         stage.draw();
+        controller.drawLadders(stage);
 
     }
 
