@@ -28,11 +28,14 @@ class PlayerFactory {
         Field startField = board.getBoardfields().get(0);
         float startX = startField.getXpos();
         float startY = startField.getYpos();
+        int size = (int) startField.getSize()/2;
         ArrayList<Texture> pieceTextures = Assets.getPieceTextures();
 
         for (int i = 0; i < playerCount; i++){
-            board.addPlayer(new Player("Spiller " + i + 1, i));
-            stage.addActor(new PlayerActor(startX, startY, pieceTextures.get(i)));
+            Player player = new Player("Spiller " + i + 1, i);
+            board.addPlayer(player);
+            stage.addActor(new PlayerActor(0.0f, 0.0f, size, pieceTextures.get(i), controller, i));
+            controller.movePlayerTo(player, startField);
         }
     }
 }

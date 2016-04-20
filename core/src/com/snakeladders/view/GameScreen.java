@@ -75,9 +75,8 @@ public class GameScreen implements Screen {
         //staticStage.draw();
         //boardStage.draw()
         stage.act(delta);
-        stage.draw();
-        controller.drawLadders(stage);
-
+        //stage.draw();
+        controller.drawBoard(stage);
     }
 
     @Override

@@ -3,14 +3,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Array;
 import com.snakeladders.model.Assets;
 import com.snakeladders.model.Board;
 import com.snakeladders.model.Field;
 import com.snakeladders.model.LadderField;
 import com.snakeladders.model.NormalField;
 import com.snakeladders.model.Player;
+import com.snakeladders.view.FieldActor;
+import com.snakeladders.view.PlayerActor;
 
 import java.util.ArrayList;
 import java.util.Random;// For usage on randomised boards. Debate how large a degree of "randomness" we want.
@@ -40,12 +44,8 @@ public class GameScreenController {
 		Texture boardTexture = Assets.getBoardTexture();
 		FieldFactory fieldFactory = new FieldFactory(stage, this);
 		fieldFactory.generateFields(boardTexture);
-//		PlayerFactory playerFactory = new PlayerFactory(stage);
-//		playerFactory.generatePlayers(playerCount);
-	}
-
-	public void drawField(Batch batch, float parentAlpha, Sprite fieldSprite){
-		batch.draw(fieldSprite.getTexture(), fieldSprite.getX(), fieldSprite.getY(), fieldSprite.getWidth(), fieldSprite.getHeight());
+		PlayerFactory playerFactory = new PlayerFactory(this, stage);
+		playerFactory.generatePlayers(playerCount);
 	}
 
 	public void drawLadders(Stage stage){
@@ -81,6 +81,63 @@ public class GameScreenController {
 		return Assets.getBackgroundTexture();
 	}
 
+	public void drawBoard(Stage stage){
+		ArrayList<Player> players = board.getPlayersOnBoard();
+		ArrayList<Field> fields = board.getBoardfields();
+		Array<Actor> actors = stage.getActors();
+		ArrayList<PlayerActor> playerActors = new ArrayList<PlayerActor>();
+		ArrayList<FieldActor> fieldActors = new ArrayList<FieldActor>();
+		for (Actor a:actors){
+			if (a instanceof PlayerActor){
+				playerActors.add((PlayerActor) a);
+			} else if (a instanceof FieldActor){
+				fieldActors.add((FieldActor) a);
+			}
+		}
 
+		for (FieldActor fa:fieldActors ){
+			Field field = null;
+			for (Field f:fields){
+				if (fa.getId() == f.getId()){
+					field = f;
+					break;
+				}
+			}
+			if (field == null){ continue; }
+
+			Sprite sprite = fa.getSprite();
+			sprite.setPosition(field.getXpos(), field.getYpos());
+			drawSprite(stage.getBatch(), sprite);
+		}
+
+		drawLadders(stage);
+
+		for (PlayerActor pa:playerActors){
+			Player player = null;
+			for (Player p:players){
+				if (p.getStart() == pa.getId()){
+					player = p;
+					break;
+				}
+			}
+			if (player == null){ continue; }
+
+			Sprite sprite = pa.getSprite();
+			sprite.setPosition(player.getXPos(), player.getYPos());
+			drawSprite(stage.getBatch(), sprite);
+		}
+	}
+
+
+	public void drawSprite(Batch batch, Sprite sprite) {
+
+		batch.begin();
+		batch.draw(sprite.getTexture(), sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
+		batch.end();
+	}
+
+	public void movePlayerTo(Player player, Field field) {
+		player.setCurrentField(field);
+	}
 }
 
