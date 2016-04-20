@@ -39,4 +39,26 @@ public class Player {
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
+
+    public float getXPos(){
+        float x = currentField.getXpos();
+        float offset = currentField.getSize()/2;
+        switch (getStart()){
+            case 1:case 2:
+                x += offset;
+                break;
+        }
+        return x;
+    }
+
+    public float getYPos(){
+        float y = currentField.getYpos();
+        float offset = currentField.getSize()/2;
+        switch (getStart()){
+            case 2:case 3:
+                y += offset;
+                break;
+        }
+        return y;
+    }
 }

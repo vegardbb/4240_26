@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -19,6 +21,8 @@ public class MainMenuScreenController {
         this.game = game;
     }
 
+
+
     /**
 	This class controls the input from the MainMenuScreen
     **/
@@ -26,7 +30,6 @@ public class MainMenuScreenController {
 //	public void newGame() {
 //        game.setScreen(new GameScreen(game));
 	public void newGame(){
-        Board board = Board.getInstance();
         game.setScreen(new GameScreen(game, 4));
         //TODO: more functionality may be required?
 	}

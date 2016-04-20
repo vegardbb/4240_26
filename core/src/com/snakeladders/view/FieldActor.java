@@ -18,8 +18,10 @@ public class FieldActor extends Actor { // Image extends Widget, which in turn e
 	private SnakeLadders game; // The controller which provides the Field its datamodel.
 	private GameScreenController controller;
 	private Sprite fieldSprite;
+	private int id;
 	
-	public FieldActor(float x, float y, int width, int height, Texture t, GameScreenController controller){
+	public FieldActor(int id, float x, float y, int width, int height, Texture t, GameScreenController controller){
+		this.id = id;
 		this.controller = controller;
 		this.fieldSprite = new Sprite(t, width,height);
 		fieldSprite.setX(x);
@@ -30,6 +32,10 @@ public class FieldActor extends Actor { // Image extends Widget, which in turn e
 	// TODO: Add more methods if need be
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		controller.drawField(batch, parentAlpha, fieldSprite);
+		//controller.drawSprite(batch, fieldSprite);
 	}
+
+	public int getId(){ return this.id; }
+
+	public Sprite getSprite() { return fieldSprite; }
 }

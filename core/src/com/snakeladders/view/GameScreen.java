@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.snakeladders.controller.GameScreenController;
 import com.snakeladders.controller.MainMenuScreenController;
@@ -49,7 +50,7 @@ public class GameScreen implements Screen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Throwing Dice");
-                controller.throwDie();
+                //controller.throwDie();
                 return true;
             }
         });
@@ -71,8 +72,9 @@ public class GameScreen implements Screen {
         });
 
         table.setFillParent(true); // TODO: Change positions on Table...
+        table.align(Align.left);
 //        table.debug();
-        table.add(diceButton).width(150).height(50);
+        table.add(diceButton).width(Gdx.graphics.getWidth()/6).height(Gdx.graphics.getHeight()/8);
 
         //stage.addActor(backImage); // Turns out the background is a dumb actor.
         stage.addActor(table);
@@ -91,9 +93,8 @@ public class GameScreen implements Screen {
         //staticStage.draw();
         //boardStage.draw()
         stage.act(delta);
-        stage.draw();
-        controller.drawLadders(stage);
-
+        //stage.draw();
+        controller.drawBoard(stage);
     }
 
     @Override
