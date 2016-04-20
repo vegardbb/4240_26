@@ -70,7 +70,6 @@ public class GameScreenController {
 				float startY = f.getYpos() + (f.getSize()/2);
 				targetX += (targetSize/2) + offset;
 				targetY += targetSize/2;
-				System.out.println(targetSize);
 
 				shape.rectLine(startX, startY, targetX, targetY, f.getSize()/30);
 				shape.end();
