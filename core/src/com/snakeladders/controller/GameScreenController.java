@@ -1,4 +1,5 @@
 package com.snakeladders.controller;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -17,7 +18,7 @@ import java.util.Random;// For usage on randomised boards. Debate how large a de
 
 public class GameScreenController {
     /**
-	Controller class for a splash screen. When touching the screen , the image disappears, screen disposed
+	TODO
 	movePlayerLadder( ) // moving a player up or down a ladder
 	------
     **/
@@ -28,13 +29,12 @@ public class GameScreenController {
 	public GameScreenController(SnakeLadders game) {
 		this.game = game;
 		this.board = Board.getINSTANCE();
-//		this.gameBoard = gameBoard;
 	}
 
 	public static Skin getSkin() {
 		return Assets.getSkin();
 	}
-
+	public static Texture getDie() { return Assets.getDieTexture(); }
 
 	public void initGame(Stage stage, int playerCount) {
 		Texture boardTexture = Assets.getBoardTexture();

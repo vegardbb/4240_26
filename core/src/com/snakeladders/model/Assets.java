@@ -68,15 +68,15 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         goalFieldTexture = new Texture(Gdx.files.internal("goalfield.png"));
         skin = new Skin();
         buttonAtlas = new TextureAtlas(Gdx.files.internal("ui-orange.atlas"));
-        skin.addRegions(buttonAtlas);
+        getSkin().addRegions(getButtonAtlas());
         textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.font = font;
-        textButtonStyle.up = skin.getDrawable("button_04");
-        textButtonStyle.down = skin.getDrawable("button_02");
-        textButtonStyle.checked = skin.getDrawable("checkbox_on"); // Currently not used
+        getTextButtonStyle().font = getFont();
+        getTextButtonStyle().up = getSkin().getDrawable("button_04");
+        getTextButtonStyle().down = getSkin().getDrawable("button_02");
+        getTextButtonStyle().checked = getSkin().getDrawable("checkbox_on"); // Currently not used
         sliderStyle = new Slider.SliderStyle();
-        sliderStyle.background = skin.getDrawable("slider_back_hor");
-        sliderStyle.knob = skin.getDrawable("knob_01");
+        getSliderStyle().background = getSkin().getDrawable("slider_back_hor");
+        getSliderStyle().knob = getSkin().getDrawable("knob_01");
         /*selectBoxStyle = new SelectBox.SelectBoxStyle();
         selectBoxStyle.background = skin.getDrawable("selectbox_01");
         selectBoxStyle.font = font;
@@ -132,5 +132,33 @@ public class Assets { // Each asset is publically available, visible to EveryOne
 
     public static Texture getStartFieldTexture() {
         return startFieldTexture;
+    }
+
+    public static Texture getDieTexture() {
+        return dieTexture;
+    }
+
+    public static Texture getYellowPieceTexture() {
+        return yellowPieceTexture;
+    }
+
+    public static Texture getRedPieceTexture() {
+        return redPieceTexture;
+    }
+
+    public static Texture getBluePieceTexture() {
+        return bluePieceTexture;
+    }
+
+    public static Texture getGreenPieceTexture() {
+        return greenPieceTexture;
+    }
+
+    public static SelectBox.SelectBoxStyle getSelectBoxStyle() {
+        return selectBoxStyle;
+    }
+
+    public static SelectBox<Texture> getSelectBox() {
+        return selectBox;
     }
 }
