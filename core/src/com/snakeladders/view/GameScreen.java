@@ -24,7 +24,7 @@ public class GameScreen implements Screen {
     Stage stage;
     SnakeLadders game;
     TextButton diceButton;
-    dieActor d;
+    DieActor d;
     OrthographicCamera camera = new OrthographicCamera((float)Gdx.graphics.getWidth(),(float)Gdx.graphics.getHeight());
     GameScreenController controller;
 
@@ -44,7 +44,7 @@ public class GameScreen implements Screen {
         Texture texture = controller.getDie();
         int w = texture.getWidth();
         int h = texture.getHeight();
-        this.d = new dieActor((float)0,(float)h,w,h,texture, game);
+        this.d = new DieActor((float)0,(float)h,w,h,texture, game);
         d.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -58,7 +58,7 @@ public class GameScreen implements Screen {
             }
         });
 
-        diceButton = new TextButton("Throw Dice", MainMenuScreenController.getTextButtonStyle()); // TODO: Change  to dieTexture, and use GameScreenController to get that texture. Add dieActor and send dieTexture into it.
+        diceButton = new TextButton("Throw Dice", MainMenuScreenController.getTextButtonStyle()); // TODO: Change  to dieTexture, and use GameScreenController to get that texture. Add DieActor and send dieTexture into it.
 
         diceButton.addListener(new InputListener() {
 
