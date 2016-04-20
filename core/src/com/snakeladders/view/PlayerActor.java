@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.snakeladders.controller.SnakeLadders;
-import com.snakeladders.model.Field;
 
 public class PlayerActor extends Actor { // Image extends Widget, which in turn extends Actor
 	private SnakeLadders game; // The controller which provides the Player its datamodel.
@@ -26,11 +25,11 @@ public class PlayerActor extends Actor { // Image extends Widget, which in turn 
 	public void draw(Batch batch, float parentAlpha) {
 		fieldSprite.draw(batch);
 	}
-	public void moveTo(Field f) {
+	public void moveTo(float x, float y) {
 		MoveToAction moveToAction = new MoveToAction();
-		moveToAction.setPosition(f.getXpos(),f.getYpos());
+		moveToAction.setPosition(x,y);
 		moveToAction.setDuration(5f);
-//		MyActor.this.addAction(moveToAction);
+		this.addAction(moveToAction);
 	}
 
 }

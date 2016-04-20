@@ -31,7 +31,7 @@ public class FieldActor extends Actor { // Image extends Widget, which in turn e
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		batch.draw(fieldSprite.getTexture(), fieldSprite.getX(), fieldSprite.getY(), fieldSprite.getWidth(), fieldSprite.getHeight());
-		// TODO: Move to cotroller
+		// TODO: Move to controller
 		if (field instanceof LadderField){
 			batch.end();
 			ShapeRenderer shape = new ShapeRenderer();
