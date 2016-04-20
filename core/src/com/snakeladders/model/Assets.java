@@ -7,10 +7,15 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas; // Not used per now, may be required for the animation
 //import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+
+import java.util.ArrayList;
 
 //See also: http://www.netthreads.co.uk/2012/01/31/libgdx-example-of-using-scene2d-actions-and-event-handling/
 
@@ -41,16 +46,17 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     private static BitmapFont font;
     private static TextureAtlas buttonAtlas;
     private static Slider.SliderStyle sliderStyle;
+    private static ImageTextButton.ImageTextButtonStyle diceStyle;
 
     private static void generateFont() {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 18;
+        parameter.size = Gdx.graphics.getWidth() / 20;
         font = generator.generateFont(parameter); // font size 12 pixels
         generator.dispose(); // don't forget to dispose to avoid memory leaks!
     }
 
-    public static void load () {
+    public static void load() {
         // Implements asset loading.
         generateFont();
         backgroundTexture = new Texture(Gdx.files.internal("Game-Board.gif")); // For the splash screen
@@ -77,6 +83,10 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         sliderStyle = new Slider.SliderStyle();
         sliderStyle.background = skin.getDrawable("slider_back_hor");
         sliderStyle.knob = skin.getDrawable("knob_01");
+        diceStyle = new ImageTextButton.ImageTextButtonStyle();
+        diceStyle.font = font;
+        diceStyle.imageUp = new Image(new Texture(Gdx.files.internal("dice.png"))).getDrawable();
+        diceStyle.imageOver = new Image(new Texture(Gdx.files.internal("dice.png"))).getDrawable();
         /*selectBoxStyle = new SelectBox.SelectBoxStyle();
         selectBoxStyle.background = skin.getDrawable("selectbox_01");
         selectBoxStyle.font = font;
@@ -90,7 +100,10 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     public static Texture getBackgroundTexture() {
         return backgroundTexture;
     }
-    public static Skin getSkin() {return skin;}
+
+    public static Skin getSkin() {
+        return skin;
+    }
 
     public static Texture getBoardTexture() {
         return boardTexture;
@@ -108,7 +121,9 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         return buttonAtlas;
     }
 
-    public static Slider.SliderStyle getSliderStyle(){ return sliderStyle; }
+    public static Slider.SliderStyle getSliderStyle() {
+        return sliderStyle;
+    }
 
     public static Texture getLadderUpFieldTexture() {
         return ladderUpFieldTexture;
@@ -132,5 +147,18 @@ public class Assets { // Each asset is publically available, visible to EveryOne
 
     public static Texture getStartFieldTexture() {
         return startFieldTexture;
+    }
+
+    public static ImageTextButton.ImageTextButtonStyle getDiceStyle() {
+        return diceStyle;
+    }
+
+    public static ArrayList<Texture> getPieceTextures() {
+        ArrayList<Texture> pieceTextures = new ArrayList<Texture>();
+        pieceTextures.add(yellowPieceTexture);
+        pieceTextures.add(redPieceTexture);
+        pieceTextures.add(bluePieceTexture);
+        pieceTextures.add(greenPieceTexture);
+        return pieceTextures;
     }
 }

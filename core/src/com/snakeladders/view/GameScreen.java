@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Align;
 import com.snakeladders.controller.GameScreenController;
 import com.snakeladders.controller.MainMenuScreenController;
 import com.snakeladders.controller.SnakeLadders;
@@ -41,7 +42,7 @@ public class GameScreen implements Screen {
         Table table = new Table(GameScreenController.getSkin());
         Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
 
-        diceButton = new TextButton("Throw Dice", MainMenuScreenController.getTextButtonStyle()); // TODO: Change  to dieTexture, and use GameScreenController to get that texture. Add dieActor and send dieTexture into it.
+        diceButton = new TextButton("1", MainMenuScreenController.getDiceStyle()); // TODO: Change  to dieTexture, and use GameScreenController to get that texture. Add dieActor and send dieTexture into it.
 
         diceButton.addListener(new InputListener() {
 
@@ -53,8 +54,9 @@ public class GameScreen implements Screen {
         });
 
         table.setFillParent(true); // TODO: Change positions on Table...
+        table.align(Align.left);
 //        table.debug();
-        table.add(diceButton).width(150).height(50);
+        table.add(diceButton).width(Gdx.graphics.getWidth()/6).height(Gdx.graphics.getHeight()/8);
 
         //stage.addActor(backImage); // Turns out the background is a dumb actor.
         stage.addActor(table);

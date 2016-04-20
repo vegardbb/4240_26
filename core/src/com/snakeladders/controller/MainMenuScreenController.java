@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -18,6 +20,8 @@ public class MainMenuScreenController {
     public MainMenuScreenController(SnakeLadders game) {
         this.game = game;
     }
+
+
 
     /**
 	This class controls the input from the MainMenuScreen
@@ -71,5 +75,7 @@ public class MainMenuScreenController {
     public static Slider.SliderStyle getSliderStyle(){
         return Assets.getSliderStyle();
     }
+
+    public static ImageTextButton.ImageTextButtonStyle getDiceStyle() { return Assets.getDiceStyle(); }
 }
 

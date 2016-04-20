@@ -80,5 +80,7 @@ public class GameScreenController {
 	public static Texture getBackgroundTexture() {
 		return Assets.getBackgroundTexture();
 	}
+
+
 }
 
