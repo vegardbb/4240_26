@@ -31,6 +31,13 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     private static Texture startFieldTexture;
     private static Texture goalFieldTexture;
 
+    private static Texture one; // One eye on the die
+    private static Texture two; // Two eyes on the die
+    private static Texture three; // Three eyes on the die
+    private static Texture four; // Four eyes on the die
+    private static Texture five; // Five eyes on the die
+    private static Texture six; // Six eyes on the die
+
     //public static Animation pieceAni; // Not used per now, intended as animation w/ movement only. No texturechange.
     private static Texture boardTexture; // The board, covering the screen
 
@@ -41,6 +48,7 @@ public class Assets { // Each asset is publically available, visible to EveryOne
     private static BitmapFont font;
     private static TextureAtlas buttonAtlas;
     private static Slider.SliderStyle sliderStyle;
+    private static Texture[] eyes;
 
     private static void generateFont() {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-Regular.ttf"));
@@ -83,6 +91,14 @@ public class Assets { // Each asset is publically available, visible to EveryOne
         selectBox = new SelectBox(skin);
         selectBox.setStyle(selectBoxStyle);
         selectBox.setItems(yellowPieceTexture, redPieceTexture, bluePieceTexture, greenPieceTexture);*/
+        one = new Texture(Gdx.files.internal("die1.png"));
+        two = new Texture(Gdx.files.internal("die2.png"));
+        three = new Texture(Gdx.files.internal("die3.png"));
+        four = new Texture(Gdx.files.internal("die4.png"));
+        five = new Texture(Gdx.files.internal("die5.png"));
+        six = new Texture(Gdx.files.internal("die6.png"));
+        eyes = new Texture[]{one, two, three, four, five, six};
+
     }
     // TODO: Comment out the Selectbox fields, send in an array of strings into generatePlayers - method
 
@@ -136,6 +152,13 @@ public class Assets { // Each asset is publically available, visible to EveryOne
 
     public static Texture getDieTexture() {
         return dieTexture;
+    }
+
+    /**
+     * @return Texture[]
+     */
+    public static Texture[] getEyeTextures() {
+        return eyes;
     }
 
     public static Texture getYellowPieceTexture() {

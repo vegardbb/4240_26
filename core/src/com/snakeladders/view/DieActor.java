@@ -13,6 +13,14 @@ import com.snakeladders.model.Die;
  */
 public class DieActor extends Actor {
 
+    /*
+    TODO:
+    - Draw six eye textures
+    - Implement throwDie method in GameScreenController
+        - Use Random.nextint(6)
+        - Use setEyes method in six way switch
+    - Define new assets
+     */
     private SnakeLadders game; // The controller which provides the Die its datamodel
     Sprite dieSprite;
 
@@ -22,6 +30,9 @@ public class DieActor extends Actor {
         dieSprite.setX(x);
         dieSprite.setY(y);
         setBounds(x, y, dieSprite.getWidth(), dieSprite.getHeight());
+    }
+    public void setEyes(Texture eyes) {
+        this.dieSprite.setTexture(eyes);
     }
     // TODO: Add more methods if need be
     @Override

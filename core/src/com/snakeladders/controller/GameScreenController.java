@@ -12,6 +12,7 @@ import com.snakeladders.model.Field;
 import com.snakeladders.model.LadderField;
 import com.snakeladders.model.NormalField;
 import com.snakeladders.model.Player;
+import com.snakeladders.view.DieActor;
 
 import java.util.ArrayList;
 import java.util.Random;// For usage on randomised boards. Debate how large a degree of "randomness" we want.
@@ -24,6 +25,7 @@ public class GameScreenController {
     **/
 	SnakeLadders game;
 	Board board;
+	Random r = new Random();
 	//Stage gameBoard;
 
 	public GameScreenController(SnakeLadders game) {
@@ -79,6 +81,11 @@ public class GameScreenController {
 
 	public static Texture getBackgroundTexture() {
 		return Assets.getBackgroundTexture();
+	}
+
+	public void throwDie(DieActor die) {
+		int t = r.nextInt(6);
+		die.setEyes(Assets.getEyeTextures()[t]);
 	}
 }
 
