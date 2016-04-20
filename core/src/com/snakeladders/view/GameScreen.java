@@ -8,10 +8,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.snakeladders.controller.GameScreenController;
 import com.snakeladders.controller.MainMenuScreenController;
 import com.snakeladders.controller.SnakeLadders;
@@ -24,6 +25,7 @@ public class GameScreen implements Screen {
     Stage stage;
     SnakeLadders game;
     TextButton diceButton;
+    DieActor d;
     OrthographicCamera camera = new OrthographicCamera((float)Gdx.graphics.getWidth(),(float)Gdx.graphics.getHeight());
     GameScreenController controller;
 
@@ -40,9 +42,25 @@ public class GameScreen implements Screen {
         
         Gdx.input.setInputProcessor(stage);
         Table table = new Table(GameScreenController.getSkin());
-        Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
+        Texture texture = controller.getDie();
+        int w = texture.getWidth();
+        int h = texture.getHeight();
+        this.d = new DieActor((float)0,(float)h,w,h,texture, game);
+        d.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("Throwing Dice");
+                //controller.throwDie();
+                return true;
+            }
+        });
+        d.addListener(new DragListener() {
+            public void drag(InputEvent event, float x, float y, int pointer) {
+                d.moveBy(x - d.getWidth() / 2, y - d.getHeight() / 2);
+            }
+        });
 
-        diceButton = new TextButton("1", MainMenuScreenController.getDiceStyle()); // TODO: Change  to dieTexture, and use GameScreenController to get that texture. Add dieActor and send dieTexture into it.
+        diceButton = new TextButton("Throw Dice", MainMenuScreenController.getTextButtonStyle()); // TODO: Change  to dieTexture, and use GameScreenController to get that texture. Add DieActor and send dieTexture into it.
 
         diceButton.addListener(new InputListener() {
 

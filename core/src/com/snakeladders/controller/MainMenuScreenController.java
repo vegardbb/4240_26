@@ -74,7 +74,5 @@ public class MainMenuScreenController {
     public static Slider.SliderStyle getSliderStyle(){
         return Assets.getSliderStyle();
     }
-
-    public static ImageTextButton.ImageTextButtonStyle getDiceStyle() { return Assets.getDiceStyle(); }
 }
 
