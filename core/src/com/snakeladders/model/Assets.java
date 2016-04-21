@@ -181,22 +181,6 @@ public class Assets {
         return eyes;
     }
 
-    public static Texture getYellowPieceTexture() {
-        return yellowPieceTexture;
-    }
-
-    public static Texture getRedPieceTexture() {
-        return redPieceTexture;
-    }
-
-    public static Texture getBluePieceTexture() {
-        return bluePieceTexture;
-    }
-
-    public static Texture getGreenPieceTexture() {
-        return greenPieceTexture;
-    }
-
     public static SelectBox.SelectBoxStyle getSelectBoxStyle() {
         return selectBoxStyle;
     }
