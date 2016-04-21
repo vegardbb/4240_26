@@ -48,7 +48,7 @@ public class GameScreenController {
 		fieldFactory.generateFields(boardTexture);
 		PlayerFactory playerFactory = new PlayerFactory(this, stage);
 		playerFactory.generatePlayers(playerCount);
-		//Instantiate
+		//Instantiate die element
 	}
 
 	public void drawLadders(Stage stage){
