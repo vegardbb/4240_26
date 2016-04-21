@@ -53,7 +53,7 @@ public class GameScreen implements Screen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Throwing Dice");
-                //controller.throwDie();
+                controller.throwDie(d);
                 return true;
             }
         });
@@ -89,6 +89,11 @@ public class GameScreen implements Screen {
         stage.act(delta);
         //stage.draw();
         controller.drawBoard(stage);
+        try{
+            Thread.sleep(100);
+        } catch (Exception e){
+
+        }
     }
 
     @Override

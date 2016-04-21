@@ -69,7 +69,7 @@ class FieldFactory {
                 } else if ((d < 30) && (y > 0) && (remainingLaddersDown > 0) && (fieldNr < FIELD_COUNT - 1)) { // Ladderfield going down
                     int endOfLastRow = fieldNr - x - 1;
                     int m = r.nextInt(endOfLastRow);
-                    Field field = new LadderField(board, fieldNr, board.getBoardfields().get(m), xPos, yPos, FIELD_WIDTH);
+                    Field field = new LadderField(board, fieldNr, board.getBoardFields().get(m), xPos, yPos, FIELD_WIDTH);
                     board.addField(field);
                     stage.addActor(new FieldActor(fieldNr, xPos, yPos, FIELD_WIDTH, FIELD_HEIGHT, ladderDownFieldTexture, controller));
                     remainingLaddersDown--;
@@ -94,7 +94,7 @@ class FieldFactory {
                 }
             }
         } // Reiterate over the boards ladderfields to set the teleportfield
-        ArrayList<Field> boardFields = board.getBoardfields(); // May be revised
+        ArrayList<Field> boardFields = board.getBoardFields(); // May be revised
         for (Field f : boardFields) {
             if (f instanceof LadderField) {
                 LadderField lf = (LadderField) f;

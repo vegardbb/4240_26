@@ -25,7 +25,7 @@ class PlayerFactory {
     }
 
     public void generatePlayers(int playerCount){
-        Field startField = board.getBoardfields().get(0);
+        Field startField = board.getBoardFields().get(0);
         float startX = startField.getXpos();
         float startY = startField.getYpos();
         int size = (int) startField.getSize()/2;

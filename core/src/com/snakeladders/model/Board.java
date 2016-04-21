@@ -3,22 +3,22 @@ package com.snakeladders.model;
 import java.util.ArrayList;
 
 public final class Board {
+    public enum State { RUNNING, PAUSE, GAMEOVER }
+    private State currentState;
     private int token = 0; // decides whose turn it is. Points to a Player in array of players.
     private ArrayList<Player> playersOnBoard = new ArrayList<Player>();
-    private ArrayList<Field> boardfields = new ArrayList<Field>();
+    private ArrayList<Field> boardFields = new ArrayList<Field>();
 
     public static Board getINSTANCE() {
         return INSTANCE;
     }
-
-    public void setToken(int t) { this.token = t; }
 
     public void addPlayer(Player p) {
         getPlayersOnBoard().add(p);
     }
     
     public void addField(Field p) {
-        getBoardfields().add(p);
+        getBoardFields().add(p);
     }
 
     private Board() {}
@@ -52,7 +52,23 @@ public final class Board {
         return playersOnBoard;
     }
 
-    public ArrayList<Field> getBoardfields() {
-        return boardfields;
+    public ArrayList<Field> getBoardFields() {
+        return boardFields;
+    }
+
+    public void incToken() {
+        if (token >= playersOnBoard.size() - 1) {
+            token = 0;
+        } else {
+            token++;
+        }
+    }
+
+    public void setState(State state){
+        currentState = state;
+    }
+
+    public State getCurrentState() {
+        return currentState;
     }
 }
