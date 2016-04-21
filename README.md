@@ -2,7 +2,7 @@
 [Liste av relevante lenker](https://github.com/vegardbb/4240_26/blob/helpdesk/progark-doc)
 
 # TODO
-+ Definer flytt fra ett fel til neste for playerActor
++ Definer flytt fra ett felt til neste for playerActor
 + Ta bort Die - klasse?
 + Definer initgame - metode i GameScreenController
   * Generer spillere
@@ -19,4 +19,4 @@
 
 # COTS
 + OpenSans-Regular.ttf
-+ ui-orange.atlas, hentet fra http://www.microbasic.net/2014/05/free-cc0-ui-elements-to-be-used-in-your-libgdx-games/. Lisensiert som Public Domain, CC0
++ ui-orange.atlas - hentet fra http://www.microbasic.net/2014/05/free-cc0-ui-elements-to-be-used-in-your-libgdx-games/ Lisens: Public Domain, CC0
