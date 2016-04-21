@@ -88,7 +88,7 @@ public class GameScreen implements Screen {
 
         stage.act(delta);
         //stage.draw();
-        controller.drawBoard(stage);
+        controller.draw(stage);
         try{
             Thread.sleep(100);
         } catch (Exception e){

@@ -15,6 +15,7 @@ import com.snakeladders.model.Field;
 import com.snakeladders.model.LadderField;
 import com.snakeladders.model.Player;
 import com.snakeladders.view.FieldActor;
+import com.snakeladders.view.GameOverScreen;
 import com.snakeladders.view.PlayerActor;
 import com.snakeladders.view.DieActor;
 
@@ -54,10 +55,16 @@ public class GameScreenController {
 
 	public void draw(Stage stage){
 		if (board.getCurrentState() == Board.State.GAMEOVER){
-			//drawGameOver(stage);
+			System.out.println("GAME OVER!");
+			drawGameOver(stage);
 		} else if (board.getCurrentState() == Board.State.RUNNING){
 			drawBoard(stage);
 		} else if (board.getCurrentState() == Board.State.PAUSE) {}
+	}
+
+	private void drawGameOver(Stage stage) {
+		game.setScreen(new GameOverScreen(game, board.getLeadingPlayer()));
+		board.clearBoard();
 	}
 
 	public void drawLadders(Stage stage){

@@ -28,6 +28,12 @@ public final class Board {
         return getINSTANCE();
     }
 
+    public void clearBoard(){
+        playersOnBoard = new ArrayList<Player>();
+        boardFields = new ArrayList<Field>();
+        token = 0;
+    }
+
 
     /**
  Model class for the game board that contains all the things that make up our Stigespill
@@ -70,5 +76,15 @@ public final class Board {
 
     public State getCurrentState() {
         return currentState;
+    }
+
+    public Player getLeadingPlayer() {
+        Player player = playersOnBoard.get(0);
+        for (Player p:playersOnBoard){
+            if (p.getCurrentField().getId() > player.getCurrentField().getId()){
+                player = p;
+            }
+        }
+        return player;
     }
 }
