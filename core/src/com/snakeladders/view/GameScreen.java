@@ -22,6 +22,8 @@ import com.snakeladders.model.Assets; // TODO: Replace with controller
  * Created by Kristoffer on 15/04/2016.
  */
 public class GameScreen implements Screen {
+    private enum ScreenState {PAUSE, RUNNING, GAMEOVER}
+    private ScreenState state;
     Stage stage;
     SnakeLadders game;
     //TextButton diceButton;
@@ -35,6 +37,7 @@ public class GameScreen implements Screen {
         stage = new Stage(); // Commit: Move stage constructor to screen constructor because we want to keep it throughout the gameplay
         //Initialize the players, the fields and the die. To do this, we need the stage we just brought to life.
         this.controller.initGame(stage, playerCount); // This method generates all the fields to the stage, and generates and adds the playerActors to the stage.
+        this.state = ScreenState.RUNNING; // Thegame is running.
     }
 
     @Override
