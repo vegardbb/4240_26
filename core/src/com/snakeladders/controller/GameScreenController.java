@@ -48,6 +48,7 @@ public class GameScreenController {
 		fieldFactory.generateFields(boardTexture);
 		PlayerFactory playerFactory = new PlayerFactory(this, stage);
 		playerFactory.generatePlayers(playerCount);
+		//Instantiate
 	}
 
 	public void drawLadders(Stage stage){
@@ -146,5 +147,6 @@ public class GameScreenController {
 		int t = r.nextInt(6);
 		die.setEyes(Assets.getEyeTextures()[t]);
 	}
+	
 }
 

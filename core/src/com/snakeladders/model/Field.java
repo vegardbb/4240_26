@@ -14,7 +14,6 @@ public abstract class Field {
     private float yStart; // The startposition in the upper left corner of the field, y-component
     private float size;
 
-    // TODO: Move teleporttoField to the telport class. Not nescessary in the other two fields
     //private Field teleportToField = null; //Used by ladderFields and occasionally chancefields, normally null for Normalfield.
 
     private Board board; // Reference to the board the field belongs to.    

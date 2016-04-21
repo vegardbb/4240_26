@@ -24,7 +24,7 @@ import com.snakeladders.model.Assets; // TODO: Replace with controller
 public class GameScreen implements Screen {
     Stage stage;
     SnakeLadders game;
-    TextButton diceButton;
+    //TextButton diceButton;
     DieActor d;
     OrthographicCamera camera = new OrthographicCamera((float)Gdx.graphics.getWidth(),(float)Gdx.graphics.getHeight());
     GameScreenController controller;
@@ -45,7 +45,7 @@ public class GameScreen implements Screen {
         Texture texture = controller.getDie();
         int w = texture.getWidth();
         int h = texture.getHeight();
-        this.d = new DieActor((float)0,(float)h,w,h,texture, game);
+        this.d = new DieActor((float)0,(float)h,w,h,texture, game); // 
         d.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -60,9 +60,9 @@ public class GameScreen implements Screen {
             }
         });
 
-        diceButton = new TextButton("Throw Dice", MainMenuScreenController.getTextButtonStyle()); // TODO: Change  to dieTexture, and use GameScreenController to get that texture. Add DieActor and send dieTexture into it.
+        //diceButton = new TextButton("Throw Dice", MainMenuScreenController.getTextButtonStyle()); // TODO: Change  to dieTexture, and use GameScreenController to get that texture. Add DieActor and send dieTexture into it.
 
-        diceButton.addListener(new InputListener() {
+        //diceButton.addListener(new InputListener() {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -74,24 +74,19 @@ public class GameScreen implements Screen {
         table.setFillParent(true); // TODO: Change positions on Table...
         table.align(Align.left);
 //        table.debug();
-        table.add(diceButton).width(Gdx.graphics.getWidth()/6).height(Gdx.graphics.getHeight()/8);
+        //table.add(diceButton).width(Gdx.graphics.getWidth()/6).height(Gdx.graphics.getHeight()/8);
 
         //stage.addActor(backImage); // Turns out the background is a dumb actor.
         stage.addActor(table);
+        stage.addActor(d);
     }
 
     @Override
     public void render(float delta) {
 
-        // TODO Auto-generated method stub
-        //Camera camera = stage.getCamera();
-        //camera.position.y = fallingMan.getY() - 5f;
-
         Gdx.gl.glClearColor(0.5f, 0.5f, 0.5f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //staticStage.act(delta);
-        //staticStage.draw();
-        //boardStage.draw()
+
         stage.act(delta);
         //stage.draw();
         controller.drawBoard(stage);
