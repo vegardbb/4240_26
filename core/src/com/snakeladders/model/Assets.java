@@ -72,7 +72,7 @@ public class Assets {
     public static void load() {
         // Implements asset loading.
         generateFont();
-        backgroundTexture = new Texture(Gdx.files.internal("Game-Board.gif")); // For the splash screen
+        backgroundTexture = new Texture(Gdx.files.internal("MainMenuBackground.png")); // For the splash screen
 
         yellowDieTexture = new Texture(Gdx.files.internal("diceyellow.png"));
         redDieTexture = new Texture(Gdx.files.internal("dicered.png"));
