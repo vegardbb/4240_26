@@ -21,8 +21,9 @@ public class DieActor extends Actor {
      */
     private SnakeLadders game; // The controller which provides the Die its datamodel
     private Sprite dieSprite;
+    private Sprite eyeSprite;
 
-    public DieActor(float x, float y, int width, int height, Texture t, SnakeLadders game){
+    public DieActor(float x, float y, int width, int height, Texture t, Texture eye, SnakeLadders game){
         this.game = game;
         height = Gdx.graphics.getWidth()/7;
         width = Gdx.graphics.getWidth()/7;
@@ -31,10 +32,15 @@ public class DieActor extends Actor {
         dieSprite.setX(x + Gdx.graphics.getWidth()/50);
         dieSprite.setY(y);
         setBounds(x, y, dieSprite.getWidth(), dieSprite.getHeight());
+
+        eyeSprite = new Sprite(eye, width, height);
+        eyeSprite.setX(x + Gdx.graphics.getWidth()/50);
+        eyeSprite.setY(y);
     }
-    public void setEyes(Texture eyes) {
-        this.dieSprite.setTexture(eyes);
+    public void setEyeTexture(Texture eye) {
+        this.eyeSprite.setTexture(eye);
     }
+    public void setDieTexture(Texture die) { this.dieSprite.setTexture(die); }
     // TODO: Add more methods if need be
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -42,6 +48,7 @@ public class DieActor extends Actor {
     }
 
     public Sprite getDieSprite() { return dieSprite; }
+    public Sprite getEyeSprite() { return eyeSprite; }
 }
 
 

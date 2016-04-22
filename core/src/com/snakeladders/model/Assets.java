@@ -22,7 +22,12 @@ import java.util.ArrayList;
 public class Assets {
     private static Skin skin;
     private static Texture backgroundTexture;
-    private static Texture dieTexture;
+
+    private static Texture[] dieTextures;
+    private static Texture yellowDieTexture;
+    private static Texture redDieTexture;
+    private static Texture blueDieTexture;
+    private static Texture greenDieTexture;
 
     private static Texture yellowPieceTexture;
     private static Texture redPieceTexture;
@@ -68,11 +73,18 @@ public class Assets {
         // Implements asset loading.
         generateFont();
         backgroundTexture = new Texture(Gdx.files.internal("Game-Board.gif")); // For the splash screen
-        dieTexture = new Texture(Gdx.files.internal("die.png"));
+
+        yellowDieTexture = new Texture(Gdx.files.internal("diceyellow.png"));
+        redDieTexture = new Texture(Gdx.files.internal("dicered.png"));
+        blueDieTexture = new Texture(Gdx.files.internal("diceblue.png"));
+        greenDieTexture = new Texture(Gdx.files.internal("dicegreen.png"));
+        dieTextures = new Texture[] {yellowDieTexture, redDieTexture, blueDieTexture, greenDieTexture};
+
         yellowPieceTexture = new Texture(Gdx.files.internal("yellowpiece.png"));
         redPieceTexture = new Texture(Gdx.files.internal("redpiece.png"));
         bluePieceTexture = new Texture(Gdx.files.internal("bluepiece.png"));
         greenPieceTexture = new Texture(Gdx.files.internal("greenpiece.png"));
+
         boardTexture = new Texture(Gdx.files.internal("boardtexture.png"));
         chanceFieldTexture = new Texture(Gdx.files.internal("chancefield.png"));
         ladderDownFieldTexture = new Texture(Gdx.files.internal("downfield.png"));
@@ -80,29 +92,34 @@ public class Assets {
         normalFieldTexture = new Texture(Gdx.files.internal("regfield.png"));
         startFieldTexture = new Texture(Gdx.files.internal("startfield.png"));
         goalFieldTexture = new Texture(Gdx.files.internal("goalfield.png"));
+
         skin = new Skin();
         buttonAtlas = new TextureAtlas(Gdx.files.internal("ui-orange.atlas")); // Major karma points of credit to Kenney.nl for making this CC0 - pack.
-        getSkin().addRegions(getButtonAtlas());
+        skin.addRegions(getButtonAtlas());
+
         textButtonStyle = new TextButton.TextButtonStyle();
-        getTextButtonStyle().font = getFont();
-        getTextButtonStyle().up = getSkin().getDrawable("button_04");
-        getTextButtonStyle().down = getSkin().getDrawable("button_02");
-        getTextButtonStyle().checked = getSkin().getDrawable("checkbox_on"); // Currently not used
+        textButtonStyle.font = getFont();
+        textButtonStyle.up = getSkin().getDrawable("button_04");
+        textButtonStyle.down = getSkin().getDrawable("button_02");
+        textButtonStyle.checked = getSkin().getDrawable("checkbox_on"); // Currently not used
+
         sliderStyle = new Slider.SliderStyle();
         sliderStyle.background = skin.getDrawable("slider_back_hor");
         sliderStyle.knob = skin.getDrawable("knob_01");
+
         /*selectBoxStyle = new SelectBox.SelectBoxStyle();
         selectBoxStyle.background = skin.getDrawable("selectbox_01");
         selectBoxStyle.font = font;
         selectBox = new SelectBox(skin);
         selectBox.setStyle(selectBoxStyle);
         selectBox.setItems(yellowPieceTexture, redPieceTexture, bluePieceTexture, greenPieceTexture);*/
-        one = new Texture(Gdx.files.internal("die1.png"));
-        two = new Texture(Gdx.files.internal("die2.png"));
-        three = new Texture(Gdx.files.internal("die3.png"));
-        four = new Texture(Gdx.files.internal("die4.png"));
-        five = new Texture(Gdx.files.internal("die5.png"));
-        six = new Texture(Gdx.files.internal("die6.png"));
+
+        one = new Texture(Gdx.files.internal("dice1.png"));
+        two = new Texture(Gdx.files.internal("dice2.png"));
+        three = new Texture(Gdx.files.internal("dice3.png"));
+        four = new Texture(Gdx.files.internal("dice4.png"));
+        five = new Texture(Gdx.files.internal("dice5.png"));
+        six = new Texture(Gdx.files.internal("dice6.png"));
         eyes = new Texture[]{one, two, three, four, five, six};
 
     }
@@ -170,16 +187,9 @@ public class Assets {
         return pieceTextures;
     }
 
-    public static Texture getDieTexture() {
-        return dieTexture;
-    }
-
-    /**
-     * @return Texture[]
-     */
-    public static Texture[] getEyeTextures() {
-        return eyes;
-    }
+    public static Texture getDieTexture(int i) { return dieTextures[i]; }
+    
+    public static Texture getEyeTexture(int i) { return eyes[i - 1]; }
 
     public static SelectBox.SelectBoxStyle getSelectBoxStyle() {
         return selectBoxStyle;

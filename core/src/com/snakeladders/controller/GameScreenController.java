@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Array;
 import com.snakeladders.model.Assets;
 import com.snakeladders.model.Board;
 import com.snakeladders.model.ChanceField;
+import com.snakeladders.model.Die;
 import com.snakeladders.model.Field;
 import com.snakeladders.model.LadderField;
 import com.snakeladders.model.Player;
@@ -18,30 +19,28 @@ import com.snakeladders.view.FieldActor;
 import com.snakeladders.view.GameOverScreen;
 import com.snakeladders.view.PlayerActor;
 import com.snakeladders.view.DieActor;
-
 import java.util.ArrayList;
-import java.util.Random;// For usage on randomised boards. Debate how large a degree of "randomness" we want.
+import java.util.Random;
 
 public class GameScreenController {
-    /**
-	TODO
-	movePlayerLadder( ) // moving a player up or down a ladder
-	------
-    **/
-	SnakeLadders game;
-	Board board;
-	Random r = new Random();
-	//Stage gameBoard;
+	private SnakeLadders game;
+	private Board board;
+	private Die die;
 
 	public GameScreenController(SnakeLadders game) {
 		this.game = game;
 		this.board = Board.getINSTANCE();
+		this.die = Die.getINSTANCE();
 	}
 
 	public static Skin getSkin() {
 		return Assets.getSkin();
 	}
-	public static Texture getDie() { return Assets.getDieTexture(); }
+
+	public Texture[] getDie() {
+		Texture[] dieTextures = {Assets.getDieTexture(board.getToken()), Assets.getEyeTexture(die.getValue())};
+		return dieTextures;
+	}
 
 	public void initGame(Stage stage, int playerCount) {
 		board.setState(Board.State.RUNNING);
@@ -106,14 +105,14 @@ public class GameScreenController {
 		Array<Actor> actors = stage.getActors();
 		ArrayList<PlayerActor> playerActors = new ArrayList<PlayerActor>();
 		ArrayList<FieldActor> fieldActors = new ArrayList<FieldActor>();
-		DieActor die = null;
+		DieActor dieActor = null;
 		for (Actor a:actors){
 			if (a instanceof PlayerActor){
 				playerActors.add((PlayerActor) a);
 			} else if (a instanceof FieldActor){
 				fieldActors.add((FieldActor) a);
 			} else if (a instanceof DieActor){
-				die = (DieActor) a;
+				dieActor = (DieActor) a;
 			}
 		}
 
@@ -148,8 +147,15 @@ public class GameScreenController {
 			sprite.setPosition(player.getXPos(), player.getYPos());
 			drawSprite(stage.getBatch(), sprite);
 		}
+		drawDie(stage.getBatch(), dieActor);
+	}
 
-		drawSprite(stage.getBatch(), die.getDieSprite());
+	public void drawDie(Batch batch, DieActor dieActor){
+		dieActor.setDieTexture(Assets.getDieTexture(board.getToken()));
+		dieActor.setEyeTexture(Assets.getEyeTexture(die.getValue()));
+
+		drawSprite(batch, dieActor.getDieSprite());
+		drawSprite(batch, dieActor.getEyeSprite());
 	}
 
 	public void drawSprite(Batch batch, Sprite sprite) {
@@ -172,12 +178,13 @@ public class GameScreenController {
 		player.setCurrentField(field);
 	}
 
-	public void throwDie(DieActor die) {
-		int t = r.nextInt(5);
-		die.setEyes(Assets.getEyeTextures()[t]);
+	public void throwDie() {
+		Random r = new Random();
+		int t = r.nextInt(6) + 1;
+		die.setValue(t);
 		Player player = board.getPlayersOnBoard().get(board.getToken());
 		ArrayList<Field> fields = board.getBoardFields();
-		int nextFieldId = player.getCurrentField().getId() + t + 1;
+		int nextFieldId = player.getCurrentField().getId() + t;
 		int maxFieldId = fields.size() - 1;
 		if (nextFieldId > maxFieldId){
 			nextFieldId = maxFieldId - (nextFieldId - maxFieldId);
@@ -186,7 +193,6 @@ public class GameScreenController {
 		Field nextField = fields.get(nextFieldId);
 		movePlayerTo(player, nextField);
 		board.incToken();
-
 	}
 	
 }
