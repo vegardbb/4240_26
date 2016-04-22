@@ -188,7 +188,7 @@ public class Assets {
     }
 
     public static Texture getDieTexture(int i) { return dieTextures[i]; }
-    
+
     public static Texture getEyeTexture(int i) { return eyes[i - 1]; }
 
     public static SelectBox.SelectBoxStyle getSelectBoxStyle() {

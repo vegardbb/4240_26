@@ -1,11 +1,14 @@
 package com.snakeladders.controller;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 import com.snakeladders.model.Assets;
@@ -26,11 +29,13 @@ public class GameScreenController {
 	private SnakeLadders game;
 	private Board board;
 	private Die die;
+	private Stage stage;
 
-	public GameScreenController(SnakeLadders game) {
+	public GameScreenController(SnakeLadders game, Stage stage) {
 		this.game = game;
 		this.board = Board.getINSTANCE();
 		this.die = Die.getINSTANCE();
+		this.stage = stage;
 	}
 
 	public static Skin getSkin() {
@@ -42,31 +47,30 @@ public class GameScreenController {
 		return dieTextures;
 	}
 
-	public void initGame(Stage stage, int playerCount) {
+	public void initGame(int playerCount) {
 		board.setState(Board.State.RUNNING);
-		Texture boardTexture = Assets.getBoardTexture();
 		FieldFactory fieldFactory = new FieldFactory(stage, this);
-		fieldFactory.generateFields(boardTexture);
+		fieldFactory.generateFields();
 		PlayerFactory playerFactory = new PlayerFactory(this, stage);
 		playerFactory.generatePlayers(playerCount);
 		//Instantiate die element
 	}
 
-	public void draw(Stage stage){
+	public void draw(){
 		if (board.getCurrentState() == Board.State.GAMEOVER){
 			System.out.println("GAME OVER!");
-			drawGameOver(stage);
+			drawGameOver();
 		} else if (board.getCurrentState() == Board.State.RUNNING){
-			drawBoard(stage);
+			drawBoard();
 		} else if (board.getCurrentState() == Board.State.PAUSE) {}
 	}
 
-	private void drawGameOver(Stage stage) {
+	private void drawGameOver() {
 		game.setScreen(new GameOverScreen(game, board.getLeadingPlayer()));
 		board.clearBoard();
 	}
 
-	public void drawLadders(Stage stage){
+	public void drawLadders(){
 		ArrayList<Field> fields = board.getBoardFields();
 		for (Field f:fields){
 			if (f instanceof LadderField) {
@@ -99,7 +103,7 @@ public class GameScreenController {
 		return Assets.getBackgroundTexture();
 	}
 
-	public void drawBoard(Stage stage){
+	public void drawBoard(){
 		ArrayList<Player> players = board.getPlayersOnBoard();
 		ArrayList<Field> fields = board.getBoardFields();
 		Array<Actor> actors = stage.getActors();
@@ -131,7 +135,7 @@ public class GameScreenController {
 			drawSprite(stage.getBatch(), sprite);
 		}
 
-		drawLadders(stage);
+		drawLadders();
 
 		for (PlayerActor pa:playerActors){
 			Player player = null;
@@ -165,20 +169,43 @@ public class GameScreenController {
 		batch.end();
 	}
 
-	public void movePlayerTo(Player player, Field field) {
-		if (field instanceof LadderField){
-			field = ((LadderField) field).getTeleportToField();
-		} else if (field instanceof ChanceField){
-			Random r =  new Random();
-			int random = r.nextInt(board.getBoardFields().size() - 1);
-			field = board.getBoardFields().get(random);
-		} else if (field.getId() == board.getBoardFields().size() - 1){
-			board.setState(Board.State.GAMEOVER);
-		}
-		player.setCurrentField(field);
+	public void movePlayerTo(Player player, Field field, final DieActor dieActor) {
+		class MoveThread implements Runnable {
+			private Player player;
+			private Field field;
+			public MoveThread (Player player, Field field, DieActor dieActor){
+				this.player = player;
+				this.field = field;
+			}
+			public void run(){
+				while (player.getCurrentField().getId() != field.getId()){
+					player.setCurrentField(board.getBoardFields().get(player.getCurrentField().getId() + 1));
+					try {
+						Thread.sleep(300);
+					} catch (Exception e){
+
+					}
+				}
+
+				if (field instanceof LadderField){
+					field = ((LadderField) field).getTeleportToField();
+				} else if (field instanceof ChanceField){
+					Random r =  new Random();
+					int random = r.nextInt(board.getBoardFields().size() - 1);
+					field = board.getBoardFields().get(random);
+				} else if (field.getId() == board.getBoardFields().size() - 1){
+					board.setState(Board.State.GAMEOVER);
+				}
+
+				player.setCurrentField(field);
+				dieActor.setTouchable(Touchable.enabled);
+			}};
+
+		Thread t = new Thread(new MoveThread(player, field, dieActor));
+		t.start();
 	}
 
-	public void throwDie() {
+	public void throwDie(DieActor dieActor) {
 		Random r = new Random();
 		int t = r.nextInt(6) + 1;
 		die.setValue(t);
@@ -187,11 +214,11 @@ public class GameScreenController {
 		int nextFieldId = player.getCurrentField().getId() + t;
 		int maxFieldId = fields.size() - 1;
 		if (nextFieldId > maxFieldId){
-			nextFieldId = maxFieldId - (nextFieldId - maxFieldId);
+			nextFieldId = maxFieldId;
 		}
 
 		Field nextField = fields.get(nextFieldId);
-		movePlayerTo(player, nextField);
+		movePlayerTo(player, nextField, dieActor);
 		board.incToken();
 	}
 	
