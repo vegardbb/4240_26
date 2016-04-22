@@ -45,15 +45,15 @@ public class GameScreen implements Screen {
         
         Gdx.input.setInputProcessor(stage);
         //Table table = new Table(GameScreenController.getSkin());
-        Texture texture = controller.getDie();
-        int w = texture.getWidth();
-        int h = texture.getHeight();
-        this.d = new DieActor((float)0,(float)h,w,h,texture, game); // 
+        Texture texture[] = controller.getDie();
+        int w = texture[0].getWidth();
+        int h = texture[0].getHeight();
+        this.d = new DieActor((float)0,(float)h,w,h,texture[0], texture[1], game); //
         d.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Throwing Dice");
-                controller.throwDie(d);
+                controller.throwDie();
                 return true;
             }
         });
