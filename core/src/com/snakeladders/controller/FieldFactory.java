@@ -1,5 +1,6 @@
 package com.snakeladders.controller;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.snakeladders.model.Assets;
@@ -9,7 +10,6 @@ import com.snakeladders.model.Field;
 import com.snakeladders.model.LadderField;
 import com.snakeladders.model.NormalField;
 import com.snakeladders.view.FieldActor;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -25,14 +25,14 @@ class FieldFactory {
 
     //Method generateFields, class FieldFactory
     //@param Texture boardTexture	The chosen texture to geenrate the fields on top of.
-    void generateFields(Texture boardTexture) {
+    void generateFields() {
         final int BOARD_SIZE = 7;
         final int FIELD_COUNT = BOARD_SIZE * BOARD_SIZE;
         final int MAX_LADDERS_DOWN = Math.round((float) FIELD_COUNT / 10);
         final int MAX_LADDERS_UP = MAX_LADDERS_DOWN;
         final int MAX_CHANCE_FIELDS = MAX_LADDERS_UP;
 
-        final float BOARD_WIDTH = stage.getHeight();
+        final float BOARD_WIDTH = Gdx.graphics.getHeight();
         final float BOARD_HEIGHT = BOARD_WIDTH;
         final int FIELD_HEIGHT = (int) BOARD_HEIGHT / BOARD_SIZE;
         final int FIELD_WIDTH = (int) BOARD_WIDTH / BOARD_SIZE;
@@ -60,7 +60,7 @@ class FieldFactory {
 
                 }
                 int fieldNr = BOARD_SIZE * y + x;
-                float xPos = x * FIELD_WIDTH + (stage.getWidth() - BOARD_HEIGHT) / 2;
+                float xPos = x * FIELD_WIDTH + (Gdx.graphics.getWidth() - BOARD_HEIGHT) / 2;
 
                 float fieldsLeft = FIELD_COUNT - fieldNr;
                 float chanceFieldProb = remainingChanceFields/fieldsLeft;

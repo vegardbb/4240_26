@@ -28,9 +28,9 @@ class PlayerFactory {
 
         for (int i = 0; i < playerCount; i++){
             Player player = new Player("Player " + (i + 1), i);
+            player.setCurrentField(startField);
             board.addPlayer(player);
             stage.addActor(new PlayerActor(0.0f, 0.0f, size, pieceTextures.get(i), controller, i));
-            controller.movePlayerTo(player, startField);
         }
     }
 }

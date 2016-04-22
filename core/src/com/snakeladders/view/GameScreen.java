@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
@@ -22,22 +23,19 @@ import com.snakeladders.model.Assets; // TODO: Replace with controller
  * Created by Kristoffer on 15/04/2016.
  */
 public class GameScreen implements Screen {
-    private enum ScreenState {PAUSE, RUNNING, GAMEOVER}
-    private ScreenState state;
-    Stage stage;
-    SnakeLadders game;
+    private Stage stage;
+    private SnakeLadders game;
     //TextButton diceButton;
-    DieActor d;
-    OrthographicCamera camera = new OrthographicCamera((float)Gdx.graphics.getWidth(),(float)Gdx.graphics.getHeight());
-    GameScreenController controller;
+    private DieActor d;
+    private OrthographicCamera camera = new OrthographicCamera((float)Gdx.graphics.getWidth(),(float)Gdx.graphics.getHeight());
+    private GameScreenController controller;
 
     public GameScreen(SnakeLadders game, int playerCount) { // The controller should then
         this.game = game;
-        this.controller = new GameScreenController(game);
         stage = new Stage(); // Commit: Move stage constructor to screen constructor because we want to keep it throughout the gameplay
+        this.controller = new GameScreenController(game, stage);
         //Initialize the players, the fields and the die. To do this, we need the stage we just brought to life.
-        this.controller.initGame(stage, playerCount); // This method generates all the fields to the stage, and generates and adds the playerActors to the stage.
-        this.state = ScreenState.RUNNING; // Thegame is running.
+        this.controller.initGame( playerCount); // This method generates all the fields to the stage, and generates and adds the playerActors to the stage.
     }
 
     @Override
@@ -52,8 +50,9 @@ public class GameScreen implements Screen {
         d.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                d.setTouchable(Touchable.disabled);
                 System.out.println("Throwing Dice");
-                controller.throwDie();
+                controller.throwDie(d);
                 return true;
             }
         });
@@ -88,7 +87,7 @@ public class GameScreen implements Screen {
 
         stage.act(delta);
         //stage.draw();
-        controller.draw(stage);
+        controller.draw();
         try{
             Thread.sleep(100);
         } catch (Exception e){
