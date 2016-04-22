@@ -10,9 +10,6 @@ import com.snakeladders.view.PlayerActor;
 
 import java.util.ArrayList;
 
-/**
- * Created by HellGoose-Laptop on 4/20/2016.
- */
 class PlayerFactory {
     private final Stage stage;
     private GameScreenController controller;
@@ -26,8 +23,6 @@ class PlayerFactory {
 
     public void generatePlayers(int playerCount){
         Field startField = board.getBoardFields().get(0);
-        float startX = startField.getXpos();
-        float startY = startField.getYpos();
         int size = (int) startField.getSize()/2;
         ArrayList<Texture> pieceTextures = Assets.getPieceTextures();
 
