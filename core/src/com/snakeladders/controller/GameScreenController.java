@@ -23,8 +23,6 @@ import com.snakeladders.view.FieldActor;
 import com.snakeladders.view.GameOverScreen;
 import com.snakeladders.view.PlayerActor;
 import com.snakeladders.view.DieActor;
-
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -33,7 +31,7 @@ public class GameScreenController {
 	private Board board;
 	private Die die;
 	private Stage stage;
-	private String status = "Klar, ferdig, gå!";
+	private String status = "Klar, ferdig, gå!"; // Klar, fer
 
 	public GameScreenController(SnakeLadders game, Stage stage) {
 		this.game = game;
@@ -171,8 +169,8 @@ public class GameScreenController {
 	public void drawStatus(Batch batch) {
 		BitmapFont f = Assets.getFont();
 		batch.begin();
-		//f.setScale(.2f);
-		f.draw(batch, this.status, 2,2);
+		//f.setScale(.2f)
+		f.draw(batch, this.status, 10,Gdx.graphics.getHeight()-10); // Should parametrize the floats, Gdx.graphics.getWidth()-
 		batch.end();
 	}
 
@@ -205,10 +203,11 @@ public class GameScreenController {
 					player.resetTokens();
 					player.setCurrentField(field);
 					dieActor.setTouchable(Touchable.enabled);
-					return;} // TODO: Message to dialogbox}
+					return; }
 				player.resetTokens();
 				if (field instanceof LadderField){
 					field = ((LadderField) field).getTeleportToField();
+					status = player.getName() + "\nklatrer\n" + "i stigen!";
 				} else if (field instanceof ChanceField){
 					// TODO: Implement Chance Events, AND implement a status/state message box in GameScreen, drawn wo help from me.
 					Random r =  new Random();
@@ -217,28 +216,25 @@ public class GameScreenController {
 						int random = r.nextInt(7);
 						if (field.getId()+random >= board.getBoardFields().size() - 1) {random = board.getBoardFields().size()-random-1;}
 						field = board.getBoardFields().get(field.getId()+random);
-						// TODO: Message to dialog box
+						status = player.getName() + "\nflytter\n" + "fram!";
 						System.out.println("JUMP");
 					}
 					else if (event == ChanceField.Type.SWAP) {
 						int random = r.nextInt(board.getPlayersOnBoard().size());
 						field = board.getBoardFields().get(board.getPlayersOnBoard().get(random).getCurrentField().getId());
-						// TODO: Message to dialog box
+						status = player.getName() + "\nbytter\n" + "plass!";
 						System.out.println("SWAP");
 					}
 					else if (event == ChanceField.Type.DOUBLE) {
 						player.setDoubleStep();
-						// TODO: Message to dialog box
 						System.out.println("DOUBLE");
 					}
 					else if (event == ChanceField.Type.KEEPAWAY) {
 						player.setSkipField();
-						// TODO: Message to dialog box
 						System.out.println("KEEPAWAY");
 					}
 					else if (event == ChanceField.Type.BACKWARDS) {
 						player.setWrongWay();
-						// TODO: Message to dialog box
 						System.out.println("BACKWARDS");
 					}
 				} else if (field.getId() == board.getBoardFields().size() - 1){
@@ -268,9 +264,13 @@ public class GameScreenController {
 		int maxFieldId = fields.size() - 1;
 		if (nextFieldId > maxFieldId) { // If the player overshoots the goal, we will let them continue to goal.
 			nextFieldId = maxFieldId;
-		}
+		} else if (nextFieldId < 0) {nextFieldId = 0;}
+		if (player.isWrongWay()) {status=player.getName() + "\n" + "går feil\n" + "vei";}
+		else if (player.isSkipField()) {status=player.getName() + "\n" + "slipper å\n" + "klatre!";}
+		else if (player.isDoubleStep()) {status=player.getName() + "\n" + "flytter\n" + "dobbelt opp!";}
 
 		Field nextField = fields.get(nextFieldId);
+		status = player.getName() + "\nflytter\n" + t +" felt!";
 		movePlayerTo(player, nextField, dieActor);
 
 		// TODO: Message to dialog box

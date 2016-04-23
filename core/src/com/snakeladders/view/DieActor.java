@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.snakeladders.controller.SnakeLadders;
-import com.snakeladders.model.Die;
 
 public class DieActor extends Actor {
 

@@ -7,13 +7,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas; // Not used per now, may be required for the animation
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
-
 import java.util.ArrayList;
 
 //See also: http://www.netthreads.co.uk/2012/01/31/libgdx-example-of-using-scene2d-actions-and-event-handling/
@@ -48,7 +45,6 @@ public class Assets {
     private static Texture six; // Six eyes on the die
     private static Texture[] eyes; // Array of possibble die views.
 
-    //public static Animation pieceAni; // Not used per now, intended as animation w/ movement only. No texturechange.
     private static Texture boardTexture; // The board, covering the screen
 
     // For generating buttons in the menu UI
@@ -63,8 +59,9 @@ public class Assets {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = Gdx.graphics.getWidth() / 20;
-        font = generator.generateFont(parameter); // font size 12 pixels
-        generator.dispose(); // don't forget to dispose to avoid memory leaks!
+        font = generator.generateFont(parameter);
+        font.setColor(Color.BLUE);
+        generator.dispose(); // Don't forget to dispose to avoid memory leaks!
     }
 
     public static void load() {
@@ -111,13 +108,6 @@ public class Assets {
         sliderStyle.background = skin.getDrawable("slider_back_hor");
         sliderStyle.knob = skin.getDrawable("knob_01");
 
-        /*selectBoxStyle = new SelectBox.SelectBoxStyle();
-        selectBoxStyle.background = skin.getDrawable("selectbox_01");
-        selectBoxStyle.font = font;
-        selectBox = new SelectBox(skin);
-        selectBox.setStyle(selectBoxStyle);
-        selectBox.setItems(yellowPieceTexture, redPieceTexture, bluePieceTexture, greenPieceTexture);*/
-
         one = new Texture(Gdx.files.internal("dice1.png"));
         two = new Texture(Gdx.files.internal("dice2.png"));
         three = new Texture(Gdx.files.internal("dice3.png"));
@@ -127,8 +117,6 @@ public class Assets {
         eyes = new Texture[]{one, two, three, four, five, six};
 
     }
-    // TODO: Comment out the Selectbox fields, send in an array of strings into generatePlayers - method
-
     // Getters
     public static Texture getBackgroundTexture() {
         return backgroundTexture;
