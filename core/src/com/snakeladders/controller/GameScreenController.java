@@ -169,7 +169,7 @@ public class GameScreenController {
 		batch.end();
 	}
 
-	public void movePlayerTo(Player player, Field field, final DieActor dieActor) {
+	public void movePlayerTo(Player player, Field field, final DieActor dieActor) { // Send in the status box actor too!
 		class MoveThread implements Runnable {
 			private Player player;
 			private Field field;
@@ -192,8 +192,13 @@ public class GameScreenController {
 				} else if (field instanceof ChanceField){
 					// TODO: IMplement Chance Events, AND implement a status/state message box in GameScreen, drawn wo help from me.
 					Random r =  new Random();
-					int random = r.nextInt(board.getBoardFields().size() - 1);
+					int random = r.nextInt(7); // That's better
 					field = board.getBoardFields().get(random); // This is unfair to the players
+					//switch (event) {
+					//case (START) { field = board.getBoardFields().get(0); break;}
+					//}
+					// --Reset all the player tokens.
+					// player.resetTokens();
 				} else if (field.getId() == board.getBoardFields().size() - 1){
 					board.setState(Board.State.GAMEOVER);
 				}
@@ -222,6 +227,6 @@ public class GameScreenController {
 		movePlayerTo(player, nextField, dieActor);
 		board.incToken();
 	}
-	
+
 }
 

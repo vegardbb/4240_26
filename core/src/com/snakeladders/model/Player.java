@@ -5,7 +5,8 @@ public class Player {
     private int start; // When it is my turn. Also, acts as tie breaker.
     private Field currentField; // Where am I on the board. Also, serves as indirect mapping to view.
     private boolean isActive;
-    private boolean skipField = false; // Enables you to skip going down a ladder or doing a chance Field
+    // TODO: Encapsulate and add getters and setters
+    //private boolean skipField = false; // Enables you to skip going down a ladder or doing a chance Field. Removed.
     private boolean wrongWay = false; // If true, the player goes the wrong way on the next turn
     private boolean doubleStep = false; // If true, the player goes twice the die on the next turn
     
@@ -18,6 +19,11 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+    
+    public resetTokens() {
+        this.skipField = false;
+        this.wrongWay = false;
     }
 
     public int getStart() {

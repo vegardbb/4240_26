@@ -6,12 +6,12 @@
 + Definer bruk av sjansefelt
   * Implementer statusmelding for å varsle spiller om hva som skjer
   * Implementer Tilbake til start
-  * Implementer keepCard - unndra å måtte gå ned stige - neste runde
-  * Implementer Bakoverkast.
-  * Implementer stå over ett kast for spiller
-  * Implementer Kast på nytt
-  * Implementer dobbel-flytt neste runde
-+ Kommentarer i kildekode, linje 194 - GameScreenController
+  * Implementer Bytt plass med tilfeldig spiller.
+  * Implementer Bakoverkast neste runde.
+  * Implementer Unngå stige eller sjansefelt neste runde.
+  * Implementer Dobbel-flytt neste runde
++ Kommentarer i kildekode, og se linje 194 - GameScreenController
++ Forandre game breaker til muligens avgjørende, men fortsatt usikkert sjansefelt
 
 # Pakker
 + model - Klasser som holder på spillets data
