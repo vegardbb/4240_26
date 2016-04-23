@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -186,19 +187,35 @@ public class GameScreenController {
 
 					}
 				}
-
+				if (player.isSkipField() && (field.getId() != board.getBoardFields().size() - 1)) {return;} // TODO: Message to dialogbox}
 				if (field instanceof LadderField){
 					field = ((LadderField) field).getTeleportToField();
 				} else if (field instanceof ChanceField){
-					// TODO: IMplement Chance Events, AND implement a status/state message box in GameScreen, drawn wo help from me.
+					// TODO: Implement Chance Events, AND implement a status/state message box in GameScreen, drawn wo help from me.
 					Random r =  new Random();
-					int random = r.nextInt(7); // That's better
-					field = board.getBoardFields().get(random); // This is unfair to the players
-					//switch (event) {
-					//case (START) { field = board.getBoardFields().get(0); break;}
-					//}
-					// --Reset all the player tokens.
-					// player.resetTokens();
+					ChanceField.Type event = ((ChanceField)field).randomChoice();
+					if (event == ChanceField.Type.JUMP) {
+						int random = r.nextInt(7);
+						field = board.getBoardFields().get(random);
+						// TODO: Message to dialog box
+					}
+					else if (event == ChanceField.Type.SWAP) {
+						int random = r.nextInt(board.getPlayersOnBoard().size());
+						field = board.getBoardFields().get(board.getPlayersOnBoard().get(random).getCurrentField().getId());
+						// TODO: Message to dialog box
+					}
+					else if (event == ChanceField.Type.DOUBLE) {
+						player.setDoubleStep();
+						// TODO: Message to dialog box
+					}
+					else if (event == ChanceField.Type.KEEPAWAY) {
+						player.setSkipField();
+						// TODO: Message to dialog box
+					}
+					else if (event == ChanceField.Type.BACKWARDS) {
+						player.setWrongWay();
+						// TODO: Message to dialog box
+					}
 				} else if (field.getId() == board.getBoardFields().size() - 1){
 					board.setState(Board.State.GAMEOVER);
 				}
@@ -211,20 +228,27 @@ public class GameScreenController {
 		t.start();
 	}
 
-	public void throwDie(DieActor dieActor) {
+	public void throwDie(DieActor dieActor) { // TODO: send in dialog box too
 		Random r = new Random();
 		int t = r.nextInt(6) + 1;
 		die.setValue(t);
 		Player player = board.getPlayersOnBoard().get(board.getToken());
 		ArrayList<Field> fields = board.getBoardFields();
-		int nextFieldId = player.getCurrentField().getId() + t;
+		int nextFieldId;
+		if (player.isDoubleStep()) {
+			nextFieldId = player.getCurrentField().getId() + 2*t;
+		}
+		else if (player.isWrongWay()) { nextFieldId = player.getCurrentField().getId() - t; }
+		else { nextFieldId = player.getCurrentField().getId() + t; }
 		int maxFieldId = fields.size() - 1;
-		if (nextFieldId > maxFieldId){
+		if (nextFieldId > maxFieldId) { // If the player overshoots the goal, we will let them continue to goal.
 			nextFieldId = maxFieldId;
 		}
 
 		Field nextField = fields.get(nextFieldId);
 		movePlayerTo(player, nextField, dieActor);
+		player.resetTokens();
+		// TODO: Message to dialog box
 		board.incToken();
 	}
 

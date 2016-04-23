@@ -1,6 +1,8 @@
 package com.snakeladders.model;
 
-
+/*
+@deprecated
+ */
 public final class Die {
     // Model class for the die that decides how many fields to move during a turn.
     // Administered by the GameBoardController.
