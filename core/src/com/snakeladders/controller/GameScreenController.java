@@ -190,9 +190,10 @@ public class GameScreenController {
 				if (field instanceof LadderField){
 					field = ((LadderField) field).getTeleportToField();
 				} else if (field instanceof ChanceField){
+					// TODO: IMplement Chance Events, AND implement a status/state message box in GameScreen, drawn wo help from me.
 					Random r =  new Random();
 					int random = r.nextInt(board.getBoardFields().size() - 1);
-					field = board.getBoardFields().get(random);
+					field = board.getBoardFields().get(random); // This is unfair to the players
 				} else if (field.getId() == board.getBoardFields().size() - 1){
 					board.setState(Board.State.GAMEOVER);
 				}
