@@ -1,6 +1,5 @@
 package com.snakeladders.view;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera; // not used yet. Important
@@ -10,14 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.snakeladders.controller.GameScreenController;
-import com.snakeladders.controller.MainMenuScreenController;
 import com.snakeladders.controller.SnakeLadders;
-import com.snakeladders.model.Assets; // TODO: Replace with controller
 
 /**
  * Created by Kristoffer on 15/04/2016.
@@ -25,8 +21,8 @@ import com.snakeladders.model.Assets; // TODO: Replace with controller
 public class GameScreen implements Screen {
     private Stage stage;
     private SnakeLadders game;
-    //TextButton diceButton;
     private DieActor d;
+    TextField tf;
     private OrthographicCamera camera = new OrthographicCamera((float)Gdx.graphics.getWidth(),(float)Gdx.graphics.getHeight());
     private GameScreenController controller;
 
@@ -47,6 +43,12 @@ public class GameScreen implements Screen {
         int w = texture[0].getWidth();
         int h = texture[0].getHeight();
         this.d = new DieActor((float)0,(float)h,w,h,texture[0], texture[1], game); //
+        //this.tf = new TextField("Status", GameScreenController.getSkin());
+        this.tf = new TextField("Status", GameScreenController.getWindowStyle());
+        this.tf.setX(0);
+        this.tf.setY(h/2);
+        // this.tf. setBackground(GameScreenController.getWindowStyle());
+
         d.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -77,6 +79,8 @@ public class GameScreen implements Screen {
 
         //stage.addActor(table);
         stage.addActor(d);
+        stage.addActor(tf);
+        this.tf.setText("Spillet starter.");
     }
 
     @Override

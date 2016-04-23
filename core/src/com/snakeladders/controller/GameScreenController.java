@@ -1,16 +1,16 @@
 package com.snakeladders.controller;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.Array;
 import com.snakeladders.model.Assets;
 import com.snakeladders.model.Board;
@@ -23,6 +23,8 @@ import com.snakeladders.view.FieldActor;
 import com.snakeladders.view.GameOverScreen;
 import com.snakeladders.view.PlayerActor;
 import com.snakeladders.view.DieActor;
+
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -31,6 +33,7 @@ public class GameScreenController {
 	private Board board;
 	private Die die;
 	private Stage stage;
+	private String status = "Klar, ferdig, gå!";
 
 	public GameScreenController(SnakeLadders game, Stage stage) {
 		this.game = game;
@@ -39,7 +42,9 @@ public class GameScreenController {
 		this.stage = stage;
 	}
 
-	public static Skin getSkin() {
+	public static TextField.TextFieldStyle getWindowStyle() {
+		return Assets.getWindowStyle();
+	} public static Skin getSkin() {
 		return Assets.getSkin();
 	}
 
@@ -63,7 +68,7 @@ public class GameScreenController {
 			drawGameOver();
 		} else if (board.getCurrentState() == Board.State.RUNNING){
 			drawBoard();
-		} else if (board.getCurrentState() == Board.State.PAUSE) {}
+		} else if (board.getCurrentState() == Board.State.PAUSE) {} // draw pauseTable}
 	}
 
 	private void drawGameOver() {
@@ -153,6 +158,7 @@ public class GameScreenController {
 			drawSprite(stage.getBatch(), sprite);
 		}
 		drawDie(stage.getBatch(), dieActor);
+		drawStatus(stage.getBatch());
 	}
 
 	public void drawDie(Batch batch, DieActor dieActor){
@@ -161,6 +167,13 @@ public class GameScreenController {
 
 		drawSprite(batch, dieActor.getDieSprite());
 		drawSprite(batch, dieActor.getEyeSprite());
+	}
+	public void drawStatus(Batch batch) {
+		BitmapFont f = Assets.getFont();
+		batch.begin();
+		//f.setScale(.2f);
+		f.draw(batch, this.status, 2,2);
+		batch.end();
 	}
 
 	public void drawSprite(Batch batch, Sprite sprite) {
@@ -180,14 +193,20 @@ public class GameScreenController {
 			}
 			public void run(){
 				while (player.getCurrentField().getId() != field.getId()){
-					player.setCurrentField(board.getBoardFields().get(player.getCurrentField().getId() + 1));
+					if (player.isWrongWay()) {player.setCurrentField(board.getBoardFields().get(player.getCurrentField().getId() - 1));}
+					else {player.setCurrentField(board.getBoardFields().get(player.getCurrentField().getId() + 1));}
 					try {
 						Thread.sleep(300);
 					} catch (Exception e){
 
 					}
 				}
-				if (player.isSkipField() && (field.getId() != board.getBoardFields().size() - 1)) {return;} // TODO: Message to dialogbox}
+				if (player.isSkipField() && (field.getId() != board.getBoardFields().size() - 1)) {
+					player.resetTokens();
+					player.setCurrentField(field);
+					dieActor.setTouchable(Touchable.enabled);
+					return;} // TODO: Message to dialogbox}
+				player.resetTokens();
 				if (field instanceof LadderField){
 					field = ((LadderField) field).getTeleportToField();
 				} else if (field instanceof ChanceField){
@@ -196,25 +215,31 @@ public class GameScreenController {
 					ChanceField.Type event = ((ChanceField)field).randomChoice();
 					if (event == ChanceField.Type.JUMP) {
 						int random = r.nextInt(7);
-						field = board.getBoardFields().get(random);
+						if (field.getId()+random >= board.getBoardFields().size() - 1) {random = board.getBoardFields().size()-random-1;}
+						field = board.getBoardFields().get(field.getId()+random);
 						// TODO: Message to dialog box
+						System.out.println("JUMP");
 					}
 					else if (event == ChanceField.Type.SWAP) {
 						int random = r.nextInt(board.getPlayersOnBoard().size());
 						field = board.getBoardFields().get(board.getPlayersOnBoard().get(random).getCurrentField().getId());
 						// TODO: Message to dialog box
+						System.out.println("SWAP");
 					}
 					else if (event == ChanceField.Type.DOUBLE) {
 						player.setDoubleStep();
 						// TODO: Message to dialog box
+						System.out.println("DOUBLE");
 					}
 					else if (event == ChanceField.Type.KEEPAWAY) {
 						player.setSkipField();
 						// TODO: Message to dialog box
+						System.out.println("KEEPAWAY");
 					}
 					else if (event == ChanceField.Type.BACKWARDS) {
 						player.setWrongWay();
 						// TODO: Message to dialog box
+						System.out.println("BACKWARDS");
 					}
 				} else if (field.getId() == board.getBoardFields().size() - 1){
 					board.setState(Board.State.GAMEOVER);
@@ -235,7 +260,7 @@ public class GameScreenController {
 		Player player = board.getPlayersOnBoard().get(board.getToken());
 		ArrayList<Field> fields = board.getBoardFields();
 		int nextFieldId;
-		if (player.isDoubleStep()) {
+		if (player.isDoubleStep() && !(player.isWrongWay())) {
 			nextFieldId = player.getCurrentField().getId() + 2*t;
 		}
 		else if (player.isWrongWay()) { nextFieldId = player.getCurrentField().getId() - t; }
@@ -247,7 +272,7 @@ public class GameScreenController {
 
 		Field nextField = fields.get(nextFieldId);
 		movePlayerTo(player, nextField, dieActor);
-		player.resetTokens();
+
 		// TODO: Message to dialog box
 		board.incToken();
 	}

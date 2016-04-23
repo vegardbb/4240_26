@@ -1,19 +1,18 @@
 package com.snakeladders.model;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-//import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas; // Not used per now, may be required for the animation
-//import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
 import java.util.ArrayList;
 
@@ -54,8 +53,7 @@ public class Assets {
 
     // For generating buttons in the menu UI
     private static TextButton.TextButtonStyle textButtonStyle;
-    private static SelectBox.SelectBoxStyle selectBoxStyle;
-    private static SelectBox<Texture> selectBox;
+    private static TextField.TextFieldStyle winStyle ;
     private static BitmapFont font;
     private static TextureAtlas buttonAtlas;
     private static Slider.SliderStyle sliderStyle;
@@ -102,6 +100,12 @@ public class Assets {
         textButtonStyle.up = getSkin().getDrawable("button_04");
         textButtonStyle.down = getSkin().getDrawable("button_02");
         textButtonStyle.checked = getSkin().getDrawable("checkbox_on"); // Currently not used
+
+        winStyle = new TextField.TextFieldStyle();
+        winStyle.background = getSkin().getDrawable("textbox_02");
+        winStyle.font = getFont();
+        winStyle.messageFontColor = new Color(Color.BLUE);
+        winStyle.fontColor = new Color(Color.RED);
 
         sliderStyle = new Slider.SliderStyle();
         sliderStyle.background = skin.getDrawable("slider_back_hor");
@@ -191,11 +195,5 @@ public class Assets {
 
     public static Texture getEyeTexture(int i) { return eyes[i - 1]; }
 
-    public static SelectBox.SelectBoxStyle getSelectBoxStyle() {
-        return selectBoxStyle;
-    }
-
-    public static SelectBox<Texture> getSelectBox() {
-        return selectBox;
-    }
+    public static TextField.TextFieldStyle getWindowStyle() {return winStyle;}
 }
