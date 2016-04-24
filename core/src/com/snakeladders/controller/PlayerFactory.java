@@ -11,11 +11,9 @@ import java.util.ArrayList;
 
 class PlayerFactory {
     private final Stage stage;
-    private GameScreenController controller;
     private Board board;
 
-    public PlayerFactory(GameScreenController controller, Stage stage) {
-        this.controller = controller;
+    public PlayerFactory(Stage stage) {
         this.stage = stage;
         this.board = Board.getINSTANCE();
     }
@@ -29,7 +27,7 @@ class PlayerFactory {
             Player player = new Player("Player " + (i + 1), i);
             player.setCurrentField(startField);
             board.addPlayer(player);
-            stage.addActor(new PlayerActor(0.0f, 0.0f, size, pieceTextures.get(i), controller, i));
+            stage.addActor(new PlayerActor(0.0f, 0.0f, size, pieceTextures.get(i), i));
         }
     }
 }

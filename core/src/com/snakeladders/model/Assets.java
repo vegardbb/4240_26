@@ -30,14 +30,13 @@ public class Assets {
     private static Texture startFieldTexture;
     private static Texture goalFieldTexture;
 
-    private static Texture[] eyes; // Array of possible die views.
-
-    private static Texture boardTexture; // The board, covering the screen
+    private static Texture[] eyes; // Array of possible die eyes.
 
     // For generating buttons in the menu UI
     private static TextButton.TextButtonStyle textButtonStyle;
     private static TextField.TextFieldStyle winStyle ;
     private static BitmapFont font;
+    private static BitmapFont smallFont;
     private static TextureAtlas buttonAtlas;
     private static Slider.SliderStyle sliderStyle;
 
@@ -50,9 +49,19 @@ public class Assets {
         generator.dispose();
     }
 
+    private static void generateSmallFont() {
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-Regular.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = Gdx.graphics.getWidth() / 30;
+        smallFont = generator.generateFont(parameter);
+        smallFont.setColor(Color.BLUE);
+        generator.dispose();
+    }
+
     public static void load() {
         // Implements asset loading.
         generateFont();
+        generateSmallFont();
         backgroundTexture = new Texture(Gdx.files.internal("MainMenuBackground.png")); // For the main menu
 
         Texture yellowDieTexture = new Texture(Gdx.files.internal("diceyellow.png"));
@@ -66,7 +75,6 @@ public class Assets {
         bluePieceTexture = new Texture(Gdx.files.internal("bluepiece.png"));
         greenPieceTexture = new Texture(Gdx.files.internal("greenpiece.png"));
 
-        boardTexture = new Texture(Gdx.files.internal("boardtexture.png"));
         chanceFieldTexture = new Texture(Gdx.files.internal("chancefield.png"));
         ladderDownFieldTexture = new Texture(Gdx.files.internal("downfield.png"));
         ladderUpFieldTexture = new Texture(Gdx.files.internal("upfield.png"));
@@ -112,10 +120,6 @@ public class Assets {
         return skin;
     }
 
-    public static Texture getBoardTexture() {
-        return boardTexture;
-    }
-
     public static TextButton.TextButtonStyle getTextButtonStyle() {
         return textButtonStyle;
     }
@@ -123,6 +127,8 @@ public class Assets {
     public static BitmapFont getFont() {
         return font;
     }
+
+    public static BitmapFont getSmallFont() { return smallFont; }
 
     public static TextureAtlas getButtonAtlas() {
         return buttonAtlas;

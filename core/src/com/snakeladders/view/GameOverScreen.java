@@ -11,16 +11,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.snakeladders.controller.MainMenuScreenController;
 import com.snakeladders.controller.SnakeLadders;
-import com.snakeladders.model.Player;
 
 public class GameOverScreen implements Screen {
     private SnakeLadders game;
-    private Player winner;
     private Stage stage;
 
-    public GameOverScreen (SnakeLadders game, Player winner){
+    public GameOverScreen (SnakeLadders game){
         this.game = game;
-        this.winner = winner;
     }
 
     @Override
@@ -30,7 +27,7 @@ public class GameOverScreen implements Screen {
 
         Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
         Table table = new Table(MainMenuScreenController.getSkin());
-        TextButton menuScreenButton = new TextButton(winner.getName() + " WON! :D", MainMenuScreenController.getTextButtonStyle());
+        TextButton menuScreenButton = new TextButton(game.getWinner().getName() + " WON! :D", MainMenuScreenController.getTextButtonStyle());
 
 
         menuScreenButton.addListener(new InputListener() {

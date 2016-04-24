@@ -6,7 +6,7 @@ public final class Board {
     /*
     Singleton Object that represents the board in the game.
     */
-    public enum State { RUNNING, PAUSE, GAMEOVER }
+    public enum State { RUNNING, GAMEOVER }
     private State currentState;
     private int token = 0; // decides whose turn it is. Points to a Player in array of players.
     private ArrayList<Player> playersOnBoard = new ArrayList<Player>();
@@ -67,13 +67,13 @@ public final class Board {
         return currentState;
     }
 
-    public Player getLeadingPlayer() {
-        Player player = playersOnBoard.get(0);
+    public Player getWinner(){
+        Player winner = null;
         for (Player p:playersOnBoard){
-            if (p.getCurrentField().getId() > player.getCurrentField().getId()){
-                player = p;
+            if (p.getCurrentField().getId() == boardFields.get(boardFields.size()-1).getId()){
+                winner = p;
             }
         }
-        return player;
+        return winner;
     }
 }
