@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class ChanceField extends Field{
 
-    private int id;
+    //private int id;
 
     /**
     Model class for the field that contains all the things that make up our implementation of Stigespillet
@@ -20,13 +20,13 @@ public class ChanceField extends Field{
 
     /**
     Legend:
-    KEEPCARD - sets the keepCard token on the relevant Player. With this flag on, the Player has the opportunity to skip a board event upon landing on a ladderField or another Chancefield.
-    NEWTURN - the Player immediately rolls the die and moves on the board
+    SWAP - Player Randomly switches places with another player. 
     DOUBLE - on the next turn the Player moves twice as long as the die number indicates
-    START - the Player is promptly teleported back to Start
     BACKWARDS - on the next turn the Player moves in the opposite direction
+    KEEPAWAY - On the next turn the Player avoids any possible board event, and will neither climb a ladder nor do a chance event should they land on such a field
+    JUMP - the Player is promptly teleported up to six fields forward
     **/
-    private enum Type {KEEPCARD, NEWTURN, DOUBLE, START, BACKWARDS} // Class within me
+    public enum Type {KEEPAWAY, BACKWARDS, DOUBLE, JUMP, SWAP} // Class within me
     
 //    private Type fieldtype; // We will not need this field. Also, we may as well consider leaving the teleporterField out of the constructor too, because normalField does not need it.
     //private Field teleportToField; //Used by ladderFields and occasionally chancefields, normally null for Normalfield.

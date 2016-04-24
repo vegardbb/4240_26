@@ -9,8 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.snakeladders.controller.GameScreenController;
 import com.snakeladders.controller.SnakeLadders;
-import com.snakeladders.model.Field;
-import com.snakeladders.model.LadderField;
 
 // No touching or moving this thing
 
