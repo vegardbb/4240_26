@@ -7,8 +7,6 @@ import java.util.Random;
 
 public class ChanceField extends Field{
 
-    //private int id;
-
     /**
     Model class for the field that contains all the things that make up our implementation of Stigespillet
 
@@ -28,15 +26,9 @@ public class ChanceField extends Field{
     **/
     public enum Type {KEEPAWAY, BACKWARDS, DOUBLE, JUMP, SWAP} // Class within me
     
-//    private Type fieldtype; // We will not need this field. Also, we may as well consider leaving the teleporterField out of the constructor too, because normalField does not need it.
-    //private Field teleportToField; //Used by ladderFields and occasionally chancefields, normally null for Normalfield.
-    private Board board; // Reference to the board the field belongs to.
-
-    public ChanceField(Board board, int i, float x, float y, float size) {
-        super(board, i, x, y, size);
-        //this.fieldtype = randomChoice(); // Choose a type randomly.
+    public ChanceField(int i, float x, float y, float size) {
+        super(i, x, y, size);
     }
-//    public Type getFieldType(){ return this.fieldtype; }
 
     // Fields for choosing a random ChanceField Type
     private static final List<Type> VALUES =
@@ -46,7 +38,7 @@ public class ChanceField extends Field{
 
     public Type randomChoice()  {
         return VALUES.get(RANDOM.nextInt(SIZE));
-    } //private static
+    }
 
 
 }
