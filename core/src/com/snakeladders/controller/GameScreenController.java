@@ -219,7 +219,9 @@ public class GameScreenController {
 					else if (event == ChanceField.Type.SWAP) {
 						int random = r.nextInt(board.getPlayersOnBoard().size());
 						Player p = board.getPlayersOnBoard().get(random);
-						field = board.getBoardFields().get(p.getCurrentField().getId());
+						Field newField = board.getBoardFields().get(p.getCurrentField().getId());
+						p.setCurrentField(field);
+						field = newField;
 						status = player.getName() + "\nswaps\n" + "fields w/\n"+p.getName();
 						System.out.println("SWAP");
 					}
