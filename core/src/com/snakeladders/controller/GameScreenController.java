@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.Array;
 import com.snakeladders.model.Assets;
@@ -42,13 +41,10 @@ public class GameScreenController {
 
 	public static TextField.TextFieldStyle getWindowStyle() {
 		return Assets.getWindowStyle();
-	} public static Skin getSkin() {
-		return Assets.getSkin();
 	}
 
 	public Texture[] getDie() {
-		Texture[] dieTextures = {Assets.getDieTexture(board.getToken()), Assets.getEyeTexture(die.getValue())};
-		return dieTextures;
+		return new Texture[]{Assets.getDieTexture(board.getToken()), Assets.getEyeTexture(die.getValue())};
 	}
 
 	public void initGame(int playerCount) {
@@ -65,7 +61,7 @@ public class GameScreenController {
 			drawGameOver();
 		} else if (board.getCurrentState() == Board.State.RUNNING){
 			drawBoard();
-		} else if (board.getCurrentState() == Board.State.PAUSE) {}
+		}
 	}
 
 	private void drawGameOver() {
