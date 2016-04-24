@@ -17,17 +17,11 @@ public class MainMenuScreenController {
         this.game = game;
     }
 
-
-
     /**
-	This class controls the input from the MainMenuScreen
+	Initialises the game screen.
     **/
-
-//	public void newGame() {
-//        game.setScreen(new GameScreen(game));
 	public void newGame(int playerCount){
         game.setScreen(new GameScreen(game, playerCount));
-        //TODO: more functionality may be required?
 	}
 
     public void exit(){
@@ -35,6 +29,7 @@ public class MainMenuScreenController {
         Gdx.app.exit();
 	}
 
+    // The following getter emthods deliver the textures, the skin, the styles and the font needed to draw the Main Menu screen
     public static Skin getSkin() {
         return Assets.getSkin();
     }

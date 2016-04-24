@@ -20,8 +20,7 @@ class FieldFactory {
     public FieldFactory(Stage stage, GameScreenController controller) {
         this.stage = stage; // The stage on which we add fieldActors. Nescessary field?
         this.controller = controller;
-        //this.controller = stage.getGame(); // eller controller?
-    } // TODO: Do Factory - option in refactoring menu in Android Studio
+    }
 
     //Method generateFields, class FieldFactory
     //@param Texture boardTexture	The chosen texture to geenrate the fields on top of.

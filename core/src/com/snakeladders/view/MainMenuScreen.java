@@ -35,7 +35,6 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        // TODO Auto-generated method stub
         Gdx.gl.glClearColor(1f, 0f, 1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -46,7 +45,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        // TODO Auto-generated method stub
+        // Method stub
         
     }
 
@@ -96,7 +95,7 @@ public class MainMenuScreen implements Screen {
 
 
 
-        table.setFillParent(true); // TODO: Change positions on Table...
+        table.setFillParent(true);
 //        table.debug();
         table.add(playerCountText);
         table.row();
@@ -112,28 +111,25 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
+        // Method stub
         
     }
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
+        // Method stub
         
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-        /*
-        Concerning the die
-        */
-        
+        // Method stub
+
     }
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
+        // Method stub
 
     }
 

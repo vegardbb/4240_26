@@ -48,12 +48,10 @@ public class GameOverScreen implements Screen {
                 return true;
             }
         });
-        table.setFillParent(true); // TODO: Change positions on Table...
+        table.setFillParent(true);
         table.add(menuScreenButton).width(Gdx.graphics.getWidth()/2).height(Gdx.graphics.getHeight()/6);
 
-
-
-        stage.addActor(backImage); // Turns out the background is a dumb actor.
+        stage.addActor(backImage);
         stage.addActor(table);
     }
 

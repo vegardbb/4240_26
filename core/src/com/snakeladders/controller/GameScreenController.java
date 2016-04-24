@@ -31,7 +31,7 @@ public class GameScreenController {
 	private Board board;
 	private Die die;
 	private Stage stage;
-	private String status = "Game on!"; // 8 characters tops.
+	private String status = "Game on!"; // The message displayed to show the player what is going on.
 
 	public GameScreenController(SnakeLadders game, Stage stage) {
 		this.game = game;
@@ -57,7 +57,6 @@ public class GameScreenController {
 		fieldFactory.generateFields();
 		PlayerFactory playerFactory = new PlayerFactory(this, stage);
 		playerFactory.generatePlayers(playerCount);
-		//Instantiate die element
 	}
 
 	public void draw(){
@@ -66,7 +65,7 @@ public class GameScreenController {
 			drawGameOver();
 		} else if (board.getCurrentState() == Board.State.RUNNING){
 			drawBoard();
-		} else if (board.getCurrentState() == Board.State.PAUSE) {} // draw pauseTable}
+		} else if (board.getCurrentState() == Board.State.PAUSE) {}
 	}
 
 	private void drawGameOver() {
@@ -169,7 +168,6 @@ public class GameScreenController {
 	public void drawStatus(Batch batch) {
 		BitmapFont f = Assets.getFont();
 		batch.begin();
-		//f.setScale(.2f)
 		f.draw(batch, this.status, 10, Gdx.graphics.getHeight() - 10);
 		batch.end();
 	}

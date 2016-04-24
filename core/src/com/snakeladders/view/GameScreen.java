@@ -25,7 +25,7 @@ public class GameScreen implements Screen {
     private OrthographicCamera camera = new OrthographicCamera((float)Gdx.graphics.getWidth(),(float)Gdx.graphics.getHeight());
     private GameScreenController controller;
 
-    public GameScreen(SnakeLadders game, int playerCount) { // The controller should then
+    public GameScreen(SnakeLadders game, int playerCount) {
         this.game = game;
         stage = new Stage(); // Commit: Move stage constructor to screen constructor because we want to keep it throughout the gameplay
         this.controller = new GameScreenController(game, stage);
@@ -72,7 +72,7 @@ public class GameScreen implements Screen {
             }
         });
 
-        //table.setFillParent(true); // TODO: Change positions on Table...
+        //table.setFillParent(true);
         //table.align(Align.left);
 //        table.debug();
 
