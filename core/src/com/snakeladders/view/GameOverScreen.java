@@ -26,6 +26,7 @@ public class GameOverScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
+        backImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Table table = new Table(MainMenuScreenController.getSkin());
         TextButton menuScreenButton = new TextButton(game.getWinner().getName() + " WON! :D", MainMenuScreenController.getTextButtonStyle());
 
