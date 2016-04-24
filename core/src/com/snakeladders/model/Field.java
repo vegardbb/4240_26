@@ -4,7 +4,8 @@ package com.snakeladders.model;
 
 public abstract class Field {
     /**
-     Model class for the template field that contains all the things that make up the SnakeLadders Game
+     Model template class for the template field that contains all the things that make up the SnakeLadders Game
+     Here we use the Template pattern to avoid duplicate code in the model package, which would be detrimental to both modifiability (more work to change things) and testability (harder to control) 
 
      This is a general template class extended by NormalField, ChanceField and LadderField.
      **/
