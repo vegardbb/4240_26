@@ -194,13 +194,13 @@ public class GameScreenController {
 				}
 
 				if (player.isSkipField() && (field.getId() != board.getBoardFields().size() - 1)) {
-					player.resetTokens();
+					player.resetFlags();
 					player.setCurrentField(field);
 					dieActor.setTouchable(Touchable.enabled);
 					return;
 				}
 
-				player.resetTokens();
+				player.resetFlags();
 				if (field instanceof LadderField){
 					field = ((LadderField) field).getTeleportToField();
 					status = player.getName() + "\nclimbs a\n" + "ladder!";
