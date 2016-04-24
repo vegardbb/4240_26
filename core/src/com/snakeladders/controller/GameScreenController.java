@@ -31,7 +31,7 @@ public class GameScreenController {
 	private Board board;
 	private Die die;
 	private Stage stage;
-	private String status = "Klar, ferdig, gå!"; // Klar, fer
+	private String status = "Game on!"; // 8 characters tops.
 
 	public GameScreenController(SnakeLadders game, Stage stage) {
 		this.game = game;
@@ -170,7 +170,7 @@ public class GameScreenController {
 		BitmapFont f = Assets.getFont();
 		batch.begin();
 		//f.setScale(.2f)
-		f.draw(batch, this.status, 10,Gdx.graphics.getHeight()-10); // Should parametrize the floats, Gdx.graphics.getWidth()-
+		f.draw(batch, this.status, 10, Gdx.graphics.getHeight() - 10);
 		batch.end();
 	}
 
@@ -181,7 +181,7 @@ public class GameScreenController {
 		batch.end();
 	}
 
-	public void movePlayerTo(Player player, Field field, final DieActor dieActor) { // Send in the status box actor too!
+	public void movePlayerTo(Player player, Field field, final DieActor dieActor) {
 		class MoveThread implements Runnable {
 			private Player player;
 			private Field field;
@@ -207,22 +207,22 @@ public class GameScreenController {
 				player.resetTokens();
 				if (field instanceof LadderField){
 					field = ((LadderField) field).getTeleportToField();
-					status = player.getName() + "\nklatrer\n" + "i stigen!";
+					status = player.getName() + "\nclimbs a\n" + "ladder!";
 				} else if (field instanceof ChanceField){
-					// TODO: Implement Chance Events, AND implement a status/state message box in GameScreen, drawn wo help from me.
 					Random r =  new Random();
 					ChanceField.Type event = ((ChanceField)field).randomChoice();
 					if (event == ChanceField.Type.JUMP) {
 						int random = r.nextInt(7);
 						if (field.getId()+random >= board.getBoardFields().size() - 1) {random = board.getBoardFields().size()-random-1;}
 						field = board.getBoardFields().get(field.getId()+random);
-						status = player.getName() + "\nflytter\n" + "fram!";
+						status = player.getName() + "\nmoves " + random +"\nfields\nmore!";
 						System.out.println("JUMP");
 					}
 					else if (event == ChanceField.Type.SWAP) {
 						int random = r.nextInt(board.getPlayersOnBoard().size());
-						field = board.getBoardFields().get(board.getPlayersOnBoard().get(random).getCurrentField().getId());
-						status = player.getName() + "\nbytter\n" + "plass!";
+						Player p = board.getPlayersOnBoard().get(random);
+						field = board.getBoardFields().get(p.getCurrentField().getId());
+						status = player.getName() + "\nswaps\n" + "fields w/\n"+p.getName();
 						System.out.println("SWAP");
 					}
 					else if (event == ChanceField.Type.DOUBLE) {
@@ -249,7 +249,7 @@ public class GameScreenController {
 		t.start();
 	}
 
-	public void throwDie(DieActor dieActor) { // TODO: send in dialog box too
+	public void throwDie(DieActor dieActor) {
 		Random r = new Random();
 		int t = r.nextInt(6) + 1;
 		die.setValue(t);
@@ -265,15 +265,13 @@ public class GameScreenController {
 		if (nextFieldId > maxFieldId) { // If the player overshoots the goal, we will let them continue to goal.
 			nextFieldId = maxFieldId;
 		} else if (nextFieldId < 0) {nextFieldId = 0;}
-		if (player.isWrongWay()) {status=player.getName() + "\n" + "går feil\n" + "vei";}
-		else if (player.isSkipField()) {status=player.getName() + "\n" + "slipper å\n" + "klatre!";}
-		else if (player.isDoubleStep()) {status=player.getName() + "\n" + "flytter\n" + "dobbelt opp!";}
+		if (player.isWrongWay()) {status=player.getName() + "\n" + "goes the\n" + "wrong way!";}
+		else if (player.isSkipField()) {status=player.getName() + "\n" + "avoids\n" + "ladders!";}
+		else if (player.isDoubleStep()) {status=player.getName() + "\n" + "moves\n" + "2x the eyes!";}
 
 		Field nextField = fields.get(nextFieldId);
-		status = player.getName() + "\nflytter\n" + t +" felt!";
+		status = player.getName() + "\nmoves\n" + t +" fields!";
 		movePlayerTo(player, nextField, dieActor);
-
-		// TODO: Message to dialog box
 		board.incToken();
 	}
 

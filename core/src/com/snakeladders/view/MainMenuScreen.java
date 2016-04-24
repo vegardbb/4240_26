@@ -17,7 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.snakeladders.controller.SnakeLadders; // The Game class
 import com.snakeladders.controller.MainMenuScreenController; // The controller
-import com.snakeladders.model.Assets;
 
 public class MainMenuScreen implements Screen {
     
@@ -62,7 +61,7 @@ public class MainMenuScreen implements Screen {
         startGameButton = new TextButton("Start Game", MainMenuScreenController.getTextButtonStyle());
         exitButton = new TextButton("Exit", MainMenuScreenController.getTextButtonStyle());
         playerCountSlider = new Slider(2,4,1,false, MainMenuScreenController.getSliderStyle());
-        playerCountText = new Label("2 Players", new Label.LabelStyle(Assets.getFont(), Color.BLACK));
+        playerCountText = new Label("2 Players", new Label.LabelStyle(MainMenuScreenController.getFont(), Color.BLACK));
         playerCountText.setFontScale(2);
         Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
         

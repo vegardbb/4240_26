@@ -4,13 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.snakeladders.model.Board;
-import com.snakeladders.view.ConfigScreen;
 import com.snakeladders.model.Assets; // The Assets class
 import com.snakeladders.view.GameScreen;
 
@@ -33,14 +29,6 @@ public class MainMenuScreenController {
         game.setScreen(new GameScreen(game, playerCount));
         //TODO: more functionality may be required?
 	}
-
-    /**
-     This class controls the input from the MainMenuScreen
-     **/
-    public void configureGame(){
-        game.setScreen(new ConfigScreen(game));
-        //TODO: more functionality may be required?
-    }
 
     public void exit(){
         game.dispose();
