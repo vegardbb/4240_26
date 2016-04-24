@@ -3,7 +3,6 @@ package com.snakeladders.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,8 +18,6 @@ public class GameOverScreen implements Screen {
     private Player winner;
     private Stage stage;
 
-    private TextButton menuScreenButton;
-
     public GameOverScreen (SnakeLadders game, Player winner){
         this.game = game;
         this.winner = winner;
@@ -33,7 +30,7 @@ public class GameOverScreen implements Screen {
 
         Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
         Table table = new Table(MainMenuScreenController.getSkin());
-        menuScreenButton = new TextButton(winner.getName() + " WON! :D", MainMenuScreenController.getTextButtonStyle());
+        TextButton menuScreenButton = new TextButton(winner.getName() + " WON! :D", MainMenuScreenController.getTextButtonStyle());
 
 
         menuScreenButton.addListener(new InputListener() {
