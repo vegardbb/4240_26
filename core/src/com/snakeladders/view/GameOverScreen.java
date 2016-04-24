@@ -20,7 +20,6 @@ public class GameOverScreen implements Screen {
     private Stage stage;
 
     private TextButton menuScreenButton;
-    private BitmapFont winnerText;
 
     public GameOverScreen (SnakeLadders game, Player winner){
         this.game = game;
@@ -34,7 +33,6 @@ public class GameOverScreen implements Screen {
 
         Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
         Table table = new Table(MainMenuScreenController.getSkin());
-        winnerText = new BitmapFont();
         menuScreenButton = new TextButton(winner.getName() + " WON! :D", MainMenuScreenController.getTextButtonStyle());
 
 
@@ -60,35 +58,20 @@ public class GameOverScreen implements Screen {
         Gdx.gl.glClearColor(1f, 0f, 1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        stage.act(delta); // Does not do anything to the models
+        stage.act(delta);
         stage.draw();
         stage.getBatch().begin();
-        winnerText.draw(stage.getBatch(), winner.getName(), Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()*0.9f);
         stage.getBatch().end();
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
-
+    public void resize(int width, int height) {}
     @Override
-    public void pause() {
-
-    }
-
+    public void pause() {}
     @Override
-    public void resume() {
-
-    }
-
+    public void resume() {}
     @Override
-    public void hide() {
-
-    }
-
+    public void hide() {}
     @Override
-    public void dispose() {
-
-    }
+    public void dispose() {}
 }

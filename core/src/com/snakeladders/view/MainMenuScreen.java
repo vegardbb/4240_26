@@ -53,6 +53,7 @@ public class MainMenuScreen implements Screen {
         playerCountText = new Label("2 Players", new Label.LabelStyle(MainMenuScreenController.getFont(), Color.BLACK));
         playerCountText.setFontScale(2);
         Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
+        backImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         
         startGameButton.addListener(new InputListener() {
 
