@@ -24,8 +24,8 @@ public class ChanceField extends Field{
     **/
     public enum Type {KEEPAWAY, BACKWARDS, DOUBLE, JUMP, SWAP} // Class within me
     
-    public ChanceField(Board board, int i, float x, float y, float size) {
-        super(board, i, x, y, size);
+    public ChanceField(int i, float x, float y, float size) {
+        super(i, x, y, size);
     }
 
     // Fields for choosing a random ChanceField Type
@@ -36,7 +36,7 @@ public class ChanceField extends Field{
 
     public Type randomChoice()  {
         return VALUES.get(RANDOM.nextInt(SIZE));
-    } //private static
+    }
 
 
 }

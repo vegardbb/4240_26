@@ -63,7 +63,7 @@ class FieldFactory {
                 int d = r.nextInt(100);
 
                 if (d < 65 - ladderUpProb*fieldNr){
-                    Field field = new NormalField(board, fieldNr, xPos, yPos, FIELD_PIXEL_DIMENSION);
+                    Field field = new NormalField(fieldNr, xPos, yPos, FIELD_PIXEL_DIMENSION);
                     board.addField(field);
 
                     Texture fieldTexture = normalFieldTexture;
@@ -76,7 +76,7 @@ class FieldFactory {
                     if ((random <= chanceFieldProb) && (fieldNr > 0) && (remainingChanceFields > 0) &&  (fieldNr < FIELD_COUNT - 1)) {    // generate chancefield.
                         // On a chancefield, one out of a set of possible events may happen,
                         // this event is not static, ie it may wary each time a player lands on it.
-                        Field field = new ChanceField(board, fieldNr, xPos, yPos, FIELD_PIXEL_DIMENSION);
+                        Field field = new ChanceField(fieldNr, xPos, yPos, FIELD_PIXEL_DIMENSION);
                         board.addField(field);
                         stage.addActor(new FieldActor(fieldNr, xPos, yPos, FIELD_PIXEL_DIMENSION, FIELD_PIXEL_DIMENSION, chanceFieldTexture, controller));
                         remainingChanceFields--;
@@ -84,20 +84,20 @@ class FieldFactory {
                     } else if ((random <= ladderDownProb) && (y > 0) && (remainingLaddersDown > 0) && (fieldNr < FIELD_COUNT - 1)) { // Ladderfield going down
                         int endOfLastRow = fieldNr - x - 1;
                         int m = r.nextInt(endOfLastRow);
-                        Field field = new LadderField(board, fieldNr, board.getBoardFields().get(m), xPos, yPos, FIELD_PIXEL_DIMENSION);
+                        Field field = new LadderField(fieldNr, board.getBoardFields().get(m), xPos, yPos, FIELD_PIXEL_DIMENSION);
                         board.addField(field);
                         stage.addActor(new FieldActor(fieldNr, xPos, yPos, FIELD_PIXEL_DIMENSION, FIELD_PIXEL_DIMENSION, ladderDownFieldTexture, controller));
                         remainingLaddersDown--;
 
                     } else if ((random <= ladderUpProb) && !(y == 0 && x < 3) && (remainingLaddersUp > 0) && (fieldNr < (FIELD_COUNT - BOARD_SIZE))) { // Ladderfield going up, sends in null in the teleport-parameter, because linear.
-                        Field field = new LadderField(board, fieldNr, null, xPos, yPos, FIELD_PIXEL_DIMENSION);
+                        Field field = new LadderField(fieldNr, null, xPos, yPos, FIELD_PIXEL_DIMENSION);
                         board.addField(field); // Important to distinguish ladder-Up from ladder down in the list of Fields
                         stage.addActor(new FieldActor(fieldNr, xPos, yPos, FIELD_PIXEL_DIMENSION, FIELD_PIXEL_DIMENSION, ladderUpFieldTexture, controller));
                         // Problem: Linking the actor and the model loosely together? Solution: x and y
                         remainingLaddersUp--;
 
                     } else {
-                        Field field = new NormalField(board, fieldNr, xPos, yPos, FIELD_PIXEL_DIMENSION);
+                        Field field = new NormalField(fieldNr, xPos, yPos, FIELD_PIXEL_DIMENSION);
                         board.addField(field);
 
                         Texture fieldTexture = normalFieldTexture;

@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -18,10 +17,6 @@ public class Assets {
     private static Texture backgroundTexture;
 
     private static Texture[] dieTextures;
-    private static Texture yellowDieTexture;
-    private static Texture redDieTexture;
-    private static Texture blueDieTexture;
-    private static Texture greenDieTexture;
 
     private static Texture yellowPieceTexture;
     private static Texture redPieceTexture;
@@ -35,13 +30,7 @@ public class Assets {
     private static Texture startFieldTexture;
     private static Texture goalFieldTexture;
 
-    private static Texture one; // One eye on the die
-    private static Texture two; // Two eyes on the die
-    private static Texture three; // Three eyes on the die
-    private static Texture four; // Four eyes on the die
-    private static Texture five; // Five eyes on the die
-    private static Texture six; // Six eyes on the die
-    private static Texture[] eyes; // Array of possibble die views.
+    private static Texture[] eyes; // Array of possible die views.
 
     private static Texture boardTexture; // The board, covering the screen
 
@@ -51,7 +40,6 @@ public class Assets {
     private static BitmapFont font;
     private static TextureAtlas buttonAtlas;
     private static Slider.SliderStyle sliderStyle;
-    private static ImageTextButton.ImageTextButtonStyle diceStyle;
 
     private static void generateFont() {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-Regular.ttf"));
@@ -59,7 +47,7 @@ public class Assets {
         parameter.size = Gdx.graphics.getWidth() / 20;
         font = generator.generateFont(parameter);
         font.setColor(Color.BLUE);
-        generator.dispose(); // Don't forget to dispose to avoid memory leaks!
+        generator.dispose();
     }
 
     public static void load() {
@@ -67,10 +55,10 @@ public class Assets {
         generateFont();
         backgroundTexture = new Texture(Gdx.files.internal("MainMenuBackground.png")); // For the main menu
 
-        yellowDieTexture = new Texture(Gdx.files.internal("diceyellow.png"));
-        redDieTexture = new Texture(Gdx.files.internal("dicered.png"));
-        blueDieTexture = new Texture(Gdx.files.internal("diceblue.png"));
-        greenDieTexture = new Texture(Gdx.files.internal("dicegreen.png"));
+        Texture yellowDieTexture = new Texture(Gdx.files.internal("diceyellow.png"));
+        Texture redDieTexture = new Texture(Gdx.files.internal("dicered.png"));
+        Texture blueDieTexture = new Texture(Gdx.files.internal("diceblue.png"));
+        Texture greenDieTexture = new Texture(Gdx.files.internal("dicegreen.png"));
         dieTextures = new Texture[] {yellowDieTexture, redDieTexture, blueDieTexture, greenDieTexture};
 
         yellowPieceTexture = new Texture(Gdx.files.internal("yellowpiece.png"));
@@ -87,14 +75,14 @@ public class Assets {
         goalFieldTexture = new Texture(Gdx.files.internal("goalfield.png"));
 
         skin = new Skin();
-        buttonAtlas = new TextureAtlas(Gdx.files.internal("ui-orange.atlas")); // Major karma points of credit to Kenney.nl for making this CC0 - pack.
+        buttonAtlas = new TextureAtlas(Gdx.files.internal("ui-orange.atlas"));
         skin.addRegions(getButtonAtlas());
 
         textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.font = getFont();
         textButtonStyle.up = getSkin().getDrawable("button_04");
         textButtonStyle.down = getSkin().getDrawable("button_02");
-        textButtonStyle.checked = getSkin().getDrawable("checkbox_on"); // Currently not used
+        textButtonStyle.checked = getSkin().getDrawable("checkbox_on");
 
         winStyle = new TextField.TextFieldStyle();
         winStyle.background = getSkin().getDrawable("textbox_02");
@@ -106,12 +94,12 @@ public class Assets {
         sliderStyle.background = skin.getDrawable("slider_back_hor");
         sliderStyle.knob = skin.getDrawable("knob_01");
 
-        one = new Texture(Gdx.files.internal("dice1.png"));
-        two = new Texture(Gdx.files.internal("dice2.png"));
-        three = new Texture(Gdx.files.internal("dice3.png"));
-        four = new Texture(Gdx.files.internal("dice4.png"));
-        five = new Texture(Gdx.files.internal("dice5.png"));
-        six = new Texture(Gdx.files.internal("dice6.png"));
+        Texture one = new Texture(Gdx.files.internal("dice1.png"));
+        Texture two = new Texture(Gdx.files.internal("dice2.png"));
+        Texture three = new Texture(Gdx.files.internal("dice3.png"));
+        Texture four = new Texture(Gdx.files.internal("dice4.png"));
+        Texture five = new Texture(Gdx.files.internal("dice5.png"));
+        Texture six = new Texture(Gdx.files.internal("dice6.png"));
         eyes = new Texture[]{one, two, three, four, five, six};
 
     }

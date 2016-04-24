@@ -9,20 +9,16 @@ public abstract class Field {
      **/
 
     private int id;
-    private float xStart; // The startposition in the upper left corner of the field, x-component
-    private float yStart; // The startposition in the upper left corner of the field, y-component
+    private float xStart; // The startPosition in the upper left corner of the field, x-component
+    private float yStart; // The startPosition in the upper left corner of the field, y-component
     private float size;
 
-    private Board board; // Reference to the board the field belongs to.    
-
-    public Field(Board board, int i, float x, float y, float size) {
-        this.board = board;
+    public Field(int i, float x, float y, float size) {
         this.id = i;
         this.xStart = x;
         this.yStart = y;
         this.size = size;
     }
-    public Board getBoard() { return this.board; }
     public int getId() { return this.id; }
     public float getXpos() { return this.xStart; }
     public float getYpos() { return this.yStart; }
