@@ -87,7 +87,7 @@ public class MainMenuScreen implements Screen {
         table.setFillParent(true);
         table.add(playerCountText);
         table.row();
-        table.add(playerCountSlider);
+        table.add(playerCountSlider).width(Gdx.graphics.getWidth()/7).height(Gdx.graphics.getHeight()/10);
         table.row();
         table.add(startGameButton).width(Gdx.graphics.getWidth()/2).height(Gdx.graphics.getHeight()/6);
         table.row();
