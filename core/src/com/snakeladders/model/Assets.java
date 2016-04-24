@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas; // Not used per now, may be required for the animation
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -12,8 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import java.util.ArrayList;
-
-//See also: http://www.netthreads.co.uk/2012/01/31/libgdx-example-of-using-scene2d-actions-and-event-handling/
 
 public class Assets {
     private static Skin skin;
@@ -67,7 +65,7 @@ public class Assets {
     public static void load() {
         // Implements asset loading.
         generateFont();
-        backgroundTexture = new Texture(Gdx.files.internal("MainMenuBackground.png")); // For the splash screen
+        backgroundTexture = new Texture(Gdx.files.internal("MainMenuBackground.png")); // For the main menu
 
         yellowDieTexture = new Texture(Gdx.files.internal("diceyellow.png"));
         redDieTexture = new Texture(Gdx.files.internal("dicered.png"));
