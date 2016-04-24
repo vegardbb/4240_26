@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.Array;
 import com.snakeladders.model.Assets;
 import com.snakeladders.model.Board;
@@ -39,19 +38,15 @@ public class GameScreenController {
 		this.stage = stage;
 	}
 
-	public static TextField.TextFieldStyle getWindowStyle() {
-		return Assets.getWindowStyle();
-	}
-
-	public Texture[] getDie() {
+	public Texture[] getDieTextures() {
 		return new Texture[]{Assets.getDieTexture(board.getToken()), Assets.getEyeTexture(die.getValue())};
 	}
 
 	public void initGame(int playerCount) {
 		board.setState(Board.State.RUNNING);
-		FieldFactory fieldFactory = new FieldFactory(stage, this);
+		FieldFactory fieldFactory = new FieldFactory(stage);
 		fieldFactory.generateFields();
-		PlayerFactory playerFactory = new PlayerFactory(this, stage);
+		PlayerFactory playerFactory = new PlayerFactory(stage);
 		playerFactory.generatePlayers(playerCount);
 	}
 
@@ -65,8 +60,7 @@ public class GameScreenController {
 	}
 
 	private void drawGameOver() {
-		game.setScreen(new GameOverScreen(game, board.getLeadingPlayer()));
-		board.clearBoard();
+		game.setScreen(new GameOverScreen(game));
 	}
 
 	public void drawLadders(){
@@ -158,14 +152,13 @@ public class GameScreenController {
 		drawSprite(batch, dieActor.getEyeSprite());
 	}
 	public void drawStatus(Batch batch) {
-		BitmapFont f = Assets.getFont();
+		BitmapFont f = Assets.getSmallFont();
 		batch.begin();
-		f.draw(batch, this.status, 10, Gdx.graphics.getHeight() - 10);
+		f.draw(batch, this.status, 10, Gdx.graphics.getHeight() - 10, Gdx.graphics.getWidth()/6, 1, true );
 		batch.end();
 	}
 
 	public void drawSprite(Batch batch, Sprite sprite) {
-
 		batch.begin();
 		batch.draw(sprite.getTexture(), sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
 		batch.end();
@@ -203,7 +196,7 @@ public class GameScreenController {
 				player.resetFlags();
 				if (field instanceof LadderField){
 					field = ((LadderField) field).getTeleportToField();
-					status = player.getName() + "\nclimbs a\n" + "ladder!";
+					status = player.getName() + " climbs a ladder!";
 				} else if (field instanceof ChanceField){
 					Random r =  new Random();
 					ChanceField.Type event = ((ChanceField)field).randomChoice();
@@ -211,7 +204,7 @@ public class GameScreenController {
 						int random = r.nextInt(7);
 						if (field.getId()+random >= board.getBoardFields().size() - 1) {random = board.getBoardFields().size()-random-1;}
 						field = board.getBoardFields().get(field.getId()+random);
-						status = player.getName() + "\nmoves " + random +"\nfields\nmore!";
+						status = player.getName() + " moves " + random + " fields more!";
 						System.out.println("JUMP");
 					}
 					else if (event == ChanceField.Type.SWAP) {
@@ -220,19 +213,22 @@ public class GameScreenController {
 						Field newField = board.getBoardFields().get(p.getCurrentField().getId());
 						p.setCurrentField(field);
 						field = newField;
-						status = player.getName() + "\nswaps\n" + "fields w/\n"+p.getName();
+						status = player.getName() + " swaps fields with " + p.getName();
 						System.out.println("SWAP");
 					}
 					else if (event == ChanceField.Type.DOUBLE) {
 						player.setDoubleStep();
+						status = player.getName() + " moves 2x the eyes next turn!";
 						System.out.println("DOUBLE");
 					}
 					else if (event == ChanceField.Type.KEEPAWAY) {
 						player.setSkipField();
+						status = player.getName() + " avoids ladders next turn!";
 						System.out.println("KEEPAWAY");
 					}
 					else if (event == ChanceField.Type.BACKWARDS) {
 						player.setWrongWay();
+						status = player.getName() + " goes the wrong way the next turn!";
 						System.out.println("BACKWARDS");
 					}
 				} else if (field.getId() == board.getBoardFields().size() - 1){
@@ -249,11 +245,14 @@ public class GameScreenController {
 	}
 
 	public void throwDie(DieActor dieActor) {
+		status = "";
 		Random r = new Random();
 		int t = r.nextInt(6) + 1;
 		die.setValue(t);
+
 		Player player = board.getPlayersOnBoard().get(board.getToken());
 		ArrayList<Field> fields = board.getBoardFields();
+
 		int nextFieldId;
 		if (player.isDoubleStep() && !(player.isWrongWay())) {
 			nextFieldId = player.getCurrentField().getId() + 2*t;
@@ -264,9 +263,6 @@ public class GameScreenController {
 		if (nextFieldId > maxFieldId) { // If the player overshoots the goal, we will let them continue to goal.
 			nextFieldId = maxFieldId;
 		} else if (nextFieldId < 0) {nextFieldId = 0;}
-		if (player.isWrongWay()) {status=player.getName() + "\n" + "goes the\n" + "wrong way!";}
-		else if (player.isSkipField()) {status=player.getName() + "\n" + "avoids\n" + "ladders!";}
-		else if (player.isDoubleStep()) {status=player.getName() + "\n" + "moves\n" + "2x the eyes!";}
 
 		Field nextField = fields.get(nextFieldId);
 		movePlayerTo(player, nextField, dieActor);

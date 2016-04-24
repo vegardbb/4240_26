@@ -20,8 +20,6 @@ import com.snakeladders.controller.MainMenuScreenController; // The controller
 
 public class MainMenuScreen implements Screen {
     private Stage stage;
-    private TextButton startGameButton;
-    private TextButton exitButton;
     private MainMenuScreenController controller;
     private Slider playerCountSlider;
     private Label playerCountText;
@@ -46,9 +44,9 @@ public class MainMenuScreen implements Screen {
 
         Table table = new Table(MainMenuScreenController.getSkin());
         table.align(Align.top);
-        
-        startGameButton = new TextButton("Start Game", MainMenuScreenController.getTextButtonStyle());
-        exitButton = new TextButton("Exit", MainMenuScreenController.getTextButtonStyle());
+
+        TextButton startGameButton = new TextButton("Start Game", MainMenuScreenController.getTextButtonStyle());
+        TextButton exitButton = new TextButton("Exit", MainMenuScreenController.getTextButtonStyle());
         playerCountSlider = new Slider(2,4,1,false, MainMenuScreenController.getSliderStyle());
         playerCountText = new Label("2 Players", new Label.LabelStyle(MainMenuScreenController.getFont(), Color.BLACK));
         playerCountText.setFontScale(2);
