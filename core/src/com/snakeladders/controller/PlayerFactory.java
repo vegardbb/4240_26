@@ -7,7 +7,6 @@ import com.snakeladders.model.Board;
 import com.snakeladders.model.Field;
 import com.snakeladders.model.Player;
 import com.snakeladders.view.PlayerActor;
-
 import java.util.ArrayList;
 
 class PlayerFactory {

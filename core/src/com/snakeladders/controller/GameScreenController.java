@@ -98,10 +98,6 @@ public class GameScreenController {
 		}
 	}
 
-	public static Texture getBackgroundTexture() {
-		return Assets.getBackgroundTexture();
-	}
-
 	public void drawBoard(){
 		ArrayList<Player> players = board.getPlayersOnBoard();
 		ArrayList<Field> fields = board.getBoardFields();
@@ -179,10 +175,13 @@ public class GameScreenController {
 		class MoveThread implements Runnable {
 			private Player player;
 			private Field field;
+			private DieActor dieActor;
 			public MoveThread (Player player, Field field, DieActor dieActor){
 				this.player = player;
 				this.field = field;
+				this.dieActor = dieActor;
 			}
+
 			public void run(){
 				while (player.getCurrentField().getId() != field.getId()){
 					if (player.isWrongWay()) {player.setCurrentField(board.getBoardFields().get(player.getCurrentField().getId() - 1));}
@@ -190,15 +189,18 @@ public class GameScreenController {
 					try {
 						Thread.sleep(300);
 					} catch (Exception e){
-
+						System.out.println(e.getMessage());
 					}
 				}
+
 				if (player.isSkipField() && (field.getId() != board.getBoardFields().size() - 1)) {
-					player.resetTokens();
+					player.resetFlags();
 					player.setCurrentField(field);
 					dieActor.setTouchable(Touchable.enabled);
-					return; }
-				player.resetTokens();
+					return;
+				}
+
+				player.resetFlags();
 				if (field instanceof LadderField){
 					field = ((LadderField) field).getTeleportToField();
 					status = player.getName() + "\nclimbs a\n" + "ladder!";
@@ -238,8 +240,9 @@ public class GameScreenController {
 				}
 
 				player.setCurrentField(field);
+				board.incToken();
 				dieActor.setTouchable(Touchable.enabled);
-			}};
+			}}
 
 		Thread t = new Thread(new MoveThread(player, field, dieActor));
 		t.start();
@@ -267,8 +270,6 @@ public class GameScreenController {
 
 		Field nextField = fields.get(nextFieldId);
 		movePlayerTo(player, nextField, dieActor);
-		board.incToken();
 	}
-
 }
 

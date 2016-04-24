@@ -18,11 +18,12 @@ public class Player {
         return name;
     }
     
-    public void resetTokens() {
+    public void resetFlags() {
         this.skipField = false;
         this.wrongWay = false;
         this.doubleStep = false;
     }
+
     public void setSkipField() {
         this.skipField = true;
     }
