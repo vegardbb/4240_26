@@ -70,7 +70,7 @@ public class MainMenuScreen implements Screen {
             public boolean touchDown(InputEvent event, float x, float y,
                     int pointer, int button) {
                 controller.newGame((int) playerCountSlider.getValue());
-                System.out.println("Starting Game");
+                //System.out.println("Starting Game");
                 return true;
             }
         });
@@ -80,7 +80,7 @@ public class MainMenuScreen implements Screen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y,int pointer, int button) {
                 controller.exit();
-                System.out.println("Exit Game");
+                //System.out.println("Exit Game");
                 return true;
             }
         });
