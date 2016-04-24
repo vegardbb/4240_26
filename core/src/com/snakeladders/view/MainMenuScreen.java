@@ -19,8 +19,6 @@ import com.snakeladders.controller.SnakeLadders; // The Game class
 import com.snakeladders.controller.MainMenuScreenController; // The controller
 
 public class MainMenuScreen implements Screen {
-    
-    private SnakeLadders game;
     private Stage stage;
     private TextButton startGameButton;
     private TextButton exitButton;
@@ -29,7 +27,6 @@ public class MainMenuScreen implements Screen {
     private Label playerCountText;
 
     public MainMenuScreen(SnakeLadders game) {
-        this.game = game;
         this.controller = new MainMenuScreenController(game);
     }
 
@@ -38,15 +35,8 @@ public class MainMenuScreen implements Screen {
         Gdx.gl.glClearColor(1f, 0f, 1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        stage.act(delta); // Does not do anything to the models
+        stage.act(delta);
         stage.draw();
-//        Table.drawDebug(stage);  // For testing and debugging
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        // Method stub
-        
     }
 
     @Override
@@ -63,6 +53,7 @@ public class MainMenuScreen implements Screen {
         playerCountText = new Label("2 Players", new Label.LabelStyle(MainMenuScreenController.getFont(), Color.BLACK));
         playerCountText.setFontScale(2);
         Image backImage = new Image(MainMenuScreenController.getBackgroundTexture());
+        backImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         
         startGameButton.addListener(new InputListener() {
 
@@ -96,7 +87,6 @@ public class MainMenuScreen implements Screen {
 
 
         table.setFillParent(true);
-//        table.debug();
         table.add(playerCountText);
         table.row();
         table.add(playerCountSlider);
@@ -105,32 +95,18 @@ public class MainMenuScreen implements Screen {
         table.row();
         table.add(exitButton).width(Gdx.graphics.getWidth()/2).height(Gdx.graphics.getHeight() / 6);
         
-        stage.addActor(backImage); // Turns out the background is a dumb actor.
+        stage.addActor(backImage);
         stage.addActor(table);
     }
 
     @Override
-    public void hide() {
-        // Method stub
-        
-    }
-
+    public void resize(int width, int height) {}
     @Override
-    public void pause() {
-        // Method stub
-        
-    }
-
+    public void hide() {}
     @Override
-    public void resume() {
-        // Method stub
-
-    }
-
+    public void pause() {}
     @Override
-    public void dispose() {
-        // Method stub
-
-    }
-
+    public void resume() {}
+    @Override
+    public void dispose() {}
 }
