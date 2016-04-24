@@ -270,7 +270,6 @@ public class GameScreenController {
 		else if (player.isDoubleStep()) {status=player.getName() + "\n" + "moves\n" + "2x the eyes!";}
 
 		Field nextField = fields.get(nextFieldId);
-		status = player.getName() + "\nmoves\n" + t +" fields!";
 		movePlayerTo(player, nextField, dieActor);
 		board.incToken();
 	}
