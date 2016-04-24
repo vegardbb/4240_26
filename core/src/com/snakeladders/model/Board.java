@@ -3,6 +3,9 @@ package com.snakeladders.model;
 import java.util.ArrayList;
 
 public final class Board {
+    /*
+    Singleton Object that represents the board in the game.
+    */
     public enum State { RUNNING, PAUSE, GAMEOVER }
     private State currentState;
     private int token = 0; // decides whose turn it is. Points to a Player in array of players.
@@ -22,34 +25,20 @@ public final class Board {
     }
 
     private Board() {}
-    // Eager initialisation of singleton, ie we have a Board instance up and running even if we quit the game once we start it.
+    // Eager initialisation of singleton, i.e. we have a Board instance up and running even if we quit the game once we start it.
     private static final Board INSTANCE = new Board();
     public static Board getInstance() {
         return getINSTANCE();
     }
 
+    // Method to erase all game elements on the board when the game is over. The board itself, however, continues to exist in memory...
     public void clearBoard(){
         playersOnBoard = new ArrayList<Player>();
         boardFields = new ArrayList<Field>();
         token = 0;
     }
 
-
-    /**
- Model class for the game board that contains all the things that make up our Stigespill
-    Contents:
-    An array with all players on it. Its contents remain the same throughout the game.
-    An array of its randomly generated Fields. Do not forget the rules for generating fields are in the controller package. . Its contents remain the same throughout the game.
-    A mapping between the players and the fields revealing where the players are at a given turn.
-
-    TODO: Describe functionality on the Board Model.
-
-    Note: Board, Player and Die are in fact, not actors, though they could have been so.
-      The actors are in fact, among the controllers, and they implement the rules and works and irons
-      in Stigespillet. For example, the GameScreenController
-     Board is not a stage, and the Players are not Actors, otherwise the model has a direct connection to the view, which violates the holiest tenet of MVC.
-    **/
-
+    // Getters for the elements on the board save the die
     public int getToken() {
         return token;
     }
