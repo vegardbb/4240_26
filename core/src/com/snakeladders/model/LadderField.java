@@ -1,6 +1,6 @@
 package com.snakeladders.model;
 
-public class LadderField extends Field{
+public class LadderField extends Field {
     /**
     Model class for the field that contains all the things that make up our implementation of Stigespillet
 
